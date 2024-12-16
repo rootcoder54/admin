@@ -1,18 +1,16 @@
-import { AppSidebar } from "@/components/Sidebar/app-sidebar"
+import { AppSidebar } from "@/components/Sidebar/app-sidebar";
 
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+  SidebarTrigger
+} from "@/components/ui/sidebar";
 
-export default function CRMLayout({children}:{children:React.ReactNode}) {
+export default function CRMLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
-        {children}
-      </SidebarInset>
+      <SidebarInset>{children}</SidebarInset>
     </SidebarProvider>
-  )
+  );
 }
