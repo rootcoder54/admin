@@ -28,6 +28,7 @@ import {
   FormLabel,
   FormMessage
 } from "../ui/form";
+import { Spinner } from "../spinner";
 
 export function LoginForm({
   className,
@@ -50,7 +51,7 @@ export function LoginForm({
     startTransition(() => {
       login(values).then((data) => {
         if (data !== undefined) {
-          console.log(data.error)
+          console.log(data.error);
         }
       });
     });
@@ -68,59 +69,72 @@ export function LoginForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="shadow-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">
-            Bienvenue Sur Admin Malisystem
-          </CardTitle>
-          <CardDescription>
-            Connectez-vous pour avoir accès au BackOffice
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder="bfof@gmail.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type={typePassword} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {!isPending && (
-                <div className="flex items-center justify-center gap-x-3">
-                  <Checkbox
-                    id="check"
-                    checked={showPassword}
-                    onCheckedChange={ckeckChange}
+        {isPending && (
+          <CardHeader className="text-center flex flex-col items-center justify-center p-9">
+            <CardTitle className="text-xl">Connexion</CardTitle>
+            <Spinner size={"lg"} />
+          </CardHeader>
+        )}
+        {!isPending && (
+          <>
+            <CardHeader className="text-center">
+              <CardTitle className="text-xl">
+                Bienvenue Sur Admin Malisystem
+              </CardTitle>
+              <CardDescription>
+                Connectez-vous pour avoir accès au BackOffice
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-6"
+                >
+                  <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Username</FormLabel>
+                        <FormControl>
+                          <Input placeholder="bfof@gmail.com" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                  <label htmlFor="check">Afficher le mot de passe</label>
-                </div>
-              )}
-              <Button type="submit" size={"lg"} className="w-full">
-                <span>Se connecter</span>
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input type={typePassword} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  {!isPending && (
+                    <div className="flex items-center justify-center gap-x-3">
+                      <Checkbox
+                        id="check"
+                        checked={showPassword}
+                        onCheckedChange={ckeckChange}
+                      />
+                      <label htmlFor="check">Afficher le mot de passe</label>
+                    </div>
+                  )}
+                  <Button type="submit" size={"lg"} className="w-full">
+                    <span>Se connecter</span>
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
+          </>
+        )}
       </Card>
     </div>
   );
