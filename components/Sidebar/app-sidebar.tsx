@@ -96,7 +96,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <UserButton teams={data.teams} />
         <NavItems items={data.navMain} />
       </SidebarHeader>
-      <SidebarContent></SidebarContent>
       <SidebarRail />
     </Sidebar>
   );
