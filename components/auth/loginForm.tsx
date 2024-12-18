@@ -13,8 +13,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Checkbox } from "../ui/checkbox";
+import { useForm } from "react-hook-form";
+import { loginSchema } from "@/shemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { login } from "@/action/auth/login";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "../ui/form";
 
 export function LoginForm({
   className,
@@ -23,8 +36,25 @@ export function LoginForm({
   const [typePassword, setTypePassword] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [isPending, startTransition] = useTransition();
+
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      username: "",
+      password: ""
+    }
+  });
+
+  function onSubmit(values: z.infer<typeof loginSchema>) {
+    startTransition(() => {
+      login(values).then((data) => {
+        if (data !== undefined) {
+          console.log(data.error)
+        }
+      });
+    });
+  }
 
   const ckeckChange = () => {
     setShowPassword((s) => !s);
@@ -47,57 +77,49 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
-            <div className="grid gap-6">
-              <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border"></div>
-              <div className="grid gap-6">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Login</Label>
-                  <Input
-                    id="email"
-                    type="text"
-                    name="username"
-                    value={username}
-                    placeholder="m@example.com"
-                    required
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
-                  </div>
-                  <Input
-                    id="password"
-                    type={typePassword}
-                    name="password"
-                    required
-                  />
-                </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="bfof@gmail.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input type={typePassword} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {!isPending && (
                 <div className="flex items-center justify-center gap-x-3">
                   <Checkbox
                     id="check"
                     checked={showPassword}
                     onCheckedChange={ckeckChange}
                   />
-                  <label htmlFor="check" className="cursor-pointer">
-                    Afficher le mot de passe
-                  </label>
+                  <label htmlFor="check">Afficher le mot de passe</label>
                 </div>
-                <Button type="submit" className="w-full">
-                  Se connecter
-                </Button>
-              </div>
-              <div className="text-center text-sm">
-                Voulez vous retourner sur le
-                <Link
-                  href="https://malisystem.com/"
-                  className="underline underline-offset-4 px-1"
-                >
-                  Site
-                </Link>
-              </div>
-            </div>
-          </form>
+              )}
+              <Button type="submit" size={"lg"} className="w-full">
+                <span>Se connecter</span>
+              </Button>
+            </form>
+          </Form>
         </CardContent>
       </Card>
     </div>
