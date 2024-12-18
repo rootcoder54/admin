@@ -1,4 +1,5 @@
 import { GalleryVerticalEnd } from "lucide-react";
+import Image from "next/image";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -6,7 +7,13 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex w-full max-w-sm flex-col gap-6">
         <a href="#" className="flex items-center gap-2 self-center font-medium">
           <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <GalleryVerticalEnd className="size-4" />
+            <Image
+              alt="logo"
+              src={"/msys.png"}
+              width={154}
+              height={144}
+              className="invert dark:invert-0"
+            />
           </div>
           MaliSystem S.A.R.L
         </a>

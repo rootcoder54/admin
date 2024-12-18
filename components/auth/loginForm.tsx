@@ -1,39 +1,58 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+  CardTitle
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { useState } from "react";
+import { Checkbox } from "../ui/checkbox";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [typePassword, setTypePassword] = useState("password");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const ckeckChange = () => {
+    setShowPassword((s) => !s);
+    if (typePassword === "password") {
+      setTypePassword("text");
+    } else {
+      setTypePassword("password");
+    }
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="shadow-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
+          <CardTitle className="text-xl">
+            Bienvenue Sur Admin Malisystem
+          </CardTitle>
           <CardDescription>
-            Login with your Apple or Google account
+            Connectez-vous pour avoir accès au BackOffice
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form>
             <div className="grid gap-6">
-              <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-              </div>
+              <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border"></div>
               <div className="grid gap-6">
                 <div className="grid gap-2">
                   <Label htmlFor="email">Login</Label>
                   <Input
                     id="email"
-                    type="email"
+                    type="text"
                     placeholder="m@example.com"
                     required
                   />
@@ -41,28 +60,34 @@ export function LoginForm({
                 <div className="grid gap-2">
                   <div className="flex items-center">
                     <Label htmlFor="password">Password</Label>
-                    
                   </div>
-                  <Input id="password" type="password" required />
+                  <Input id="password" type={typePassword} required />
+                </div>
+                <div className="flex items-center justify-center gap-x-3">
+                  <Checkbox
+                    id="check"
+                    checked={showPassword}
+                    onCheckedChange={ckeckChange}
+                  />
+                  <label htmlFor="check" className="cursor-pointer">Afficher le mot de passe</label>
                 </div>
                 <Button type="submit" className="w-full">
-                  Login
+                  Se connecter
                 </Button>
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4">
-                  Sign up
-                </a>
+                Voulez vous retourner sur le
+                <Link
+                  href="https://malisystem.com/"
+                  className="underline underline-offset-4 px-1"
+                >
+                  Site
+                </Link>
               </div>
             </div>
           </form>
         </CardContent>
       </Card>
-      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
-      </div>
     </div>
-  )
+  );
 }
