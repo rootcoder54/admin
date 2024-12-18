@@ -23,6 +23,9 @@ export function LoginForm({
   const [typePassword, setTypePassword] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const ckeckChange = () => {
     setShowPassword((s) => !s);
     if (typePassword === "password") {
@@ -53,6 +56,8 @@ export function LoginForm({
                   <Input
                     id="email"
                     type="text"
+                    name="username"
+                    value={username}
                     placeholder="m@example.com"
                     required
                   />
@@ -61,7 +66,12 @@ export function LoginForm({
                   <div className="flex items-center">
                     <Label htmlFor="password">Password</Label>
                   </div>
-                  <Input id="password" type={typePassword} required />
+                  <Input
+                    id="password"
+                    type={typePassword}
+                    name="password"
+                    required
+                  />
                 </div>
                 <div className="flex items-center justify-center gap-x-3">
                   <Checkbox
@@ -69,7 +79,9 @@ export function LoginForm({
                     checked={showPassword}
                     onCheckedChange={ckeckChange}
                   />
-                  <label htmlFor="check" className="cursor-pointer">Afficher le mot de passe</label>
+                  <label htmlFor="check" className="cursor-pointer">
+                    Afficher le mot de passe
+                  </label>
                 </div>
                 <Button type="submit" className="w-full">
                   Se connecter
