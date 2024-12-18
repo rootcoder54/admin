@@ -29,11 +29,14 @@ import {
   FormMessage
 } from "../ui/form";
 import { Spinner } from "../spinner";
+import FormError from "./form-error";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [error, setError] = useState<string | undefined>("");
+
   const [typePassword, setTypePassword] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -48,10 +51,11 @@ export function LoginForm({
   });
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
+    setError("");
     startTransition(() => {
       login(values).then((data) => {
         if (data !== undefined) {
-          console.log(data.error);
+          setError(data.error);
         }
       });
     });
@@ -127,6 +131,7 @@ export function LoginForm({
                       <label htmlFor="check">Afficher le mot de passe</label>
                     </div>
                   )}
+                  <FormError message={error} />
                   <Button type="submit" size={"lg"} className="w-full">
                     <span>Se connecter</span>
                   </Button>
