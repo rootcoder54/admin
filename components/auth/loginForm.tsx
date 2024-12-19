@@ -83,7 +83,7 @@ export function LoginForm({
           <>
             <CardHeader className="text-center">
               <CardTitle className="text-xl">
-                Bienvenue Sur Admin Malisystem
+                🔐 Bienvenue Sur Admin Malisystem
               </CardTitle>
               <CardDescription>
                 Connectez-vous pour avoir accès au BackOffice
