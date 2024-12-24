@@ -55,7 +55,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
     const onSubmit = (formData: FormData) => {
       const title = formData.get("title") as string;
       const listId = formData.get("listId") as string;
-      const boardId = params.boardId as string;
+      const boardId = params.item as string;
 
       execute({ title, listId, boardId });
     };
@@ -76,7 +76,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
           />
           <input hidden id="listId" name="listId" value={listId} />
           <div className="flex items-center gap-x-1">
-            <FormSubmit>Add card</FormSubmit>
+            <FormSubmit>Ajouter une tache</FormSubmit>
             <Button onClick={disableEditing} size="sm" variant="ghost">
               <X className="h-5 w-5" />
             </Button>

@@ -8,10 +8,12 @@ import { createSafeAction } from "@/lib/create-safe-action";
 import { UpdateCardOrder } from "./schema";
 import { InputType, ReturnType } from "./types";
 import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
-  const { data: session, status } = useSession();
+ // const { data: session, status } = useSession();
 
+  const session = await auth();
   if (!session?.user) {
     return {
       error: "Unauthorized"
@@ -35,6 +37,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     );
 
     updatedCards = await db.$transaction(transaction);
+    console.log(updateCardOrder)   
   } catch (error) {
     return {
       error: "Failed to reorder."

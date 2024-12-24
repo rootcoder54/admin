@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
+import { Toaster } from "@/components/ui/toaster"
+
 const font = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,6 +29,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

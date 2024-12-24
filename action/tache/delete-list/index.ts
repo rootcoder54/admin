@@ -8,10 +8,12 @@ import { createSafeAction } from "@/lib/create-safe-action";
 import { DeleteList } from "./schema";
 import { InputType, ReturnType } from "./types";
 import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
-  const { data: session, status } = useSession();
+  //const { data: session, status } = useSession();
 
+  const session = await auth();
   if (!session?.user) {
     return {
       error: "Unauthorized"
