@@ -5,17 +5,17 @@ import { getLists } from "@/lib/get-lists";
 
 interface BoardIdPageProps {
   params: {
-    boardId: string;
+    item: string;
   };
 }
 
 const BoardIdPage = async ({ params }: BoardIdPageProps) => {
 
-  const lists = await getLists(params.boardId);
+  const lists = await getLists(params.item);
 
   return (
     <div className="h-full overflow-x-auto p-4">
-      <ListContainer boardId={params.boardId} data={lists} />
+      <ListContainer boardId={params.item} data={lists} />
     </div>
   );
 };
