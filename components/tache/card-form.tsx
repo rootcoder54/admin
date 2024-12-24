@@ -94,7 +94,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
           variant="ghost"
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add a card
+          Ajouter une Tache
         </Button>
       </div>
     );

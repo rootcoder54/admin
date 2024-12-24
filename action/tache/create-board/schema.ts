@@ -3,14 +3,14 @@ import { z } from "zod";
 export const CreateBoard = z.object({
   title: z
     .string({
-      required_error: "Title is required",
-      invalid_type_error: "Title is required",
+      required_error: "Titre est Obligatoire",
+      invalid_type_error: "Titre est Obligatoire",
     })
     .min(3, {
-      message: "Title is too short.",
+      message: "Le titre est trop court.",
     }),
   image: z.string({
-    required_error: "Image is required",
-    invalid_type_error: "Image is required",
+    required_error: "Image Obligatoire",
+    invalid_type_error: "Image Obligatoire",
   }),
 });

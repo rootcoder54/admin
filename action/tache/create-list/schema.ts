@@ -3,11 +3,11 @@ import { z } from "zod";
 export const CreateList = z.object({
   title: z
     .string({
-      required_error: "Title is required",
-      invalid_type_error: "Title is required",
+      required_error: "Titre est obligatoire",
+      invalid_type_error: "Titre est obligatoire",
     })
     .min(3, {
-      message: "Title is too short",
+      message: "Titre est trop court",
     }),
   boardId: z.string(),
 });

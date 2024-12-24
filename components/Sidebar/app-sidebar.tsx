@@ -67,6 +67,11 @@ const data = {
       icon: Calendar
     },
     {
+      title: "Tache",
+      url: "/tache",
+      icon: Calendar
+    },
+    {
       title: "Interventions",
       url: "#",
       icon: FileArchive
