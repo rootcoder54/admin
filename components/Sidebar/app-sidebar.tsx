@@ -28,73 +28,85 @@ import {
 } from "@/components/ui/sidebar";
 import { UserButton } from "@/components/Sidebar/userButton";
 import { NavItems } from "./navItems";
+import { usePathname } from "next/navigation";
 
 // This is sample data.
-const data = {
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: Command,
-      plan: "Enterprise"
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup"
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free"
-    }
-  ],
-  navMain: [
-    {
-      title: "Accueil",
-      url: "#",
-      icon: Home,
-      isActive: true
-    },
-    {
-      title: "Employé",
-      url: "#",
-      icon: Users,
-      badge: "10"
-    },
-    {
-      title: "Calendrier",
-      url: "#",
-      icon: Calendar
-    },
-    {
-      title: "Tache",
-      url: "/tache",
-      icon: Calendar
-    },
-    {
-      title: "Interventions",
-      url: "#",
-      icon: FileArchive
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2
-    },
-    {
-      title: "Trash",
-      url: "#",
-      icon: Trash2
-    },
-    {
-      title: "Help",
-      url: "#",
-      icon: MessageCircleQuestion
-    }
-  ]
-};
+
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+  const pathname = usePathname();
+
+  const data = {
+    teams: [
+      {
+        name: "Acme Inc",
+        logo: Command,
+        plan: "Enterprise"
+      },
+      {
+        name: "Acme Corp.",
+        logo: AudioWaveform,
+        plan: "Startup"
+      },
+      {
+        name: "Evil Corp.",
+        logo: Command,
+        plan: "Free"
+      }
+    ],
+    navMain: [
+      {
+        title: "Accueil",
+        url: "/",
+        icon: Home,
+        isActive: pathname === "/"
+      },
+      {
+        title: "Employé",
+        url: "#",
+        icon: Users,
+        badge: "10",
+        isActive: pathname === "/employe"
+      },
+      {
+        title: "Calendrier",
+        url: "#",
+        icon: Calendar,
+        isActive: pathname === "/calendrier"
+      },
+      {
+        title: "Tache",
+        url: "/tache",
+        icon: Calendar,
+        isActive: pathname.startsWith("/tache")
+      },
+      {
+        title: "Interventions",
+        url: "#",
+        icon: FileArchive,
+        isActive: pathname === "/intervention"
+      },
+      {
+        title: "Settings",
+        url: "#",
+        icon: Settings2,
+        isActive: pathname === "/settings"
+      },
+      {
+        title: "Trash",
+        url: "#",
+        icon: Trash2,
+        isActive: pathname === "/trash"
+      },
+      {
+        title: "Help",
+        url: "#",
+        icon: MessageCircleQuestion,
+        isActive: pathname === "/help"
+      }
+    ]
+  };
   return (
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
