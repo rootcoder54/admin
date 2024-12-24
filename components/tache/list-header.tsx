@@ -37,7 +37,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
 
   const { execute } = useAction(updateList, {
     onSuccess: (data) => {
-      toast.success(`Renamed to "${data.title}"`);
+      toast.success(`Renommer : "${data.title}"`);
       setTitle(data.title);
       disableEditing();
     },
@@ -78,13 +78,13 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
     <div className="items-start- flex justify-between gap-x-2 px-2 pt-2 text-sm font-semibold">
       {isEditing ? (
         <form ref={formRef} action={handleSubmit} className="flex-1 px-[2px]">
-          <input hidden id="id" name="id" value={data.id} />
-          <input hidden id="boardId" name="boardId" value={data.boardId} />
+          <input hidden id="id" name="id" value={data.id} readOnly />
+          <input hidden id="boardId" name="boardId" value={data.boardId} readOnly />
           <FormInput
             ref={inputRef}
             onBlur={onBlur}
             id="title"
-            placeholder="Enter list title.."
+            placeholder="Entre le titre.."
             defaultValue={title}
             className="h-7 truncate border-transparent bg-transparent px-[7px] py-1 text-sm font-medium transition hover:border-input focus:border-input"
           />

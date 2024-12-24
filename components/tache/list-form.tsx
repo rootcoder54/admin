@@ -79,7 +79,7 @@ export const ListForm = () => {
             className="h-7 border-transparent px-2 py-1 text-sm font-medium transition hover:border-input focus:border-input"
             placeholder="Titre de la liste..."
           />
-          <input hidden value={params.item} name="boardId" />
+          <input hidden value={params.item} name="boardId" readOnly />
           <div className="flex items-center gap-x-1">
             <FormSubmit>Ajouter liste</FormSubmit>
             <Button onClick={disableEditing} size="sm" variant="ghost">
