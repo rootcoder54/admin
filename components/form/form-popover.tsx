@@ -39,13 +39,13 @@ export const FormPopover = ({
 
   const { execute, fieldErrors } = useAction(createBoard, {
     onSuccess: (data) => {
-      toast.success("Board created!");
+      toast.success("Tache crée!");
       closeRef.current?.click();
-      router.push(`/board/${data.id}`);
+      router.push(`/tache/${data.id}`);
     },
     onError: (error) => {
       toast.error(error);
-      proModal.onOpen();
+      //proModal.onOpen();
     },
   });
 
@@ -66,7 +66,7 @@ export const FormPopover = ({
         sideOffset={sideOffset}
       >
         <div className="pb-4 text-center text-sm font-medium text-neutral-600">
-          Create board
+          Créer une liste de tache
         </div>
         <PopoverClose ref={closeRef} asChild>
           <Button
@@ -81,12 +81,12 @@ export const FormPopover = ({
             <FormPicker id="image" errors={fieldErrors} />
             <FormInput
               id="title"
-              label="Board title"
+              label="Titre"
               type="text"
               errors={fieldErrors}
             />
           </div>
-          <FormSubmit className="w-full">Create</FormSubmit>
+          <FormSubmit className="w-full">Créer</FormSubmit>
         </form>
       </PopoverContent>
     </Popover>
