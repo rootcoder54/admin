@@ -1,6 +1,6 @@
 import * as React from "react";
-import { auth } from "@/auth";
 import { useSession } from "next-auth/react";
+import {  useTransition } from "react";
 
 import {
   DropdownMenu,
@@ -8,7 +8,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {
@@ -25,7 +24,15 @@ import { ChevronDown } from "lucide-react";
 export const UserButton = () => {
   const { data: session, status } = useSession();
 
-  if (status === "loading") {
+  const [isPending, startTransition] = useTransition();
+
+  const submit = () => {
+    startTransition(() => {
+      logout();
+    });
+  };
+
+  if (status === "loading" || isPending) {
     return (
       <div className="flex justify-center items-center">
         <Spinner />
@@ -57,7 +64,7 @@ export const UserButton = () => {
                 <ChevronDown className="opacity-50" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="start">
               <DropdownMenuLabel>{session.user.username}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
@@ -65,9 +72,9 @@ export const UserButton = () => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <form action={logout}>
-                  <Button type="submit" size={"lg"} variant={"link"}>
-                    Log Out
+                <form action={submit}>
+                  <Button type="submit" size={"lg"} variant={"ghost"} className="h-1">
+                    Deconnexion
                   </Button>
                 </form>
               </DropdownMenuItem>
