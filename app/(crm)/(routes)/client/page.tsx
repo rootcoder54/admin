@@ -6,6 +6,9 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { columns } from "./_component/colums";
+import DataTable from "./_component/data-table";
+import clients from "./_component/data";
 
 const ClientPage = () => {
   return (
@@ -27,8 +30,9 @@ const ClientPage = () => {
         <div className="ml-auto px-3"></div>
       </header>
       <div className="flex flex-1 flex-col gap-4 px-4 py-10">
-        <div className="mx-auto h-24 w-full max-w-3xl rounded-xl bg-muted/50" />
-        <div className="mx-auto h-full w-full max-w-3xl rounded-xl bg-muted/50" />
+        <div className="container mx-auto py-10">
+          <DataTable columns={columns} data={clients} />
+        </div>
       </div>
     </>
   );
