@@ -29,8 +29,8 @@ const ClientPage = () => {
         </div>
         <div className="ml-auto px-3"></div>
       </header>
-      <div className="flex flex-1 flex-col gap-4 px-4 py-10">
-        <div className="container mx-auto py-10">
+      <div className="flex flex-1 flex-col gap-4 px-4">
+        <div className="container mx-auto ">
           <DataTable columns={columns} data={clients} />
         </div>
       </div>

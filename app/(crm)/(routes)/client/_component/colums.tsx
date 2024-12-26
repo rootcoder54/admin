@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUp,
+  ArrowUpDown,
+  ChevronsUpDown,
+  MoreHorizontal
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -15,6 +21,8 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export type Client = {
   id: string;
@@ -24,10 +32,10 @@ export type Client = {
   dateCreation: string;
 };
 
-const copy=(id:string)=>{
-    navigator.clipboard.writeText(id)
-    toast.success(`${id} a été copié`)
-}
+const copy = (id: string) => {
+  navigator.clipboard.writeText(id);
+  toast.success(`${id} a été copié`);
+};
 
 export const columns: ColumnDef<Client>[] = [
   {
@@ -54,10 +62,24 @@ export const columns: ColumnDef<Client>[] = [
   },
   {
     accessorKey: "nom",
-    header: "Nom client",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("nom")}</div>
-    )
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nom Client
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className="capitalize">{row.getValue("nom")}</div>
   },
   {
     accessorKey: "adresse",
@@ -68,7 +90,13 @@ export const columns: ColumnDef<Client>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Adresse
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
         </Button>
       );
     },
@@ -78,18 +106,32 @@ export const columns: ColumnDef<Client>[] = [
   },
   {
     accessorKey: "activite",
-    header: () => <div className="text-right">Activité</div>,
-    cell: ({ row }) => {
+    header: ({ column }) => {
       return (
-        <div className="text-right font-medium">{row.getValue("activite")}</div>
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Activité
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
+        </Button>
       );
+    },
+    cell: ({ row }) => {
+      return <div className="font-medium">{row.getValue("activite")}</div>;
     }
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const client = row.original;
 
       return (
         <DropdownMenu>
@@ -101,13 +143,15 @@ export const columns: ColumnDef<Client>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => copy(payment.id)}
-            >
-              Copier client ID
+            <DropdownMenuItem onClick={() => copy(client.nom)}>
+              Copier nom client
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Editer</DropdownMenuItem>
+            <DropdownMenuItem>
+              <a href={`/client/${client.id}`} className="w-full">
+                Details
+              </a>
+            </DropdownMenuItem>
             <DropdownMenuItem>Supprimer</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

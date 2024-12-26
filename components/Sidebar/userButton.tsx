@@ -21,7 +21,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Spinner } from "../spinner";
 import { ChevronDown } from "lucide-react";
 
-export const UserButton = () => {
+const UserButton = () => {
   const { data: session, status } = useSession();
 
   const [isPending, startTransition] = useTransition();
@@ -85,3 +85,5 @@ export const UserButton = () => {
     </SidebarMenu>
   );
 };
+
+export const MemoizedUserButton = React.memo(UserButton);

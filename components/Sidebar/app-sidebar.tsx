@@ -26,7 +26,7 @@ import {
   SidebarHeader,
   SidebarRail
 } from "@/components/ui/sidebar";
-import { UserButton } from "@/components/Sidebar/userButton";
+import { MemoizedUserButton } from "@/components/Sidebar/userButton";
 import { NavItems } from "./navItems";
 import { usePathname } from "next/navigation";
 
@@ -117,7 +117,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
-        <UserButton />
+        <MemoizedUserButton />
         <NavItems items={data.navMain} />
       </SidebarHeader>
       <SidebarRail />
