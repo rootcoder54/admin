@@ -3,6 +3,8 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { Toaster } from "sonner";
+import { QueryProvider } from "@/components/provider/query-provider";
+import { ModalProvider } from "@/components/provider/modal-provider";
 
 const font = Outfit({ subsets: ["latin"] });
 
@@ -28,8 +30,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <QueryProvider>
+            <Toaster />
+            <ModalProvider />
+            {children}
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
