@@ -70,6 +70,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         isActive: pathname === "/employe"
       },
       {
+        title: "Client",
+        url: "/client",
+        icon: Users,
+        badge: "10",
+        isActive: pathname.startsWith("/client")
+      },
+      {
         title: "Calendrier",
         url: "#",
         icon: Calendar,

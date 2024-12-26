@@ -12,7 +12,9 @@ export default function CRMLayout({ children }: { children: React.ReactNode }) {
     <SessionProvider>
       <SidebarProvider>
         <AppSidebar />
-        <SidebarInset>{children}</SidebarInset>
+        <SidebarInset>
+          <div className="dark:bg-zinc-800 bg-zinc-50 min-h-screen">{children}</div>
+        </SidebarInset>
       </SidebarProvider>
     </SessionProvider>
   );
