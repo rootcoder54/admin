@@ -19,7 +19,6 @@ import DataTableFilter from "./data-table-filter";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -27,6 +26,18 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -104,53 +115,84 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
       </div>
       <div className="flex items-center gap-3">
         {table.getFilteredSelectedRowModel().rows.length === 1 && (
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Edit Profile</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Edite Client</DialogTitle>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    Nom Client
-                  </Label>
-                  <Input id="name" defaultValue={nom} className="col-span-3" />
+          <>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline">Modifier</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Edité Client</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Nom Client
+                    </Label>
+                    <Input
+                      id="name"
+                      defaultValue={nom}
+                      className="col-span-3"
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="username" className="text-right">
+                      Adresse
+                    </Label>
+                    <Input
+                      id="username"
+                      defaultValue={adresse}
+                      className="col-span-3"
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="username" className="text-right">
+                      Activité
+                    </Label>
+                    <Input
+                      id="username"
+                      defaultValue={activite}
+                      className="col-span-3"
+                    />
+                  </div>
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    Adresse
-                  </Label>
-                  <Input
-                    id="username"
-                    defaultValue={adresse}
-                    className="col-span-3"
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    ACtivité
-                  </Label>
-                  <Input
-                    id="username"
-                    defaultValue={activite}
-                    className="col-span-3"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <Button type="submit">Save changes</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+                <DialogFooter>
+                  <Button type="submit" variant={"default"}>
+                    Sauvegarder
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Button variant={"secondary"}>Fiche vide</Button>
+          </>
         )}
         {table.getFilteredSelectedRowModel().rows.length !== 0 && (
-          <>
-            <Button variant={"secondary"}>Fiche</Button>
-            <Button variant={"destructive"}>Supprimer</Button>
-          </>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant={"destructive"}>Supprimer</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Etez-vous sûr ?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Cette action ne peut pas être annulée. Cela supprimera
+                  définitivement le client et supprimera les données de nos
+                  serveurs.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuler</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={() => {
+                    toast.error(`Client ${nom} a été Supprimé !`);
+                  }}
+                  className="bg-red-500 hover:bg-red-400 text-white"
+                >
+                  Supprimer
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         )}
       </div>
       <DropdownMenu>
