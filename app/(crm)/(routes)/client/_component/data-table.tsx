@@ -22,8 +22,6 @@ import {
   TableRow
 } from "@/components/ui/table";
 
-import { Button } from "@/components/ui/button";
-
 import React from "react";
 import DataToolBar from "./data-table-toolbar";
 import { DataTablePagination } from "./data-table-pagination";

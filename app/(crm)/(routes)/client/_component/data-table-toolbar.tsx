@@ -16,6 +16,17 @@ import {
   X
 } from "lucide-react";
 import DataTableFilter from "./data-table-filter";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { useEffect, useState } from "react";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -44,9 +55,26 @@ const activites = [
 ];
 function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+  const rowSelected = table.getState().rowSelection;
+  const [nom, setNom] = useState("");
+  const [adresse, setAdresse] = useState("");
+  const [activite, setActivite] = useState("");
+  const selectedRowsData = table
+    .getRowModel()
+    .rows.filter((row) => rowSelected[row.id]); // Récupérer les données des lignes sélectionnées
+  useEffect(() => {
+    selectedRowsData.forEach((row) => {
+      const rowData = row.original;
+      setNom(rowData.nom);
+      setAdresse(rowData.adresse);
+      setActivite(rowData.activite);
+      ///console.log("Nom de la ligne sélectionnée :", rowData.nom);
+      //console.log("Activité de la ligne sélectionnée :", rowData.activite);
+    });
+  }, [selectedRowsData]);
 
   return (
-    <div className="flex items-center py-4">
+    <div className="flex items-center gap-3 py-4">
       <div className="flex items-center gap-3">
         <Input
           placeholder="Filter nom..."
@@ -72,6 +100,57 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
             Annuler
             <X />
           </Button>
+        )}
+      </div>
+      <div className="flex items-center gap-3">
+        {table.getFilteredSelectedRowModel().rows.length === 1 && (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">Edit Profile</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Edite Client</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Nom Client
+                  </Label>
+                  <Input id="name" defaultValue={nom} className="col-span-3" />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="username" className="text-right">
+                    Adresse
+                  </Label>
+                  <Input
+                    id="username"
+                    defaultValue={adresse}
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="username" className="text-right">
+                    ACtivité
+                  </Label>
+                  <Input
+                    id="username"
+                    defaultValue={activite}
+                    className="col-span-3"
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
+        {table.getFilteredSelectedRowModel().rows.length !== 0 && (
+          <>
+            <Button variant={"secondary"}>Fiche</Button>
+            <Button variant={"destructive"}>Supprimer</Button>
+          </>
         )}
       </div>
       <DropdownMenu>
