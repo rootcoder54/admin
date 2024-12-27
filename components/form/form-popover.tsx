@@ -9,10 +9,21 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  PopoverClose,
+  PopoverClose
 } from "@/components/ui/popover";
 import { useAction } from "@/hooks/use-action";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 import { FormInput } from "./form-input";
 import { FormSubmit } from "./form-submit";
@@ -31,7 +42,7 @@ export const FormPopover = ({
   children,
   side = "bottom",
   align,
-  sideOffset = 0,
+  sideOffset = 0
 }: FormPopoverProps) => {
   const proModal = useProModal();
   const router = useRouter();
@@ -46,7 +57,7 @@ export const FormPopover = ({
     onError: (error) => {
       toast.error(error);
       //proModal.onOpen();
-    },
+    }
   });
 
   const onSubmit = (formData: FormData) => {
@@ -57,38 +68,34 @@ export const FormPopover = ({
   };
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>{children}</PopoverTrigger>
-      <PopoverContent
-        align={align}
-        className="w-80 pt-3"
-        side={side}
-        sideOffset={sideOffset}
-      >
-        <div className="pb-4 text-center text-sm font-medium text-neutral-600">
-          Créer une liste de tache
-        </div>
-        <PopoverClose ref={closeRef} asChild>
-          <Button
-            className="absolute right-2 top-2 h-auto w-auto p-2 text-neutral-600"
-            variant="ghost"
-          >
-            <X className="h-4 w-4" />
-          </Button>
-        </PopoverClose>
-        <form action={onSubmit} className="space-y-4">
-          <div className="space-y-4">
-            <FormPicker id="image" errors={fieldErrors} />
-            <FormInput
-              id="title"
-              label="Titre"
-              type="text"
-              errors={fieldErrors}
-            />
-          </div>
-          <FormSubmit className="w-full">Créer</FormSubmit>
-        </form>
-      </PopoverContent>
-    </Popover>
+    <div>
+      <Dialog>
+        <DialogTrigger asChild>{children}</DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>
+              <div className="pb-4 text-center text-sm font-medium text-neutral-600">
+                Créer une liste de tache
+              </div>
+            </DialogTitle>
+            <DialogDescription>
+              Image de font pour votre Tache.
+            </DialogDescription>
+          </DialogHeader>
+          <form action={onSubmit} className="space-y-4">
+            <div className="space-y-4">
+              <FormPicker id="image" errors={fieldErrors} />
+              <FormInput
+                id="title"
+                label="Titre"
+                type="text"
+                errors={fieldErrors}
+              />
+            </div>
+            <FormSubmit className="w-full">Créer</FormSubmit>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
