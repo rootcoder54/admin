@@ -1,3 +1,4 @@
+import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +10,13 @@ const Navbar = () => {
           href="https://malisystem.com/"
           className="flex items-center gap-1"
         >
-          <Image src={"/msys.png"} alt="logo" width={54} height={45} />
+          <Image
+            src={"/msys.png"}
+            alt="logo"
+            width={54}
+            height={45}
+            className="dark:invert"
+          />
           <div>
             <span className="font-bold text-2xl">MALI</span>
             <span className="font-bold text-yellow-500 text-2xl">SYSTEM</span>
@@ -25,9 +32,9 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-x-4">
-        <Link href="/formation">Formation</Link>
+        <Link href="/formation" className={buttonVariants({variant:"ghost"})}>Formation</Link>
         <div className="border border-zinc-400 h-7" />
-        <Link href="/">Admin</Link>
+        <Link href="/" className={buttonVariants({variant:"outline"})}>Admin</Link>
       </div>
     </div>
   );
