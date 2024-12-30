@@ -1,8 +1,10 @@
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   return (
     <div className="flex justify-between items-center w-full md:w-3/4 lg:w-3/5 px-3 border-b-2 py-1">
       <div className="flex items-center gap-x-3">
@@ -32,9 +34,26 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-x-4">
-        <Link href="/formation" className={buttonVariants({variant:"ghost"})}>Formation</Link>
+        {pathname === "/support" && (
+          <Link
+            href="/formation"
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            Formation
+          </Link>
+        )}
+        {pathname === "/formation" && (
+          <Link
+            href="/support"
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            Support
+          </Link>
+        )}
         <div className="border border-zinc-400 h-7" />
-        <Link href="/" className={buttonVariants({variant:"outline"})}>Admin</Link>
+        <Link href="/" className={buttonVariants({ variant: "outline" })}>
+          Admin
+        </Link>
       </div>
     </div>
   );

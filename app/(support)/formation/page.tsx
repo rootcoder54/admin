@@ -31,6 +31,7 @@ import {
 import { toast } from "sonner";
 import { createFormation } from "@/data/formation/userFormation";
 import { formationLogin } from "../_components/loginFormation";
+import HeroFormation from "../_components/HeroFormation";
 
 const FormationPage = () => {
   const [etat, setEtat] = useState(false);
@@ -57,7 +58,7 @@ const FormationPage = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    toast.success(`${values}`);
+    toast.success(`${values.nom}`);
     Cookies.set("useremail", values.email, { expires: 300 });
     Cookies.set("usernom", values.nom, { expires: 300 });
     Cookies.set("userprofession", values.profession, { expires: 300 });
@@ -84,7 +85,7 @@ const FormationPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center gap-y-4 py-5">
       <Navbar />
-      <div>formation</div>
+      <HeroFormation />
       <Drawer open={etat}>
         <DrawerContent>
           <div className="mx-auto w-full max-w-sm py-8">
@@ -97,7 +98,7 @@ const FormationPage = () => {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
+                className="space-y-4"
               >
                 <FormField
                   control={form.control}
