@@ -3,33 +3,27 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Navbar from "../_components/Navbar";
 import Cookies from "js-cookie";
 import { Button } from "@/components/ui/button";
 
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle
 } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage
 } from "@/components/ui/form";
 import { toast } from "sonner";
-import { createFormation } from "@/data/formation/userFormation";
 import { formationLogin } from "../_components/loginFormation";
 import HeroFormation from "../_components/HeroFormation";
 
@@ -83,8 +77,7 @@ const FormationPage = () => {
   }, [etat]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center gap-y-4 py-5">
-      <Navbar />
+    <div>
       <HeroFormation />
       <Drawer open={etat}>
         <DrawerContent>
