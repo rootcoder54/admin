@@ -39,8 +39,8 @@ export const createFormation = async (
         profession
       }
     });
-    return user
-  } catch {
-    return null;
+    return user;
+  } catch (error) {
+    console.log("[User_LOG_ERROR]", error);
   }
 };

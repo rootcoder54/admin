@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 import { createFormation } from "@/data/formation/userFormation";
+import { formationLogin } from "../_components/loginFormation";
 
 const FormationPage = () => {
   const [etat, setEtat] = useState(false);
@@ -56,25 +57,29 @@ const FormationPage = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
     toast.success(`${values}`);
-    Cookies.set("useremail", values.email, { expires: 100 });
-    Cookies.set("usernom", values.nom, { expires: 100 });
-    Cookies.set("userprofession", values.profession, { expires: 100 });
-    await createFormation(
+    Cookies.set("useremail", values.email, { expires: 300 });
+    Cookies.set("usernom", values.nom, { expires: 300 });
+    Cookies.set("userprofession", values.profession, { expires: 300 });
+    setEtat(false);
+    await formationLogin(
       values.nom,
       values.email,
       values.profession
-    ).finally(
-    );
+    )
+      .then((result) => {
+        console.log(result, "resultat"); // "La promesse est résolue !"
+      })
+      .catch((error) => {
+        console.error(error); // "La promesse est rejetée."
+      });
   };
-
+  const userEmail = Cookies.get("useremail");
   useEffect(() => {
-    const userEmail = Cookies.get("useremail");
     if (!userEmail) {
       setEtat(true);
     }
-  }, []);
+  }, [etat]);
 
   return (
     <div className="min-h-screen flex flex-col items-center gap-y-4 py-5">
