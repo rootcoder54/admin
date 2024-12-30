@@ -12,7 +12,7 @@ const HeroFormation = () => {
         </span>
       </div>
       <span className="text-5xl text-yellow-500">
-        Page en cours de creation
+        Page en cours de creation ...
       </span>
     </div>
   );

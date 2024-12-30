@@ -34,7 +34,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-x-4">
-        {pathname === "/support" && (
+        {pathname.startsWith("/support") && (
           <Link
             href="/formation"
             className={buttonVariants({ variant: "ghost" })}
@@ -42,7 +42,7 @@ const Navbar = () => {
             Formation
           </Link>
         )}
-        {pathname === "/formation" && (
+        {pathname.startsWith("/formation") && (
           <Link
             href="/support"
             className={buttonVariants({ variant: "ghost" })}
