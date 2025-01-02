@@ -17,6 +17,8 @@ model User {
   password String?
   image    String?
 
+  boards Board[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -32,14 +34,14 @@ model UserFormation {
 }
 
 model Board {
-  id            String @id @default(uuid())
-  title         String
-  imageId       String
-  imageThumbUrl String
-  imageFullUrl  String
-  imageUserName String
-  imageLinkHTML String
-  lists         List[]
+  id    String @id @default(uuid())
+  title String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  image String
+  lists List[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -9,23 +9,47 @@ import {
   Popover,
   PopoverClose,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger
 } from "@/components/ui/popover";
 import { deleteBoard } from "@/action/tache/delete-board";
+import { useRouter } from "next/navigation";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { FormPicker } from "../form/form-picker";
+import { updateFontBoard } from "@/action/tache/update-font-board";
+import { bgChange } from "@/action/tache/update-font-board/bgChange";
 
 interface BoardOptionsProps {
   id: string;
 }
 
 export const BoardOptions = ({ id }: BoardOptionsProps) => {
+  const router = useRouter();
   const { execute, isLoading } = useAction(deleteBoard, {
     onError: (error) => {
       toast.error(error);
-    },
+    }
   });
 
   const onDelete = () => {
     execute({ id });
+  };
+
+  const onSubmit = (formData: FormData) => {
+    const image = formData.get("image") as string;
+    console.log(id, image);
+    bgChange(id, image);
+    router.push(`/tache/${id}`);
   };
 
   return (
@@ -55,6 +79,36 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
         >
           Supprimer cette liste
         </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant="ghost"
+              className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
+            >
+              Changer l'image de font
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Changer l'image de font</DialogTitle>
+              <DialogDescription></DialogDescription>
+            </DialogHeader>
+            <form action={onSubmit}>
+              <div className="grid gap-4 py-4">
+                <FormPicker id="image" />
+              </div>
+              <DialogFooter>
+                <Button
+                  type="submit"
+                  variant={"outline"}
+                  className="h-auto w-full justify-center rounded-none p-2 px-5 text-sm font-normal"
+                >
+                  Enregistrer
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
       </PopoverContent>
     </Popover>
   );

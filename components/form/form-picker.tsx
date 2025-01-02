@@ -73,9 +73,9 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
   return (
     <div className="relative">
       <div className="mb-2 grid grid-cols-3 gap-2">
-        {images.map((image) => (
+        {images.map((image,index) => (
           <div
-            key={image.id}
+            key={index}
             className={cn(
               "group relative aspect-video cursor-pointer bg-muted transition hover:opacity-75",
               pending && "cursor-auto opacity-50 hover:opacity-50",
@@ -93,10 +93,10 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               checked={selectedImageId === image.id}
               readOnly
               disabled={pending}
-              value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
+              value={`${image.url}`}
             />
             <Image
-              src={image.urls.thumb}
+              src={image.url}
               alt="Unsplash image"
               className="rounded-sm object-cover"
               fill
@@ -107,11 +107,11 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               </div>
             )}
             <Link
-              href={image.links.html}
+              href={image.url}
               target="_blank"
               className="absolute bottom-0 w-full truncate bg-black/50 p-1 text-[10px] text-white opacity-0 hover:underline group-hover:opacity-100"
             >
-              {image.user.name}
+              {image.url}
             </Link>
           </div>
         ))}

@@ -7,7 +7,6 @@ import { createSafeAction } from "@/lib/create-safe-action";
 
 import { InputType, ReturnType } from "./types";
 import { CreateBoard } from "./schema";
-import { useSession } from "next-auth/react";
 import { auth } from "@/auth";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
@@ -19,46 +18,30 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-
+  let userId = session.user.id;
 
   const { title, image } = data;
 
-  const [imageId, imageThumbUrl, imageFullUrl, imageLinkHTML, imageUserName] =
-    image.split("|");
-
-  if (
-    !imageId ||
-    !imageThumbUrl ||
-    !imageFullUrl ||
-    !imageUserName ||
-    !imageLinkHTML
-  ) {
-    return {
-      error: "Missing fields. Failed to create board."
-    };
-  }
 
   let board;
+  if(!userId){
+    userId="cm5ccmt2400009utsr999ad5c"
+  }
 
   try {
     board = await db.board.create({
       data: {
         title,
-        imageId,
-        imageThumbUrl,
-        imageFullUrl,
-        imageUserName,
-        imageLinkHTML
+        userId,
+        image
       }
     });
-
   } catch (error) {
     return {
       error: "Failed to create."
     };
   }
 
-  revalidatePath(`/board/${board.id}`);
   return { data: board };
 };
 
