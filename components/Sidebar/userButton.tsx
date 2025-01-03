@@ -1,6 +1,7 @@
+"use client"
 import * as React from "react";
 import { useSession } from "next-auth/react";
-import {  useTransition } from "react";
+import { useTransition } from "react";
 
 import {
   DropdownMenu,
@@ -73,7 +74,12 @@ const UserButton = () => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <form action={submit}>
-                  <Button type="submit" size={"lg"} variant={"ghost"} className="h-1">
+                  <Button
+                    type="submit"
+                    size={"lg"}
+                    variant={"ghost"}
+                    className="h-1"
+                  >
                     Deconnexion
                   </Button>
                 </form>

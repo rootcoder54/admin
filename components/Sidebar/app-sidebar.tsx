@@ -38,23 +38,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
 
   const data = {
-    teams: [
-      {
-        name: "Acme Inc",
-        logo: Command,
-        plan: "Enterprise"
-      },
-      {
-        name: "Acme Corp.",
-        logo: AudioWaveform,
-        plan: "Startup"
-      },
-      {
-        name: "Evil Corp.",
-        logo: Command,
-        plan: "Free"
-      }
-    ],
     navMain: [
       {
         title: "Accueil",
