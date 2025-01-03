@@ -18,6 +18,8 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
+import Link from "next/link";
+import Image from "next/image";
 
 const videos = [
   {
@@ -48,14 +50,27 @@ const videos = [
 
 const AstucePage = () => {
   return (
-    <div className="flex flex-col items-center gap-y-7">
-      <div className="flex justify-between items-center w-full md:w-3/4 lg:w-3/5 px-3 py-1">
-        <span className="text-4xl font-bold">Astuce Video</span>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
-        {videos.map((video, index) => (
-          <CardVideo key={index} nom={video.nom} video={video.video} />
-        ))}
+    <div className="container px-9">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="flex flex-col items-center gap-y-7">
+          <div className="flex items-center w-full  py-1">
+            <span className="text-lg md:text-xl lg:text-2xl xl:text-4xl font-bold">Astuce Video</span>
+          </div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+            <CardVideo link="/support" />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -63,24 +78,29 @@ const AstucePage = () => {
 
 export default AstucePage;
 
-const CardVideo = ({ nom, video }: { nom: string; video: string }) => {
+const CardVideo = ({ link }: { link: string }) => {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Card className="w-[280px] cursor-pointer py-3">
-          <CardHeader>
-            <CardTitle>{nom}</CardTitle>
-          </CardHeader>
-        </Card>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[925px] sm:max-h-[750px]">
-        <DialogHeader>
-          <DialogTitle>{nom}</DialogTitle>
-        </DialogHeader>
-        <video controls>
-          <source src={video} type="video/mp4" />
-        </video>
-      </DialogContent>
-    </Dialog>
+    <Link href={link}>
+      <Card className="group hover:shadow-sm border transition overflow-hidden rounded-lg h-full flex flex-col bg-white">
+        <div className="flex-1">
+          <div className="relative w-full aspect-video rounded-t-md overflow-hidden border-b">
+            <img
+              src={"/bgTache/bg1.jpg"}
+              alt="bg"
+              className="duration-700 ease-in-out  blur-0 grayscale-0 object-cover w-full h-full"
+            />
+          </div>
+          <div className="flex flex-col pt-2 px-3">
+            <div className="text-sm md:text-base font-medium group-hover:text-sky-700 transition line-clamp-1">
+              Build a Google Docs Clone
+            </div>
+            <div className="my-3 flex items-center gap-x-2 text-xs">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Reiciendis vel at aperiam maiores .
+            </div>
+          </div>
+        </div>
+      </Card>
+    </Link>
   );
 };

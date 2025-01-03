@@ -5,7 +5,6 @@
  */
 export const publicRoutes = [
     "/support",
-    "/support/astuce",
     "/formation"
   ];
   

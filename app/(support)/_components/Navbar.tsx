@@ -24,17 +24,10 @@ const Navbar = () => {
             <span className="font-bold text-yellow-500 text-2xl">SYSTEM</span>
           </div>
         </Link>
-        <div className="border border-yellow-500 h-7" />
-        <Link
-          href={"/support"}
-          className="text-2xl text-yellow-500 font-semibold"
-        >
-          Support
-        </Link>
       </div>
 
       <div className="flex items-center gap-x-4">
-        {pathname.startsWith("/support") && (
+        {!pathname.startsWith("/formation") && (
           <Link
             href="/formation"
             className={buttonVariants({ variant: "ghost" })}
@@ -42,7 +35,7 @@ const Navbar = () => {
             Formation
           </Link>
         )}
-        {pathname.startsWith("/formation") && (
+        {pathname !== "/support" && (
           <Link
             href="/support"
             className={buttonVariants({ variant: "ghost" })}

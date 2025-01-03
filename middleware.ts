@@ -5,7 +5,7 @@ import {
   DEFAULT_LOGOUT_REDIRECT,
   apiAuthPrefix,
   authRoutes,
-  publicRoutes,
+  publicRoutes
 } from "./routes";
 
 const { auth } = NextAuth(authConfig);
@@ -15,7 +15,10 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  //const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isPublicRoute = publicRoutes.some((prefix) =>
+    nextUrl.pathname.startsWith(prefix)
+  );
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
   if (isApiAuthRoute) {
@@ -38,5 +41,5 @@ export default auth((req) => {
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"]
 };
