@@ -69,8 +69,9 @@ model Card {
   order       Int
   description String?
 
-  listId String
-  list   List   @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId   String
+  list     List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+  echeance DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

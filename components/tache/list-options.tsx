@@ -9,14 +9,17 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  PopoverClose,
+  PopoverClose
 } from "@/components/ui/popover";
+
 import { useAction } from "@/hooks/use-action";
 import { Button } from "@/components/ui/button";
 import { FormSubmit } from "@/components/form/form-submit";
 import { Separator } from "@/components/ui/separator";
 import { deleteList } from "@/action/tache/delete-list";
 import { copyList } from "@/action/tache/copy-list";
+import { ListBoard } from "./list-board";
+import Link from "next/link";
 
 interface ListOptionsProps {
   data: List;
@@ -28,22 +31,22 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
 
   const { execute: executeDelete } = useAction(deleteList, {
     onSuccess: (data) => {
-      // toast.success(`List "${data.title}" deleted`);
+      toast.success(`Liste "${data.title}" supprimée`);
       closeRef.current?.click();
     },
     onError: (error) => {
       toast.error(error);
-    },
+    }
   });
 
   const { execute: executeCopy } = useAction(copyList, {
     onSuccess: (data) => {
-      // toast.success(`List "${data.title}" copied`);
+      toast.success(`Liste "${data.title}" copiée`);
       closeRef.current?.click();
     },
     onError: (error) => {
       toast.error(error);
-    },
+    }
   });
 
   const onDelete = (formData: FormData) => {
@@ -68,7 +71,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="px-0 pb-3 pt-3" side="bottom" align="start">
-        <div className="pb-4 text-center text-sm font-medium text-neutral-600">
+        <div className="pb-4 text-center text-sm font-medium text-neutral-600 dark:text-zinc-100">
           Options
         </div>
         <PopoverClose ref={closeRef} asChild>
@@ -87,26 +90,46 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           Ajouter une Tache
         </Button>
         <form action={onCopy}>
-          <input hidden name="id" id="id" value={data.id} readOnly  />
-          <input hidden name="boardId" id="boardId" value={data.boardId} readOnly  />
+          <input hidden name="id" id="id" value={data.id} readOnly />
+          <input
+            hidden
+            name="boardId"
+            id="boardId"
+            value={data.boardId}
+            readOnly
+          />
           <FormSubmit
             variant="ghost"
             className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
           >
-            Copier la liste
+            Dupliquer la liste
           </FormSubmit>
         </form>
         <Separator />
         <form action={onDelete}>
           <input hidden name="id" id="id" value={data.id} readOnly />
-          <input hidden name="boardId" id="boardId" value={data.boardId} readOnly />
+          <input
+            hidden
+            name="boardId"
+            id="boardId"
+            value={data.boardId}
+            readOnly
+          />
           <FormSubmit
             variant="ghost"
             className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
           >
-            Supprimer cette liste
+            Supprimer la liste
           </FormSubmit>
         </form>
+        <Link href="/tache/[item]/[listId]" as={`/tache/${data.boardId}/${data.id}`}>
+          <Button
+            className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
+            variant="ghost"
+          >
+            Transferer Vers un autre tableau
+          </Button>
+        </Link>
       </PopoverContent>
     </Popover>
   );
