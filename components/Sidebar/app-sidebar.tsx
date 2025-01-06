@@ -61,7 +61,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       },
       {
         title: "Calendrier",
-        url: "#",
+        url: "/calendrier",
         icon: Calendar,
         isActive: pathname === "/calendrier"
       },
