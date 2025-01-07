@@ -38,6 +38,7 @@ import {
   AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import { importer } from "@/action/client/import";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -83,6 +84,11 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
       //console.log("Activité de la ligne sélectionnée :", rowData.activite);
     });
   }, [selectedRowsData]);
+  const client = async () => {
+    await importer().then((res) => {
+      toast.success("Clients importés avec succès");
+    });
+  };
 
   return (
     <div className="flex items-center gap-3 py-4">
@@ -113,6 +119,9 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
           </Button>
         )}
       </div>
+      <Button variant={"outline"} onClick={client}>
+        Importer test
+      </Button>
       <div className="flex items-center gap-3">
         {table.getFilteredSelectedRowModel().rows.length === 1 && (
           <>

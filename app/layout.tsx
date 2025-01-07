@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/provider/theme-provider";
 import { Toaster } from "sonner";
 import { QueryProvider } from "@/components/provider/query-provider";
 import { ModalProvider } from "@/components/provider/modal-provider";
@@ -24,18 +23,11 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${font.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <QueryProvider>
-            <Toaster />
-            <ModalProvider />
-            {children}
-          </QueryProvider>
-        </ThemeProvider>
+        <QueryProvider>
+          <Toaster />
+          <ModalProvider />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );

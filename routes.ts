@@ -5,7 +5,8 @@
  */
 export const publicRoutes = [
     "/support",
-    "/formation"
+    "/formation",
+    "/telechargement",
   ];
   
   /**

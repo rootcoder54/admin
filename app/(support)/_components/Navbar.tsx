@@ -35,6 +35,14 @@ const Navbar = () => {
             Formation
           </Link>
         )}
+        {!pathname.startsWith("/telechargement") && (
+          <Link
+            href="/telechargement"
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            Telechargement
+          </Link>
+        )}
         {pathname !== "/support" && (
           <Link
             href="/support"

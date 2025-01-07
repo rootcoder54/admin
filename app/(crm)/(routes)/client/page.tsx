@@ -11,6 +11,7 @@ import DataTable from "./_component/data-table";
 import clients from "./_component/data";
 
 const ClientPage = () => {
+  
   return (
     <>
       <header className="flex h-14 shrink-0 items-center gap-2">
