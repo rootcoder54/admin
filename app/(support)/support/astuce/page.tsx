@@ -54,7 +54,7 @@ const CardVideo = ({
             />
           </div>
           <div className="flex flex-col pt-2 px-3">
-            <div className="text-xl md:text-base font-medium group-hover:text-sky-700 transition line-clamp-1">
+            <div className="text-xl font-medium group-hover:text-sky-700 transition line-clamp-1">
               {nom}
             </div>
             <div className="my-3 flex items-center gap-x-2 text-xs">
