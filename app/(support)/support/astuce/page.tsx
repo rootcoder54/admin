@@ -6,6 +6,10 @@ import Image from "next/image";
 
 import Link from "next/link";
 
+const rendre = (texte: string) => {
+  return texte.length > 60 ? texte.slice(0, 60) + "..." : texte;
+};
+
 const AstucePage = () => {
   return (
     <div className="container px-9">
@@ -43,7 +47,7 @@ const CardVideo = ({
 }: {
   link: string;
   nom: string;
-  description:string;
+  description: string;
   image?: string;
 }) => {
   return (
@@ -60,11 +64,11 @@ const CardVideo = ({
             />
           </div>
           <div className="flex flex-col pt-2 px-3">
-            <div className="text-xl font-medium group-hover:text-sky-700 transition line-clamp-1">
+            <div className="text-xl font-semibold group-hover:text-sky-700 transition line-clamp-1">
               {nom}
             </div>
-            <div className="my-3 flex items-center gap-x-2 text-xs">
-              {description}
+            <div className="my-3 flex items-center gap-x-2 transition line-clamp-2">
+              {rendre(description)}
             </div>
           </div>
         </div>
