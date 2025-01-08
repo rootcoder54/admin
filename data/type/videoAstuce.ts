@@ -17,6 +17,133 @@ export const videos = [
     image: "/astuce/image/bg1.PNG"
   },
   {
+    id: "thd85sd47ez58gs56qs4fs546gju45",
+    nom: "Saisir une demande de congé dans le logiciel RHPaie",
+    description: `Vous pouvez procéder à l’une des opérations suivantes dans les demandes congés `,
+    detail: `<table style="border:none; border-spacing:0;">
+              <tbody><tr>
+              <td style="vertical-align:top; padding:0; border:none"><p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Vous pouvez procéder à l’une des opérations suivantes dans les demandes congés</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #808080;">&nbsp;:</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;"> &nbsp;</span></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #000080;">Saisir la demande de congés dans une fiche</span></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Utiliser cette méthode si vous voulez enregistrer &nbsp;la demande de congés annuel d’un &nbsp;seul &nbsp;employé avant le calcul de la paie.</span></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #008000;">Pour saisir la demande de congés dans une fiche ...</span></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Il y' a plusieurs manières pour proceder à l'enregistrement :</span></p>
+              <p style="line-height: 1.80; margin: 0 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Aller dans</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #808080;"> </span><span style="font-family: 'Trebuchet MS',sans-serif; color: #008000;">Paie&gt; Heures et jours travaillés&gt; </span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">indiquer le N° employé, le mois, l'année puis cliquer  </span><img alt="congespayes201603" width="164" height="24" style="margin:0;width:164px;height:24px;border:none" src="congespayes201603.png"></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Ou dans aller dans </span><span style="font-family: 'Trebuchet MS',sans-serif; color: #008000;">Personnel&gt;Suivi congés&gt;Demandes de congés&gt; indiquer</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;"> le N° employé , le mois, l'année puis cliquer sur </span><img alt="new201603" width="76" height="23" style="margin:0;width:76px;height:23px;border:none" src="new201603.png"></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Renseigner ensuite les champs suivants:</span></p>
+              <div style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 21px;"><table style="width:646px; border:none; border-spacing:0; border-collapse:collapse;">
+              <tbody><tr>
+              <td style="vertical-align:top; width:180px; background-color:#E5E5E5; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Champs</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; background-color:#E5E5E5; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Explication détaillée /Description</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Congés pris/Motif d’absence</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Choisir le type de congés ou motif d’absence (ex: CONGES ANNUELS).</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Provision/Exercice</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Exercice si les congés sont pris sur un exercice sinon laisser à vide si les congés sont pris sur le solde global (ex: 2011)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Jours normaux </span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="line-height: 1.80;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Indiquer le nombre de jours demandés, durée en jour (ex:..30)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Jours d’ancienneté</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Indiquer le nombre de jours de congés d’ancienneté (Facultatif)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Jours féries</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Indiquer le nombre de jours &nbsp;fériés dans le congés (Facultatif)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Jours enfants</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Indiquer le nombre de jours pour enfant (Facultatif)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; height:12px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Jours payés</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; height:12px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Afficher automatiquement (ex: 30)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Jours ouvrés</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Afficher automatiquement (ex: 22)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">A déduire des jours travaillés</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Cocher si les jours de congés pris seront déduits des jours travaillés de l’employé.</span></p>
+              <p style="text-indent: -4px; line-height: 1.80; margin: 3px 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Décocher si le congés pris ne seront pas déduits au jours travaillés.</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Période d’absence :</span></p>
+              <p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 0;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Départ prévu</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: -2px; margin: 0 0 0 23px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Retour prévu</span></p></td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">La date de départ en congés (ex: 01/07/2012)</span></p>
+              <p class="p_Normal"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">La date de retour &nbsp;prévu est afficher automatiquement (ex: 31/07/2012)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Date</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Date de saisi de la demande congés (ex: 31/06/2012)</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Calculer</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Oui/Non pour calculer ou non le congés demandés</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Payés</span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 0 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Oui/Non pour afficher le montant de congés payés sur le bulletins</span></p>
+              </td>
+              </tr>
+              <tr>
+              <td style="vertical-align:top; width:180px; padding:4px; border:solid thin #c0c0c0;"><p style="margin: 3px 0 0 0;"><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #404040;">Code </span></p>
+              </td>
+              <td style="vertical-align:top; width:450px; padding:4px; border:solid thin #c0c0c0;"><p style="text-indent: -4px; line-height: 1.80; margin: 3px 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">La valeur par défaut est celle définie dans le paramétrage des congés. &nbsp;Elle sera automatiquement choisie si vous laissez ce champs vide.</span></p>
+              <p style="text-indent: -4px; line-height: 1.80; margin: 3px 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Sélectionner ou saisir le Code de la prime de congés annuels payés dans le cas contraire </span></p>
+              <p style="text-indent: -4px; line-height: 1.80; margin: 3px 0 0 4px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">(ex: Z0 = congés normaux, Z1= congés d’ancienneté)</span></p>
+              <p style="line-height: 1.80; margin: 3px 0 0 0;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">En cas de calcul des congés par la méthode des provisions; les codes provision de congés seront automatiquement “Z0.” ou “Z1.” etc.</span></p>
+              </td>
+              </tr>
+              </tbody></table>
+              </div>
+              <p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 10px 0 0 21px;"><span class="f_Normal" style="font-family: 'trebuchet ms';color:#404040;display:inline-block;width:21px;margin-left:-21px">1.</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Cliquer sur le bouton Suite.. pour saisir les informations complémentaires </span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Agent de backup désigné (Nom de l'employé qui lui a remplacer) (ex: Forlan BOUMDI)</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">N°de Contact pendant congés (N° de téléphone pour joindre l'employé en congé en cas de problème)</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Avis du supérieurs hiérarchique (Oui)</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">En cas d'absence maladie</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Hôpital....(Nom de l'hôpital)...../ Médecin....(Nom du médecin)..../</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Demandé le,............/ Enregistrement le........../</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 21px;"><span class="f_Normal" style="font-family: 'trebuchet ms';color:#404040;display:inline-block;width:21px;margin-left:-21px">2.</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Cliquer sur le bouton Enregistrer.</span></p><h2 class="p_Heading2Standartstyle" style="text-indent: 4px; margin: 0 0 0 17px;"><span class="f_Heading2Standartstyle">Saisir la demande de congés dans un tableau</span></h2>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Cette méthode vous permet d’enregistrer la demande de congés pour plusieurs employés</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #808080;">.</span></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; font-weight: bold; color: #008000;">Pour saisir la demande de congés dans un tableau </span><span style="font-family: 'Trebuchet MS',sans-serif; color: #008000;">...</span></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Aller dans</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #808080;"> </span><span style="font-family: 'Trebuchet MS',sans-serif; color: #008000;">Personnel&gt;Suivi congés&gt;Demandes de congés</span></p>
+              <p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 10px 0 0 21px;"><span class="f_Normal" style="font-family: 'trebuchet ms';color:#404040;display:inline-block;width:21px;margin-left:-21px">1.</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Saisir les colonnes suivantes : </span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">N°employé </span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Nom et Prenom (afficher automatiquement)</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Date (date de la demande de congés)</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Durée (nombre de jours congés)</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Départ (la date de départ en congés)</span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 42px;"><span class="f_Normal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';color:#404040;display:inline-block;width:21px;margin-left:-21px">•</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Sortie de la ligne pour enregistrer </span></p><p style="text-indent: 0; line-height: 1.80; padding-left: 21px; margin: 0 0 0 21px;"><span class="f_Normal" style="font-family: 'trebuchet ms';color:#404040;display:inline-block;width:21px;margin-left:-21px">2.</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Repeter pour un autre employé</span></p><p style="line-height: 1.80; margin: 0 0 0 42px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #000080;">Exemple d'enregistrement de plusieurs congés dans un tableau</span></p>
+              <p style="line-height: 1.80; margin: 0 0 0 42px;"><img alt="saisi201603" width="502" height="78" style="margin:0;width:502px;height:78px;border:none" src="saisi201603.png"></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span class="f_ImageCaption" style="font-size: 11pt; font-family: 'Trebuchet MS',sans-serif; font-weight: normal; color: #000080;">Importation de la demande de congés </span><span class="f_ImageCaption" style="font-size: 10pt; font-family: 'Trebuchet MS',sans-serif; font-weight: normal; color: #008000;">(</span><span style="font-family: 'Trebuchet MS',sans-serif; color: #008000;">Options &gt;importer les demandes congés)</span></p>
+              <p style="line-height: 1.80; margin: 10px 0 0 21px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">Avec cette option vous pouvez facilement importer plusieurs demandes de congés saisie dans un fichier Excel </span><span style="font-family: 'Trebuchet MS',sans-serif; color: #808080;"> </span></p>
+              <p style="line-height: 1.80; margin: 0 0 0 19px;"><span style="font-family: 'Trebuchet MS',sans-serif; color: #404040;">(Voir</span><span style="font-family: 'Trebuchet MS',sans-serif;"> <a href="rh_importation.htm" class="topiclink">Importation des données)</a></span></p>
+              </td>
+              </tr>
+              </tbody></table>`,
+    video: "/astuce/Ajouter un employé.mp4",
+    image: "/astuce/image/bg7.PNG"
+  },
+  {
     id: "tyob8641fbkdi21gjk54degyu55aed",
     nom: "Ajouter une prime à un employé dans le logiciel RHPaie",
     description: `IL s'agit d'attribuer, modifier, supprimer et copier les primes d' un seul employé, sans affecter les autres employés.`,
