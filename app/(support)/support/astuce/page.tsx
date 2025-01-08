@@ -2,6 +2,7 @@
 
 import { Card } from "@/components/ui/card";
 import { videos } from "@/data/type/videoAstuce";
+import Image from "next/image";
 
 import Link from "next/link";
 
@@ -20,6 +21,7 @@ const AstucePage = () => {
               <CardVideo
                 key={index}
                 nom={video.nom}
+                description={video.description}
                 image={video.image}
                 link={`/support/astuce/${video.id}`}
               />
@@ -36,10 +38,12 @@ export default AstucePage;
 const CardVideo = ({
   link,
   nom,
+  description,
   image
 }: {
   link: string;
   nom: string;
+  description:string;
   image?: string;
 }) => {
   return (
@@ -47,9 +51,11 @@ const CardVideo = ({
       <Card className="group hover:shadow-sm border transition overflow-hidden rounded-lg h-full flex flex-col bg-white">
         <div className="flex-1">
           <div className="relative w-full aspect-video rounded-t-md overflow-hidden border-b">
-            <img
+            <Image
               src={image || "/bgTache/bg1.jpg"}
               alt="bg"
+              width={554}
+              height={554}
               className="duration-700 ease-in-out blur-0 grayscale-0 object-cover w-full h-full"
             />
           </div>
@@ -58,8 +64,7 @@ const CardVideo = ({
               {nom}
             </div>
             <div className="my-3 flex items-center gap-x-2 text-xs">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Reiciendis vel at aperiam maiores .
+              {description}
             </div>
           </div>
         </div>
