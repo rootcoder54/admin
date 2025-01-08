@@ -47,7 +47,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       },
       {
         title: "Employé",
-        url: "#",
+        url: "/employe",
         icon: Users,
         badge: "10",
         isActive: pathname === "/employe"
