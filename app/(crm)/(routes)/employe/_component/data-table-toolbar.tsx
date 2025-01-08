@@ -72,7 +72,7 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
     <div className="flex items-center gap-3 py-4">
       <div className="flex items-center gap-3">
         <Input
-          placeholder="Filter nom..."
+          placeholder="Filter par nom..."
           value={(table.getColumn("nom")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("nom")?.setFilterValue(event.target.value)
@@ -81,7 +81,7 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
         />
         {isFiltered && (
           <Button
-            variant="destructive"
+            variant="outline"
             onClick={() => table.resetColumnFilters()}
             className="h-8 px-2 lg:px-3"
           >
