@@ -8,6 +8,7 @@ import {
   Calendar,
   Command,
   FileArchive,
+  HelpCircle,
   Home,
   Inbox,
   MessageCircleQuestion,
@@ -32,9 +33,7 @@ import { usePathname } from "next/navigation";
 
 // This is sample data.
 
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-
   const pathname = usePathname();
 
   const data = {
@@ -78,22 +77,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         isActive: pathname === "/intervention"
       },
       {
+        title: "Support Video",
+        url: "/crmsupport",
+        icon: HelpCircle,
+        isActive: pathname === "/crmsupport"
+      },
+      {
+        title: "Questions Frequents",
+        url: "/ask",
+        icon: MessageCircleQuestion,
+        isActive: pathname === "/ask"
+      },
+      {
         title: "Settings",
         url: "#",
         icon: Settings2,
         isActive: pathname === "/settings"
-      },
-      {
-        title: "Trash",
-        url: "#",
-        icon: Trash2,
-        isActive: pathname === "/trash"
-      },
-      {
-        title: "Help",
-        url: "#",
-        icon: MessageCircleQuestion,
-        isActive: pathname === "/help"
       }
     ]
   };

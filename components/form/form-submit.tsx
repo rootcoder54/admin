@@ -16,7 +16,6 @@ interface FormSubmitProps {
     | "secondary"
     | "ghost"
     | "link"
-    | "primary"
     | "transparent"
     | "gray";
 }
@@ -25,7 +24,7 @@ export const FormSubmit = ({
   children,
   disabled,
   className,
-  variant = "primary",
+  variant = "default",
 }: FormSubmitProps) => {
   const { pending } = useFormStatus();
 
