@@ -11,10 +11,9 @@ import {
   Calendar,
   HelpCircle,
   FileArchive,
-  ArrowBigDownIcon,
+  ArrowBigDownIcon
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { ItemNotice } from "./_component/card";
 
 export default async function Page() {
@@ -50,34 +49,34 @@ export default async function Page() {
                   Bienvenue sur votre tableau de bord.
                 </span>
                 <div className="grid grid-cols-2 gap-8">
-                  <Link
+                  <a
                     href={"/telechargement"}
                     className="flex items-center gap-2 hover:underline"
                   >
                     <ArrowBigDownIcon className="text-yellow-600" />
                     Telechargement
-                  </Link>
-                  <Link
+                  </a>
+                  <a
                     href={"/support"}
                     className="flex items-center gap-2 hover:underline"
                   >
                     <HelpCircle className="text-green-800" />
                     Support
-                  </Link>
-                  <Link
+                  </a>
+                  <a
                     href={"/formation"}
                     className="flex items-center gap-2 hover:underline"
                   >
                     <FileArchive className="text-yellow-800" />
                     Formation
-                  </Link>
-                  <Link
-                    href={"/formation"}
+                  </a>
+                  <a
+                    href={"/tache"}
                     className="flex items-center gap-2 hover:underline"
                   >
                     <Calendar className="text-blue-600" />
-                    Tache
-                  </Link>
+                    Taches
+                  </a>
                 </div>
               </div>
               <Image

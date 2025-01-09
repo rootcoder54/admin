@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { columns } from "./_component/colums";
 import DataTable from "./_component/data-table";
-import clients from "./_component/data";
+import { clients } from "@/data/type/client";
 
 const ClientPage = () => {
   

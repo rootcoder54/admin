@@ -23,16 +23,14 @@ import {
 import { toast } from "sonner";
 
 export type Client = {
-  id: string;
-  nom: string;
+  nomClient: string;
   adresse: string;
   activite: string;
-  dateCreation: string;
+  dateInscription: string;
 };
 
-const copy = (id: string) => {
-  navigator.clipboard.writeText(id);
-  toast.success(`${id} a été copié`);
+const copy = () => {
+  toast.success(`copié`);
 };
 
 export const columns: ColumnDef<Client>[] = [
@@ -59,7 +57,7 @@ export const columns: ColumnDef<Client>[] = [
     enableHiding: false
   },
   {
-    accessorKey: "nom",
+    accessorKey: "nomClient",
     header: ({ column }) => {
       return (
         <Button
@@ -77,7 +75,7 @@ export const columns: ColumnDef<Client>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="capitalize">{row.getValue("nom")}</div>
+    cell: ({ row }) => <div className="capitalize">{row.getValue("nomClient")}</div>
   },
   {
     accessorKey: "adresse",
@@ -126,6 +124,29 @@ export const columns: ColumnDef<Client>[] = [
     }
   },
   {
+    accessorKey: "dateInscription",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          dateInscription
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return <div className="font-medium">{row.getValue("dateInscription")}</div>;
+    }
+  },
+  {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
@@ -141,12 +162,12 @@ export const columns: ColumnDef<Client>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => copy(client.nom)}>
+            <DropdownMenuItem onClick={() => copy()}>
               Copier nom client
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <a href={`/client/${client.id}`} className="w-full">
+              <a href={`/client/${client.nomClient}`} className="w-full">
                 Details
               </a>
             </DropdownMenuItem>

@@ -45,8 +45,8 @@ interface DataTableToolbarProps<TData> {
 }
 const activites = [
   {
-    value: "Immobilier",
-    label: "Immobilier",
+    value: "ONG",
+    label: "ONG",
     icon: Home
   },
   {
@@ -77,7 +77,7 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
   useEffect(() => {
     selectedRowsData.forEach((row) => {
       const rowData = row.original;
-      setNom(rowData.nom);
+      setNom(rowData.nomClient);
       setAdresse(rowData.adresse);
       setActivite(rowData.activite);
       ///console.log("Nom de la ligne sélectionnée :", rowData.nom);
@@ -95,9 +95,11 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
       <div className="flex items-center gap-3">
         <Input
           placeholder="Filter nom..."
-          value={(table.getColumn("nom")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("nomClient")?.getFilterValue() as string) ?? ""
+          }
           onChange={(event) =>
-            table.getColumn("nom")?.setFilterValue(event.target.value)
+            table.getColumn("nomClient")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

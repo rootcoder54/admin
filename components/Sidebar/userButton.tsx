@@ -1,14 +1,27 @@
-"use client"
+"use client";
 import * as React from "react";
 import { useSession } from "next-auth/react";
 import { useTransition } from "react";
 
 import {
+  ChevronUp,
+  Cloud,
+  HelpCircle,
+  LogOut,
+  Plus,
+  Settings,
+  User,
+  Users
+} from "lucide-react";
+
+import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {
@@ -65,11 +78,43 @@ const UserButton = () => {
                 <ChevronDown className="opacity-50" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuLabel>{session.user.username}</DropdownMenuLabel>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <User />
+                  <span>Profile</span>
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings />
+                  <span>Parametres</span>
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <Users />
+                  <span>Mes Taches</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Plus />
+                  <span>New Team</span>
+                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <span>Poste : {session?.user?.name}</span>
+                <a href="/support" className="flex w-full gap-2 items-center">
+                  <HelpCircle />
+                  <span>Support</span>
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem disabled>
+                <Cloud />
+                <span>API</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
@@ -78,8 +123,9 @@ const UserButton = () => {
                     type="submit"
                     size={"lg"}
                     variant={"ghost"}
-                    className="h-1"
+                    className="h-1 justify-start items-start"
                   >
+                    <LogOut />
                     Deconnexion
                   </Button>
                 </form>
