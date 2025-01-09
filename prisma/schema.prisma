@@ -33,6 +33,31 @@ model UserFormation {
   updatedAt DateTime @updatedAt
 }
 
+model Question {
+  id          String  @id @default(uuid())
+  question    String
+  observation String?
+  image       String?
+
+  reponse     String?
+  reponseFile String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VideoAstuce {
+  id          String  @id @default(uuid())
+  nom         String
+  description String?
+  detail      String?
+  video       String
+  image       String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Board {
   id    String @id @default(uuid())
   title String
@@ -70,7 +95,7 @@ model Card {
   description String?
 
   listId   String
-  list     List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+  list     List      @relation(fields: [listId], references: [id], onDelete: Cascade)
   echeance DateTime?
 
   createdAt DateTime @default(now())
