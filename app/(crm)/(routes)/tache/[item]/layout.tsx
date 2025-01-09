@@ -4,14 +4,14 @@ import { notFound, redirect } from "next/navigation";
 import { BoardNavbar } from "@/components/tache/board-navbar";
 import { getBoard } from "@/lib/get-board";
 import { Suspense } from "react";
-import Loading from "./loading";
 
 export async function generateMetadata({
   params
 }: {
-  params: { item: string };
+  params: Promise<{ item: string }>;
 }) {
-  const board = await getBoard(params.item);
+  const { item } = await params;
+  const board = await getBoard(item);
 
   return {
     title: upperCase(board?.title || "Board")
@@ -23,11 +23,12 @@ const BoardIdLayout = async ({
   params
 }: {
   children: React.ReactNode;
-  params: { item: string };
+  params: Promise<{ item: string }>;
 }) => {
-  console.log(params.item);
+  const { item } = await params;
+  console.log(item);
 
-  const board = await getBoard(params.item);
+  const board = await getBoard(item);
 
   if (!board) {
     notFound();
@@ -40,9 +41,7 @@ const BoardIdLayout = async ({
     >
       <BoardNavbar data={board} />
       <div className="absolute inset-0 bg-black/10" />
-      <main className="relative h-full pt-28">
-        <Suspense fallback={<Loading />}>{children}</Suspense>
-      </main>
+      <main className="relative h-full pt-28">{children}</main>
     </div>
   );
 };

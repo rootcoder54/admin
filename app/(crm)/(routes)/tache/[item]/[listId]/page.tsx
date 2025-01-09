@@ -1,9 +1,14 @@
 import { ListBoard } from "@/components/tache/list-board";
 
-const Page = ({ params }: { params: { item: string; listId: string } }) => {
+const Page = async ({
+  params
+}: {
+  params: Promise<{ item: string; listId: string }>;
+}) => {
+  const { item, listId } = await params;
   return (
     <div>
-      <ListBoard item={params.item} listId={params.listId} />
+      <ListBoard item={item} listId={listId} />
     </div>
   );
 };

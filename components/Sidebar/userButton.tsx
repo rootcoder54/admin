@@ -65,9 +65,8 @@ const UserButton = () => {
                 <div className="flex items-center justify-center rounded-md">
                   <Avatar className="size-7">
                     <AvatarImage
-                      src={session.user.image || "/msys.png"}
+                      src={session.user.image || "/avatars/02.png"}
                       alt="user logo"
-                      className="dark:invert"
                     />
                     <AvatarFallback>M</AvatarFallback>
                   </Avatar>

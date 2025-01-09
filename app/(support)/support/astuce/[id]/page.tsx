@@ -1,7 +1,8 @@
 import { videos } from "@/data/type/videoAstuce";
 
-const Page = ({ params }: { params: { id: string } }) => {
-  const video = videos.find((item) => item.id === params.id);
+const Page = async({ params }: {params: Promise<{ id: string }>; }) => {
+  const { id } = await params;
+  const video = videos.find((item) => item.id === id);
 
   if (!video) return <div>Logiciel introuvable</div>;
 
