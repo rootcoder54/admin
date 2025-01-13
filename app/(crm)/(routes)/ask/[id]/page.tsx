@@ -8,6 +8,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { Observation } from "../_component/Observation";
+import Tiptap from "../_component/Tiptap";
 
 interface QuestionIdPageProps {
   params: Promise<{ id: string }>;
@@ -38,6 +40,16 @@ const QuestionID = async ({ params }: QuestionIdPageProps) => {
         </div>
         <div className="ml-auto px-3"></div>
       </header>
+      <div className="flex flex-col px-8">
+        <div className="space-y-3">
+          <h1 className="text-3xl font-bold">{question?.question}</h1>
+          {question?.observation !== null && (
+            <Observation id={id} observation={question?.observation} />
+          )}
+          <h1 className="text-xl font-bold">Reponse :</h1>
+          <Tiptap id={id} isAdmin content={question?.reponse} />
+        </div>
+      </div>
     </div>
   );
 };
