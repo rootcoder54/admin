@@ -86,7 +86,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Questions Frequents",
         url: "/ask",
         icon: MessageCircleQuestion,
-        isActive: pathname === "/ask"
+        isActive: pathname.startsWith("/ask")
       },
       {
         title: "Settings",

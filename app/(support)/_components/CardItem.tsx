@@ -51,16 +51,14 @@ const CardItem = () => {
   return (
     <div className="flex flex-col gap-y-4">
       {listes.map((item, index) => (
-        <Link  key={index} href={item.lien} target={item.blank ? "_blank" :""} >
-        <Card
-          className="lg:w-[1000px] flex items-center justify-start gap-x-4 p-6 hover:border-blue-500 cursor-pointer"
-        >
-          <Image src={item.image} alt="logo" width={40} height={30} />
-          <div className="flex flex-col gap-y-3">
-            <CardTitle className="text-zinc-800">{item.titre}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
-          </div>
-        </Card>
+        <Link key={index} href={item.lien} target={item.blank ? "_blank" : ""}>
+          <Card className="lg:w-[1000px] flex items-center justify-start gap-x-4 p-6 hover:border-blue-500 cursor-pointer">
+            <Image src={item.image} alt="logo" width={40} height={30} />
+            <div className="flex flex-col gap-y-3">
+              <CardTitle className="text-zinc-800">{item.titre}</CardTitle>
+              <CardDescription>{item.description}</CardDescription>
+            </div>
+          </Card>
         </Link>
       ))}
     </div>
