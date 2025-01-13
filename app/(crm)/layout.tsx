@@ -3,6 +3,8 @@ import { AppSidebar } from "@/components/Sidebar/app-sidebar";
 
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { SessionProvider } from "next-auth/react";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default function CRMLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +18,9 @@ export default function CRMLayout({ children }: { children: React.ReactNode }) {
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <div className=" min-h-screen">{children}</div>
+            <div className=" min-h-screen">
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </div>
           </SidebarInset>
         </SidebarProvider>
       </SessionProvider>
