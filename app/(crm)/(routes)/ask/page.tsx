@@ -44,8 +44,8 @@ const Page = async () => {
             key={index}
             titre={question.question}
             observation={question.observation}
-            id={question.id}
             image={question.image}
+            href={`/ask/${question.id}`}
           />
         ))}
       </div>
