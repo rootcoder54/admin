@@ -1,13 +1,5 @@
 import { getQuestionId } from "@/action/ask/get-questionId";
 import Tiptap from "@/app/(crm)/(routes)/ask/_component/Tiptap";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -21,7 +13,10 @@ const QuestionID = async ({ params }: QuestionIdPageProps) => {
   return (
     <div>
       <div className="flex flex-col px-8 space-y-3">
-        <Link href={"/support/question"} className="hover:underline font-bold flex">
+        <Link
+          href={"/support/question"}
+          className="hover:underline font-bold flex"
+        >
           <ArrowLeft />
           Retour
         </Link>

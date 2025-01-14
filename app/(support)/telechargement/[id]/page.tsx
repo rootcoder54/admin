@@ -7,8 +7,9 @@ import {
   AccordionTrigger
 } from "@/components/ui/accordion";
 
-const Page = ({ params }: { params: { id: string } }) => {
-  const logiciel = logiciels.find((software) => software.id === params.id);
+const Page = async({ params }: { params: Promise<{ id: string }>;}) => {
+  const { id } = await params;
+  const logiciel = logiciels.find((software) => software.id === id);
   if (!logiciel) return <div>Logiciel introuvable</div>;
   return (
     <div className="flex-1">

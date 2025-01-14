@@ -2,7 +2,7 @@ import { cache } from "react";
 import { db } from "./db";
 import { auth } from "@/auth";
 
-export const getBoards = cache(async () => {
+export const getBoards = async () => {
   let userId
   const session = await auth();
   if (!session?.user) {
@@ -19,4 +19,4 @@ export const getBoards = cache(async () => {
   });
 
   return boards;
-});
+};

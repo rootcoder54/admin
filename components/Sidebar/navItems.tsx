@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Mode } from "../provider/mode";
 import Link from "next/link";
+import { SearchButton } from "./searchButton";
 
 export function NavItems({
   items
@@ -26,10 +27,7 @@ export function NavItems({
         <Mode />
       </SidebarMenuItem>
       <SidebarMenuItem>
-        <SidebarMenuButton>
-          <Search />
-          <span>Seark</span>
-        </SidebarMenuButton>
+        <SearchButton />
       </SidebarMenuItem>
       <SidebarMenuItem>
         <SidebarMenuButton>

@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { MoreHorizontal, X } from "lucide-react";
 
 import { useAction } from "@/hooks/use-action";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Popover,
   PopoverClose,
@@ -28,6 +28,8 @@ import { Label } from "@/components/ui/label";
 import { FormPicker } from "../form/form-picker";
 import { updateFontBoard } from "@/action/tache/update-font-board";
 import { bgChange } from "@/action/tache/update-font-board/bgChange";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface BoardOptionsProps {
   id: string;
@@ -109,6 +111,15 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
             </form>
           </DialogContent>
         </Dialog>
+        <Link
+          href={`/tache/imprimer/${id}`}
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
+          )}
+        >
+          Imprimer la liste
+        </Link>
       </PopoverContent>
     </Popover>
   );
