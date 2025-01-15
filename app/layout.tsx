@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { QueryProvider } from "@/components/provider/query-provider";
 import { ModalProvider } from "@/components/provider/modal-provider";
+import NextNProgress from "nextjs-progressbar"
 
 const font = Outfit({ subsets: ["latin"] });
 

@@ -1,8 +1,16 @@
+import Cookies from "js-cookie";
+
 const HeroFormation = () => {
+  const userEmail = Cookies.get("useremail");
+  const userNom = Cookies.get("usernom");
+
   return (
     <div className="flex flex-col items-center gap-y-6 py-20">
       <span className="sm:text-lg md:text-xl lg:text-3xl font-extrabold">
         Le seul cours dont vous avez besoin !
+      </span>
+      <span className="sm:text-lg md:text-xl lg:text-3xl font-extrabold">
+        
       </span>
       <div className="w-[320px] md:w-[420px] lg:w-[855px]">
         <span className="text-lg">

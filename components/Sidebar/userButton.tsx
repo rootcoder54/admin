@@ -34,19 +34,13 @@ import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Spinner } from "../spinner";
 import { ChevronDown } from "lucide-react";
+import { auth } from "@/auth";
 
-const UserButton = () => {
+export const UserButton = () => {
   const { data: session, status } = useSession();
+  
 
-  const [isPending, startTransition] = useTransition();
-
-  const submit = () => {
-    startTransition(() => {
-      logout();
-    });
-  };
-
-  if (status === "loading" || isPending) {
+  if (status === "loading") {
     return (
       <div className="flex justify-center items-center">
         <Spinner />
@@ -117,17 +111,10 @@ const UserButton = () => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <form action={submit}>
-                  <Button
-                    type="submit"
-                    size={"lg"}
-                    variant={"ghost"}
-                    className="h-1 justify-start items-start"
-                  >
-                    <LogOut />
-                    Deconnexion
-                  </Button>
-                </form>
+                <a href="/logout" className="flex w-full gap-2 items-center">
+                  <LogOut />
+                  <span>Deconnexion</span>
+                </a>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -136,5 +123,3 @@ const UserButton = () => {
     </SidebarMenu>
   );
 };
-
-export const MemoizedUserButton = React.memo(UserButton);

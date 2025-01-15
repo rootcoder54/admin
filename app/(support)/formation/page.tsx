@@ -128,9 +128,9 @@ const FormationPage = () => {
                   name="profession"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Profession</FormLabel>
+                      <FormLabel>Profession et entreprise</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input placeholder="Developpeur chez MaliSystem" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

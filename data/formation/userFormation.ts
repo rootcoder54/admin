@@ -1,5 +1,18 @@
 import { db } from "@/lib/db";
 
+export const getFormations = async () => {
+  try {
+    const users = await db.userFormation.findMany({
+      orderBy: {
+        createdAt: "desc"
+      }
+    });
+    return users;
+  } catch {
+    return null;
+  }
+};
+
 export const getFormationByEmail = async (email: string) => {
   try {
     const user = await db.userFormation.findUnique({

@@ -4,8 +4,14 @@ import { Card } from "@/components/ui/card";
 import { videos } from "@/data/type/videoAstuce";
 import Image from "next/image";
 import { motion } from "motion/react";
-
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage
+} from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { ChevronRight, HelpCircle } from "lucide-react";
 
 const rendre = (texte: string) => {
   return texte.length > 60 ? texte.slice(0, 60) + "..." : texte;
@@ -15,24 +21,25 @@ const AstucePage = () => {
   return (
     <div className="container px-9">
       <div className="max-w-screen-xl mx-auto">
-        <div className="flex flex-col items-center gap-y-7">
-          <div className="flex items-center w-full  py-1">
-            <p className="font-bold text-xl md:text-4xl dark:text-white text-black">
-              <span className="">
-                {"Astuce_Video".split("").map((word, idx) => (
-                  <motion.span
-                    key={idx}
-                    className="inline-block"
-                    initial={{ x: -10, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: idx * 0.04 }}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </span>
-            </p>
-          </div>
+        <div className="flex flex-col items-start gap-y-7">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbPage className="line-clamp-1">
+                <Link
+                  href={"/support"}
+                  className="text-sm text-zinc-700 font-bold flex gap-2 items-end"
+                >
+                  <HelpCircle /> Support
+                </Link>
+              </BreadcrumbPage>
+              <ChevronRight />
+              <BreadcrumbPage className="line-clamp-1">
+                <span className="text-sm text-zinc-400 font-bold">Astuce video</span>
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
             {videos.map((video, index) => (
               <CardVideo

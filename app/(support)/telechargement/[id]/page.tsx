@@ -6,13 +6,19 @@ import {
   AccordionItem,
   AccordionTrigger
 } from "@/components/ui/accordion";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
-const Page = async({ params }: { params: Promise<{ id: string }>;}) => {
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const logiciel = logiciels.find((software) => software.id === id);
   if (!logiciel) return <div>Logiciel introuvable</div>;
   return (
     <div className="flex-1">
+      <Link href={"/telechargement"} className="flex gap-x-4 text-lg font-bold">
+        <ArrowLeft />
+        Retour
+      </Link>
       <div className="flex flex-col items-center justify-center h-full py-8 px-4">
         <div className="flex flex-col gap-y-2 sm:w-full md:w-[700px] lg:w-[950px] xl:w-[1150px]">
           <div className="flex flex-col space-y-4">
@@ -78,10 +84,10 @@ const Page = async({ params }: { params: Promise<{ id: string }>;}) => {
             <div className="flex flex-col mt-8 space-y-4">
               <span className="text-xl font-bold underline">Nouveautés :</span>{" "}
               <Accordion type="single" collapsible className="w-full">
-                {logiciel.nouveaute.map((nouveaute,index) => (
+                {logiciel.nouveaute.map((nouveaute, index) => (
                   <AccordionItem value={nouveaute.titre} key={index}>
                     <AccordionTrigger className="text-lg">
-                      {index+1} - {nouveaute.titre}
+                      {index + 1} - {nouveaute.titre}
                     </AccordionTrigger>
                     <AccordionContent className="text-lg text-zinc-600 font-normal">
                       {nouveaute.description}

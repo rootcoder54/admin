@@ -3,7 +3,7 @@
 import { toast } from "sonner";
 import { List } from "@prisma/client";
 import { ElementRef, useRef } from "react";
-import { MoreHorizontal, X } from "lucide-react";
+import { ClipboardCopy, CopyIcon, MoreHorizontal, PlusIcon, Trash2, X } from "lucide-react";
 
 import {
   Popover,
@@ -18,7 +18,6 @@ import { FormSubmit } from "@/components/form/form-submit";
 import { Separator } from "@/components/ui/separator";
 import { deleteList } from "@/action/tache/delete-list";
 import { copyList } from "@/action/tache/copy-list";
-import { ListBoard } from "./list-board";
 import Link from "next/link";
 
 interface ListOptionsProps {
@@ -87,6 +86,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
           variant="ghost"
         >
+          <PlusIcon />
           Ajouter une Tache
         </Button>
         <form action={onCopy}>
@@ -102,6 +102,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
             variant="ghost"
             className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
           >
+            <CopyIcon />
             Dupliquer la liste
           </FormSubmit>
         </form>
@@ -117,16 +118,21 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           />
           <FormSubmit
             variant="ghost"
-            className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
+            className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal text-red-500 hover:text-red-400"
           >
+            <Trash2 />
             Supprimer la liste
           </FormSubmit>
         </form>
-        <Link href="/tache/[item]/[listId]" as={`/tache/${data.boardId}/${data.id}`}>
+        <Link
+          href="/tache/[item]/[listId]"
+          as={`/tache/${data.boardId}/${data.id}`}
+        >
           <Button
             className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
             variant="ghost"
           >
+            <ClipboardCopy />
             Transferer Vers un autre tableau
           </Button>
         </Link>

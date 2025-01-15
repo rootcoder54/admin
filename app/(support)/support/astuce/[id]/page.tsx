@@ -1,6 +1,14 @@
 import { videos } from "@/data/type/videoAstuce";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage
+} from "@/components/ui/breadcrumb";
+import Link from "next/link";
+import { ChevronRight, HelpCircle } from "lucide-react";
 
-const Page = async({ params }: {params: Promise<{ id: string }>; }) => {
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const video = videos.find((item) => item.id === id);
 
@@ -8,6 +16,37 @@ const Page = async({ params }: {params: Promise<{ id: string }>; }) => {
 
   return (
     <div className="flex flex-col items-center gap-4">
+      <div className="flex items-start w-full">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbPage className="line-clamp-1">
+                <Link
+                  href={"/support"}
+                  className="text-sm text-zinc-700 font-bold flex gap-2 items-end"
+                >
+                  <HelpCircle /> Support
+                </Link>
+              </BreadcrumbPage>
+              <ChevronRight />
+              <BreadcrumbPage className="line-clamp-1">
+                <Link
+                  href={"/support/astuce"}
+                  className="text-sm text-zinc-700 font-bold flex gap-2 items-end"
+                >
+                  Astuce video
+                </Link>
+              </BreadcrumbPage>
+              <ChevronRight />
+              <BreadcrumbPage className="line-clamp-1">
+                <span className="text-sm text-zinc-400 font-bold">
+                  {video.nom}
+                </span>
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <video controls className="" poster={video.image}>
         <source src={video.video} type="video/mp4" />
       </video>

@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import { MoreHorizontal, X } from "lucide-react";
+import { Image, MoreHorizontal, Printer, Trash2, X } from "lucide-react";
 
 import { useAction } from "@/hooks/use-action";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -77,8 +77,9 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
           variant="ghost"
           onClick={onDelete}
           disabled={isLoading}
-          className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
+          className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal text-red-500 hover:text-red-500"
         >
+          <Trash2 />
           Supprimer cette liste
         </Button>
         <Dialog>
@@ -87,6 +88,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
               variant="ghost"
               className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
             >
+              <Image />
               Changer l'image de font
             </Button>
           </DialogTrigger>
@@ -118,6 +120,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
             "h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
           )}
         >
+          <Printer />
           Imprimer la liste
         </Link>
       </PopoverContent>

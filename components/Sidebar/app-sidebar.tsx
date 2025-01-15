@@ -2,32 +2,22 @@
 
 import * as React from "react";
 import {
-  AlignLeft,
-  AudioWaveform,
-  Blocks,
   Calendar,
-  Command,
   FileArchive,
   HelpCircle,
   Home,
-  Inbox,
   MessageCircleQuestion,
-  Search,
   Settings2,
-  Sparkles,
-  Sun,
-  Trash2,
-  User,
-  Users
+  Users,
+  UserSquareIcon
 } from "lucide-react";
 
 import {
   Sidebar,
-  SidebarContent,
   SidebarHeader,
   SidebarRail
 } from "@/components/ui/sidebar";
-import { MemoizedUserButton } from "@/components/Sidebar/userButton";
+import { UserButton } from "@/components/Sidebar/userButton";
 import { NavItems } from "./navItems";
 import { usePathname } from "next/navigation";
 
@@ -54,7 +44,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {
         title: "Client",
         url: "/client",
-        icon: Users,
+        icon: UserSquareIcon,
         badge: "10",
         isActive: pathname.startsWith("/client")
       },
@@ -71,10 +61,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         isActive: pathname.startsWith("/tache")
       },
       {
-        title: "Interventions",
-        url: "#",
+        title: "Formation User",
+        url: "/formationuser",
         icon: FileArchive,
-        isActive: pathname === "/intervention"
+        isActive: pathname === "/formationuser"
       },
       {
         title: "Support Video",
@@ -99,7 +89,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
-        <MemoizedUserButton />
+        <UserButton />
         <NavItems items={data.navMain} />
       </SidebarHeader>
       <SidebarRail />
