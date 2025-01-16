@@ -114,7 +114,8 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
           </DialogContent>
         </Dialog>
         <Link
-          href={`/tache/imprimer/${id}`}
+          href={`/imprime/board/${id}`}
+          target="_blank"
           className={cn(
             buttonVariants({ variant: "ghost" }),
             "h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"

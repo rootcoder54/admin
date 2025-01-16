@@ -20,3 +20,20 @@ export const getLists = cache(async (boardId: string) => {
 
   return lists;
 });
+
+export const getListId = cache(async (id: string) => {
+  const list = await db.list.findUnique({
+    where: {
+      id
+    },
+    include: {
+      cards: {
+        orderBy: {
+          order: "asc",
+        },
+      },
+    },
+  });
+
+  return list;
+});

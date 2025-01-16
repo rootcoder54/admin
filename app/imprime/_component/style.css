@@ -1,0 +1,7 @@
+/* Cacher les éléments avec la classe 'no-print' pendant l'impression */
+@media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+  

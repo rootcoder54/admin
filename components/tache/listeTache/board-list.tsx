@@ -30,7 +30,6 @@ export const BoardList = async () => {
           >
             <div className="absolute inset-0 bg-black/30 transition group-hover:bg-black/40" />
             <p className="relative font-semibold text-white">{board.title}</p>
-            <span>Crée le {String(board.createdAt)}</span>
           </Link>
         ))}
         <div className="md:hidden">

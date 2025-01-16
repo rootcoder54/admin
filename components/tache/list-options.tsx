@@ -3,7 +3,15 @@
 import { toast } from "sonner";
 import { List } from "@prisma/client";
 import { ElementRef, useRef } from "react";
-import { ClipboardCopy, CopyIcon, MoreHorizontal, PlusIcon, Printer, Trash2, X } from "lucide-react";
+import {
+  ClipboardCopy,
+  CopyIcon,
+  MoreHorizontal,
+  PlusIcon,
+  Printer,
+  Trash2,
+  X
+} from "lucide-react";
 
 import {
   Popover,
@@ -136,13 +144,15 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
             Transferer Vers un autre tableau
           </Button>
         </Link>
-        <Button
-          className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
-          variant="ghost"
-        >
-          <Printer />
-          Imprimer
-        </Button>
+        <Link href={`/imprime/list/${data.boardId}/${data.id}`} target="_blank">
+          <Button
+            className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
+            variant="ghost"
+          >
+            <Printer />
+            Imprimer
+          </Button>
+        </Link>
       </PopoverContent>
     </Popover>
   );
