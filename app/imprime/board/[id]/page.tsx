@@ -26,7 +26,7 @@ const ImprimerIdPage = async ({ params }: BoardIdPageProps) => {
           <div className="flex flex-col gap-y-5">
             <h3 className="text-xl font-semibold">{value.title}</h3>
             <hr />
-            <ul key={index}>
+            <ul key={index} className="space-y-4">
               {value.cards.map((card: any, index: number) => (
                 <li key={index} className="flex flex-row gap-x-4">
                   <Check />

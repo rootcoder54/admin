@@ -10,7 +10,6 @@ interface BoardIdPageProps {
 const ImprimerIdPage = async ({ params }: BoardIdPageProps) => {
   const {boardId, id } = await params;
 
-  // ✅ Récupération des données côté serveur
   const list = await getListId(id);
   const board = await getBoard(boardId);
 
@@ -25,7 +24,7 @@ const ImprimerIdPage = async ({ params }: BoardIdPageProps) => {
         <div className="flex flex-col gap-y-5">
           <h3 className="text-xl font-semibold">{list?.title}</h3>
           <hr />
-          <ul>
+          <ul className="space-y-4">
             {list?.cards.map((card: any, index: number) => (
               <li key={index} className="flex flex-row gap-x-4">
                 <Check />
