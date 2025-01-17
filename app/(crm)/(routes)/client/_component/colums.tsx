@@ -24,9 +24,9 @@ import { toast } from "sonner";
 
 export type Client = {
   nomClient: string;
-  adresse: string;
-  activite: string;
-  dateInscription: string;
+  adresse: string | null;
+  activite: string | null;
+  dateInscription: Date | null;
 };
 
 const copy = () => {
@@ -75,7 +75,9 @@ export const columns: ColumnDef<Client>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="capitalize">{row.getValue("nomClient")}</div>
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("nomClient")}</div>
+    )
   },
   {
     accessorKey: "adresse",
@@ -143,7 +145,9 @@ export const columns: ColumnDef<Client>[] = [
       );
     },
     cell: ({ row }) => {
-      return <div className="font-medium">{row.getValue("dateInscription")}</div>;
+      return (
+        <div className="font-medium">{String(row.getValue("dateInscription"))}</div>
+      );
     }
   },
   {

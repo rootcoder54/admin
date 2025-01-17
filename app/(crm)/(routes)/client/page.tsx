@@ -6,12 +6,21 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { columns } from "./_component/colums";
+import { Client, columns } from "./_component/colums";
 import DataTable from "./_component/data-table";
 import { clients } from "@/data/type/client";
+import { getClients } from "@/action/client/get-client";
 
-const ClientPage = () => {
-  
+const ClientPage = async () => {
+  const cls = await getClients();
+  const client = cls.map(
+    ({ nomClient, adresse, activite, dateInscription }) => ({
+      nomClient,
+      adresse,
+      activite,
+      dateInscription
+    })
+  );
   return (
     <>
       <header className="flex h-14 shrink-0 items-center gap-2">
@@ -32,7 +41,7 @@ const ClientPage = () => {
       </header>
       <div className="flex flex-1 flex-col gap-4 px-4">
         <div className="container mx-auto ">
-          <DataTable columns={columns} data={clients} />
+          <DataTable columns={columns} data={client} />
         </div>
       </div>
     </>

@@ -121,9 +121,6 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
           </Button>
         )}
       </div>
-      <Button variant={"outline"} onClick={client}>
-        Importer test
-      </Button>
       <div className="flex items-center gap-3">
         {table.getFilteredSelectedRowModel().rows.length === 1 && (
           <>
