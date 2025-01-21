@@ -6,15 +6,15 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Client, columns } from "./_component/colums";
+import { columns } from "./_component/colums";
 import DataTable from "./_component/data-table";
-import { clients } from "@/data/type/client";
 import { getClients } from "@/action/client/get-client";
 
 const ClientPage = async () => {
   const cls = await getClients();
   const client = cls.map(
-    ({ nomClient, adresse, activite, dateInscription }) => ({
+    ({ id, nomClient, adresse, activite, dateInscription }) => ({
+      id,
       nomClient,
       adresse,
       activite,

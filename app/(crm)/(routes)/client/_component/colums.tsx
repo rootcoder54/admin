@@ -7,7 +7,10 @@ import {
   ArrowUp,
   ArrowUpDown,
   ChevronsUpDown,
-  MoreHorizontal
+  Edit,
+  Folder,
+  MoreHorizontal,
+  Trash2
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -21,16 +24,18 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export type Client = {
+  id: string;
   nomClient: string;
   adresse: string | null;
   activite: string | null;
   dateInscription: Date | null;
 };
 
-const copy = () => {
-  toast.success(`copié`);
+const copy = (id: string) => {
+  toast.success(`${id}`);
 };
 
 export const columns: ColumnDef<Client>[] = [
@@ -76,7 +81,9 @@ export const columns: ColumnDef<Client>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("nomClient")}</div>
+      <Link href={`/client/${row.original.id}`} className="hover:underline">
+        <div className="capitalize">{row.getValue("nomClient")}</div>
+      </Link>
     )
   },
   {
@@ -146,7 +153,9 @@ export const columns: ColumnDef<Client>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="font-medium">{String(row.getValue("dateInscription"))}</div>
+        <div className="font-medium">
+          {String(row.getValue("dateInscription"))}
+        </div>
       );
     }
   },
@@ -166,16 +175,18 @@ export const columns: ColumnDef<Client>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => copy()}>
+            <DropdownMenuItem onClick={() => copy(client.id)}>
               Copier nom client
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <a href={`/client/${client.nomClient}`} className="w-full">
-                Details
+              <a href={`/client/${client.id}`} className="w-full flex items-center justify-start gap-x-2">
+                <Folder /> Details
               </a>
             </DropdownMenuItem>
-            <DropdownMenuItem>Supprimer</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Edit /> Editer
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

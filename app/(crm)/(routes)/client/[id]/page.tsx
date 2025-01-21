@@ -1,4 +1,4 @@
-import { clients } from "@/data/type/client";
+import { getClientId } from "@/action/client/get-clientId";
 
 interface ClientIdPageProps {
   params: Promise<{ id: string }>;
@@ -6,7 +6,7 @@ interface ClientIdPageProps {
 
 const ClientId = async ({ params }: ClientIdPageProps) => {
   const { id } = await params;
-  const client = clients.find((item) => item.numero === id);
+  const client = await getClientId(id)
   return <div>{client?.nomClient}</div>;
 };
 
