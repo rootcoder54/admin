@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
 import { useSession } from "next-auth/react";
-import { useTransition } from "react";
 
 import {
   ChevronUp,
@@ -35,10 +34,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Spinner } from "../spinner";
 import { ChevronDown } from "lucide-react";
 import { auth } from "@/auth";
+import Link from "next/link";
 
 export const UserButton = () => {
   const { data: session, status } = useSession();
-  
 
   if (status === "loading") {
     return (
@@ -75,15 +74,15 @@ export const UserButton = () => {
               <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <User />
-                  <span>Profile</span>
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                </DropdownMenuItem>
+                <Link href={"/user"}>
+                  <DropdownMenuItem className="cursor-pointer">
+                    <User />
+                    <span>Profile</span>
+                  </DropdownMenuItem>
+                </Link>
                 <DropdownMenuItem>
                   <Settings />
                   <span>Parametres</span>
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />

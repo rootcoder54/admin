@@ -18,6 +18,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       if (token.sub && session.user) {
         session.user.id = token.sub;
         session.user.username = token.username as string;
+        session.user.password = token.password as string;
       }
       return session;
     },
@@ -26,6 +27,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       const existinguser = await getUserById(token.sub);
       if (!existinguser) return token;
       token.username = existinguser.username;
+      token.password = existinguser.password;
       //console.log({ token });
       return token;
     },
