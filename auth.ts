@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { getUserById } from "@/data/auth/user";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  trustHost: true,  // Permet de faire confiance aux hôtes configurés.
   callbacks: {
     async signIn({ user }) {
       const existingUser = await getUserById(user.id);
