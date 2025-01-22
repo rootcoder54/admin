@@ -1,21 +1,33 @@
+"use client";
 import Link from "next/link";
-import { User2 } from "lucide-react";
-
-import { MAX_FREE_BOARDS } from "@/constants/boards";
-
 import { FormPopover } from "@/components/form/form-popover";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getBoards } from "@/lib/get-boards";
 import TacheNavbar from "./Tache-navbar";
+import { fetcher } from "@/lib/fetcher";
+import { useQuery } from "@tanstack/react-query";
+import { Boards } from "@/types";
+import { Spinner } from "@/components/spinner";
 
-interface BoardListProps {
-  orgId: string;
-  availableCount: number;
-  isPro: boolean;
-}
+export const BoardList = () => {
+  const {
+    data: boards,
+    error,
+    isLoading
+  } = useQuery<Boards[]>({
+    queryKey: ["boards"],
+    queryFn: () => fetcher(`/api/tache`)
+  });
 
-export const BoardList = async () => {
-  const boards = await getBoards();
+  if (isLoading) {
+  }
+  if (!boards) {
+    return (
+      <div className="space-y-4 ">
+        <TacheNavbar />
+        <BoardListSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
@@ -61,9 +73,7 @@ export const BoardList = async () => {
 
 export const BoardListSkeleton = () => {
   return (
-    <div className="gird-cols-2 grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
-      <Skeleton className="aspect-video h-full w-full p-2" />
-      <Skeleton className="aspect-video h-full w-full p-2" />
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 px-10">
       <Skeleton className="aspect-video h-full w-full p-2" />
       <Skeleton className="aspect-video h-full w-full p-2" />
       <Skeleton className="aspect-video h-full w-full p-2" />

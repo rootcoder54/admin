@@ -16,8 +16,7 @@ import {
 import Image from "next/image";
 import { ItemNotice } from "./_component/card";
 
-export default async function Page() {
-  const session = await auth();
+export default function Page() {
   return (
     <>
       <header className="flex h-14 shrink-0 items-center gap-2">
@@ -43,7 +42,7 @@ export default async function Page() {
             <div className="flex flex-row items-center gap-4">
               <div className="flex flex-col items-start gap-4">
                 <h1 className="text-3xl font-normal text-zinc-900 dark:text-zinc-100">
-                  Hello {session?.user.name}
+                  Hello 
                 </h1>
                 <span className="text-lg text-zinc-600 dark:text-zinc-300">
                   Bienvenue sur votre tableau de bord.

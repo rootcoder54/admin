@@ -1,4 +1,4 @@
-import { getClientId } from "@/action/client/get-clientId";
+import { ClientComponent } from "../_component/client";
 
 interface ClientIdPageProps {
   params: Promise<{ id: string }>;
@@ -6,8 +6,7 @@ interface ClientIdPageProps {
 
 const ClientId = async ({ params }: ClientIdPageProps) => {
   const { id } = await params;
-  const client = await getClientId(id)
-  return <div>{client?.nomClient}</div>;
+  return <ClientComponent clientId={id} />;
 };
 
 export default ClientId;
