@@ -7,7 +7,6 @@ import { createSafeAction } from "@/lib/create-safe-action";
 
 import { CreateList } from "./schema";
 import { InputType, ReturnType } from "./types";
-import { createAuditLog } from "@/lib/create-audit-log";
 import { useSession } from "next-auth/react";
 import { auth } from "@/auth";
 

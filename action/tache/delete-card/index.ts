@@ -7,7 +7,6 @@ import { createSafeAction } from "@/lib/create-safe-action";
 
 import { DeleteCard } from "./schema";
 import { InputType, ReturnType } from "./types";
-import { createAuditLog } from "@/lib/create-audit-log";
 import { auth } from "@/auth";
 
 const handler = async (data: InputType): Promise<ReturnType> => {

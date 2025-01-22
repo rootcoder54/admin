@@ -74,7 +74,7 @@ const FormationPage = () => {
     if (!userEmail) {
       setEtat(true);
     }
-  }, [etat]);
+  }, [etat,userEmail]);
 
   return (
     <div>

@@ -1,8 +1,7 @@
 "use client";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
+import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import frLocale from "@fullcalendar/core/locales/fr";
 import { useState } from "react";
@@ -12,7 +11,7 @@ const Page = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const cardModal = useCardModal();
 
-  const handleDateClick = (info: any) => {
+  const handleDateClick = (info: DateClickArg) => {
     setSelectedDate(info.dateStr);
     //alert(`Vous avez cliqué sur la date : ${info.dateStr}`);
     cardModal.onOpen("076a28d1-05de-440f-bf8e-07023a1ab4b7")

@@ -5,12 +5,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import {
   ArrowDown,
   ArrowUp,
-  ArrowUpDown,
   ChevronsUpDown,
   Edit,
   Folder,
   MoreHorizontal,
-  Trash2
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

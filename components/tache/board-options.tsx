@@ -23,10 +23,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { FormPicker } from "../form/form-picker";
-import { updateFontBoard } from "@/action/tache/update-font-board";
 import { bgChange } from "@/action/tache/update-font-board/bgChange";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -89,12 +86,12 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
               className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
             >
               <Image />
-              Changer l'image de font
+              Changer l&apos;image de font
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>Changer l'image de font</DialogTitle>
+              <DialogTitle>Changer l&apos;image de font</DialogTitle>
               <DialogDescription></DialogDescription>
             </DialogHeader>
             <form action={onSubmit}>

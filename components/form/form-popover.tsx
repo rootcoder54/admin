@@ -2,34 +2,22 @@
 
 import { ElementRef, useRef } from "react";
 import { toast } from "sonner";
-import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  PopoverClose
-} from "@/components/ui/popover";
 import { useAction } from "@/hooks/use-action";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 import { FormInput } from "./form-input";
 import { FormSubmit } from "./form-submit";
 import { FormPicker } from "./form-picker";
 import { createBoard } from "@/action/tache/create-board";
-import { useProModal } from "@/hooks/use-pro-modal";
 
 interface FormPopoverProps {
   children: React.ReactNode;
@@ -40,11 +28,7 @@ interface FormPopoverProps {
 
 export const FormPopover = ({
   children,
-  side = "bottom",
-  align,
-  sideOffset = 0
 }: FormPopoverProps) => {
-  const proModal = useProModal();
   const router = useRouter();
   const closeRef = useRef<ElementRef<"button">>(null);
 

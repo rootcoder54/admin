@@ -1,6 +1,6 @@
 "use client";
 
-import { AlignLeft, Search, Sun, type LucideIcon } from "lucide-react";
+import { AlignLeft, type LucideIcon } from "lucide-react";
 
 import {
   SidebarMenu,

@@ -1,7 +1,7 @@
 "use client";
 import "./styles.scss";
 import React, { useState } from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { Editor, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import Color from "@tiptap/extension-color";
@@ -30,9 +30,8 @@ import {
 } from "lucide-react";
 import { UpdateReponse } from "@/action/ask/updated-reponse";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
-const MenuBar = ({ editor }: { editor: any }) => {
+const MenuBar = ({ editor }: { editor: Editor | null }) => {
   if (!editor) {
     return null;
   }
@@ -234,7 +233,6 @@ const Tiptap = ({
   id?: string | null;
   content?: string | null;
 }) => {
-  const router = useRouter();
   const editor = useEditor({
     extensions: [
       StarterKit,

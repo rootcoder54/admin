@@ -1,11 +1,9 @@
 import {
   Card,
-  CardContent,
   CardDescription,
   CardTitle
 } from "@/components/ui/card";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "motion/react";
 
 const listes = [

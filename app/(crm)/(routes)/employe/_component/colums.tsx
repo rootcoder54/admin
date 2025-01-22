@@ -5,22 +5,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import {
   ArrowDown,
   ArrowUp,
-  ArrowUpDown,
   ChevronsUpDown,
-  MoreHorizontal
+  
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import { toast } from "sonner";
 
 export type Employe = {
   id: string;
@@ -29,10 +19,6 @@ export type Employe = {
   poste: string;
 };
 
-const copy = (id: string) => {
-  navigator.clipboard.writeText(id);
-  toast.success(`${id} a été copié`);
-};
 
 export const columnsEmploye: ColumnDef<Employe>[] = [
   {

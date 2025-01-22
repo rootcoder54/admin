@@ -3,7 +3,6 @@
 import { Card } from "@/components/ui/card";
 import { videos } from "@/data/type/videoAstuce";
 import Image from "next/image";
-import { motion } from "motion/react";
 import {
   Breadcrumb,
   BreadcrumbItem,

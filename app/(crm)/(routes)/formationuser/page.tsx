@@ -2,9 +2,7 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow
@@ -25,8 +23,6 @@ import { Spinner } from "@/components/spinner";
 const PageFormationUser = () => {
   const {
     data: formations,
-    error,
-    isLoading
   } = useQuery<UserFormation[]>({
     queryKey: ["formationUser"],
     queryFn: () => fetcher(`/api/formationUser`)
@@ -56,7 +52,7 @@ const PageFormationUser = () => {
             <TableRow>
               <TableHead>Nom</TableHead>
               <TableHead>Email</TableHead>
-              <TableHead>Date d'inscription</TableHead>
+              <TableHead>Date d&apos;inscription</TableHead>
               <TableHead className="text-right">Profession</TableHead>
             </TableRow>
           </TableHeader>

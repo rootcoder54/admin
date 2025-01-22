@@ -3,7 +3,6 @@ import * as React from "react";
 import { useSession } from "next-auth/react";
 
 import {
-  ChevronUp,
   Cloud,
   HelpCircle,
   LogOut,
@@ -28,12 +27,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from "@/components/ui/sidebar";
-import { logout } from "@/action/auth/logout";
-import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Spinner } from "../spinner";
 import { ChevronDown } from "lucide-react";
-import { auth } from "@/auth";
 import Link from "next/link";
 
 export const UserButton = () => {

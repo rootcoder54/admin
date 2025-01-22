@@ -25,7 +25,7 @@ const ImprimerIdPage = async ({ params }: BoardIdPageProps) => {
           <h3 className="text-xl font-semibold">{list?.title}</h3>
           <hr />
           <ul className="space-y-4">
-            {list?.cards.map((card: any, index: number) => (
+            {list?.cards.map((card, index: number) => (
               <li key={index} className="flex flex-row gap-x-4">
                 <Check />
                 <span className="text-lg text-zinc-700">{card.title}</span>

@@ -6,12 +6,10 @@ import TacheNavbar from "./Tache-navbar";
 import { fetcher } from "@/lib/fetcher";
 import { useQuery } from "@tanstack/react-query";
 import { Boards } from "@/types";
-import { Spinner } from "@/components/spinner";
 
 export const BoardList = () => {
   const {
     data: boards,
-    error,
     isLoading
   } = useQuery<Boards[]>({
     queryKey: ["boards"],

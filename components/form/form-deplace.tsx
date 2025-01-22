@@ -14,11 +14,13 @@ export const FormDeplace = ({
   titre: string;
 }) => {
   const router = useRouter();
-  const onsubmit = async (e: any) => {
+  const onsubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const boardId = e.target.boardId.value;
-    const listId = e.target.listId.value;
+    const formData = new FormData(e.currentTarget);
+    const boardId = formData.get("boardId") as string;
+    const listId = formData.get("listId") as string;
     const list = await deplaceList(listId, boardId);
+
     console.log(list);
     toast.success(`Liste transférée avec succès`);
     router.push(`/tache/${boardId}`);

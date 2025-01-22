@@ -7,8 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 export const ClientComponent = ({ clientId }: { clientId: string }) => {
   const {
     data: client,
-    error,
-    isLoading
   } = useQuery<ClientList>({
     queryKey: ["clientId"],
     queryFn: () => fetcher(`/api/client/${clientId}`)

@@ -19,8 +19,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 const Page = () => {
   const {
     data: questions,
-    error,
-    isLoading
   } = useQuery<Question[]>({
     queryKey: ["questions"],
     queryFn: () => fetcher(`/api/question/list`)
@@ -71,7 +69,7 @@ const Page = () => {
 
 export default Page;
 
-function SkeletonDemo({ rows = 5, columns = 4 }) {
+function SkeletonDemo({ rows = 5}) {
   return (
     <div className="flex flex-col justify-center items-center gap-y-3 py-4">
       {/* Corps du tableau */}

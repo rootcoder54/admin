@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache";
 
 import { db } from "@/lib/db";
-import { createAuditLog } from "@/lib/create-audit-log";
 import { createSafeAction } from "@/lib/create-safe-action";
 
 import { CopyList } from "./schema";

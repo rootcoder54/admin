@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { auth } from "@/auth";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     let userId;
     const session = await auth();
@@ -22,6 +22,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json(boards);
   } catch (error) {
-    return new NextResponse("Internal Error", { status: 500 });
+    return new NextResponse(`Internal Error :${error}`, { status: 500 });
   }
 }

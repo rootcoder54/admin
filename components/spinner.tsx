@@ -1,8 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
-
+import { Loader } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import { Loader } from "lucide-react";
 const spinnerVariants = cva("text-muted-foreground animate-spin", {
   variants: {
     size: {
@@ -17,8 +16,21 @@ const spinnerVariants = cva("text-muted-foreground animate-spin", {
   }
 });
 
-interface SpinnerProps extends VariantProps<typeof spinnerVariants> {}
+interface SpinnerProps extends VariantProps<typeof spinnerVariants> {
+  className?: string; // Custom class support
+  ariaLabel?: string; // Accessibility label
+}
 
-export const Spinner = ({ size }: SpinnerProps) => {
-  return <Loader className={cn(spinnerVariants({ size }))} />;
+export const Spinner = ({
+  size,
+  className,
+  ariaLabel = "Loading"
+}: SpinnerProps) => {
+  return (
+    <Loader
+      className={cn(spinnerVariants({ size }), className)}
+      aria-label={ariaLabel}
+      role="status" // Important for assistive technologies
+    />
+  );
 };

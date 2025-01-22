@@ -67,7 +67,7 @@ export const Observation = ({
       variant="ghost"
       className="p-1 px-2 text-lg "
     >
-      {obs ? <span>{obs}</span> : <span>Pas d'observation</span>}
+      {obs ? <span>{obs}</span> : <span>Pas d&apos;observation</span>}
     </Button>
   );
 };

@@ -6,8 +6,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage
 } from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import { ArrowRightLeft, ChevronRight, HelpCircle } from "lucide-react";
+import {  ChevronRight, HelpCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 

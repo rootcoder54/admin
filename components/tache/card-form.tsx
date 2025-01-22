@@ -2,7 +2,7 @@
 
 import { toast } from "sonner";
 import { Plus, X } from "lucide-react";
-import { forwardRef, useRef, ElementRef, KeyboardEventHandler } from "react";
+import { forwardRef, useRef,  KeyboardEventHandler } from "react";
 import { useParams } from "next/navigation";
 import { useOnClickOutside, useEventListener } from "usehooks-ts";
 
@@ -40,7 +40,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
       }
     };
 
-    useOnClickOutside(formRef, disableEditing);
+    useOnClickOutside(formRef as React.RefObject<HTMLElement>, disableEditing);
     useEventListener("keydown", onKeyDown);
 
     const onTextareakeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (

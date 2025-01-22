@@ -1,17 +1,13 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetcher } from "@/lib/fetcher";
-import { getBoards } from "@/lib/get-boards";
 import { Boards } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 import Link from "next/link";
 
 export const ItemNotice = () => {
   const {
     data: boards,
-    error,
-    isLoading
   } = useQuery<Boards[]>({
     queryKey: ["boards"],
     queryFn: () => fetcher(`/api/tache`)

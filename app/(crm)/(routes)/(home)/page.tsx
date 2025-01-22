@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,7 +26,7 @@ export default function Page() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
-                  Page d'accueil
+                  Page d&apos;accueil
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>

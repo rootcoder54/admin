@@ -8,7 +8,6 @@ import { createSafeAction } from "@/lib/create-safe-action";
 
 import { DeleteBoard } from "./schema";
 import { InputType, ReturnType } from "./types";
-import { useSession } from "next-auth/react";
 import { auth } from "@/auth";
 
 const handler = async (data: InputType): Promise<ReturnType> => {

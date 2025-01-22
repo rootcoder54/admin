@@ -10,7 +10,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const ListClient = () => {
   const {
     data: clientList,
-    error,
     isLoading
   } = useQuery<ClientList[]>({
     queryKey: ["clients"],

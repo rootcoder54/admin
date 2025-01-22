@@ -4,7 +4,6 @@ import { AppSidebar } from "@/components/Sidebar/app-sidebar";
 
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { SessionProvider } from "next-auth/react";
-import { Suspense } from "react";
 import NextNProgress from "nextjs-progressbar"
 
 

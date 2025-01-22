@@ -7,7 +7,6 @@ import { useFormStatus } from "react-dom";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
-//import { unsplash } from "@/lib/unsplash";
 import { defaultImages } from "@/constants/images";
 
 import { FormErrors } from "./form-errors";
@@ -17,43 +16,25 @@ interface FormPickerProps {
   errors?: Record<string, string[] | undefined>;
 }
 
+interface ImageData {
+  id: string;
+  url: string;
+}
+
 export const FormPicker = ({ id, errors }: FormPickerProps) => {
   const { pending } = useFormStatus();
 
-  const [images, setImages] =
-    useState<Array<Record<string, any>>>(defaultImages);
+  const [images, setImages] = useState<ImageData[]>(defaultImages);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedImageId, setSelectedImageId] = useState(null);
-
-  // TODO: Uncomment this when wanting to use a proper Unsplash API
-  // useEffect(() => {
-  //   const fetchImages = async () => {
-  //     try {
-  //       const result = await unsplash.photos.getRandom({
-  //         collectionIds: ["317099"],
-  //         count: 9,
-  //       });
-
-  //       if (result && result.response) {
-  //         const newImages = result.response as Array<Record<string, any>>;
-  //         setImages(newImages);
-  //       } else {
-  //         console.error("Failed to get images from Unsplash");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //       setImages(defaultImages);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
+  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
+        // Remplacez par votre logique d'API réelle si nécessaire.
         setImages(defaultImages);
       } catch (error) {
-        console.log(error);
+        console.error("Erreur lors du chargement des images :", error);
       } finally {
         setIsLoading(false);
       }
@@ -73,36 +54,36 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
   return (
     <div className="relative">
       <div className="mb-2 grid grid-cols-3 gap-2">
-        {images.map((image,index) => (
+        {images.map((image) => (
           <div
-            key={index}
+            key={image.id}
             className={cn(
               "group relative aspect-video cursor-pointer bg-muted transition hover:opacity-75",
-              pending && "cursor-auto opacity-50 hover:opacity-50",
+              pending && "cursor-auto opacity-50 hover:opacity-50"
             )}
             onClick={() => {
-              if (pending) return;
-              setSelectedImageId(image.id);
+              if (!pending) setSelectedImageId(image.id);
             }}
+            aria-label={`Sélectionner l'image ${image.id}`}
           >
             <input
               type="radio"
-              id={id}
+              id={`${id}-${image.id}`}
               name={id}
               className="hidden"
               checked={selectedImageId === image.id}
               readOnly
               disabled={pending}
-              value={`${image.url}`}
+              value={image.url}
             />
             <Image
               src={image.url}
-              alt="Unsplash image"
+              alt={`Image ${image.id}`}
               className="rounded-sm object-cover"
               fill
             />
             {selectedImageId === image.id && (
-              <div className="absolute inset-y-0 flex h-full w-full items-center justify-center bg-black/30">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                 <Check className="h-4 w-4 text-white" />
               </div>
             )}

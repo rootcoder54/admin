@@ -1,5 +1,4 @@
 import { getBoards } from "@/lib/get-boards";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,8 +6,6 @@ import {
   DialogHeader,
   DialogTitle
 } from "@/components/ui/dialog";
-import { deplaceList } from "@/action/tache/deplace-list";
-import { on } from "events";
 import { FormDeplace } from "../form/form-deplace";
 
 export const ListBoard = async ({

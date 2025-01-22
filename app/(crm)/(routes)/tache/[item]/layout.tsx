@@ -1,9 +1,8 @@
 import { upperCase } from "lodash";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import { BoardNavbar } from "@/components/tache/board-navbar";
 import { getBoard } from "@/lib/get-board";
-import { Suspense } from "react";
 
 export async function generateMetadata({
   params

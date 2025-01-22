@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
-import { auth } from "@/auth";
 
 export async function GET(
   req: Request,
@@ -27,6 +26,6 @@ export async function GET(
 
     return NextResponse.json(lists);
   } catch (error) {
-    return new NextResponse("Internal Error", { status: 500 });
+    return new NextResponse(`Internal Error :${error}`, { status: 500 });
   }
 }

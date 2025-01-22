@@ -16,6 +16,6 @@ export async function GET(
 
     return NextResponse.json(board);
   } catch (error) {
-    return new NextResponse("Internal Error", { status: 500 });
+    return new NextResponse(`Internal Error :${error}`, { status: 500 });
   }
 }

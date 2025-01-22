@@ -4,7 +4,7 @@ import PrintButton from "../../_component/print";
 import { CalendarDays, Check } from "lucide-react";
 
 interface BoardIdPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const ImprimerIdPage = async ({ params }: BoardIdPageProps) => {
@@ -23,11 +23,11 @@ const ImprimerIdPage = async ({ params }: BoardIdPageProps) => {
           <h1 className="text-3xl font-bold">{board?.title}</h1>
         </div>
         {lists.map((value, index) => (
-          <div className="flex flex-col gap-y-5">
+          <div key={index} className="flex flex-col gap-y-5">
             <h3 className="text-xl font-semibold">{value.title}</h3>
             <hr />
             <ul key={index} className="space-y-4">
-              {value.cards.map((card: any, index: number) => (
+              {value.cards.map((card, index: number) => (
                 <li key={index} className="flex flex-row gap-x-4">
                   <Check />
                   <span className="text-lg text-zinc-700">{card.title}</span>
