@@ -6,12 +6,19 @@ import {
   BreadcrumbList,
   BreadcrumbPage
 } from "@/components/ui/breadcrumb";
-import {  ChevronRight, HelpCircle } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { fetcher } from "@/lib/fetcher";
+import { Question } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
+import { ChevronRight, HelpCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const PageQuestion = async () => {
-  const questions = await getQuestions();
+  const { data: questions } = useQuery<Question[]>({
+    queryKey: ["questions"],
+    queryFn: () => fetcher(`/api/question/list`)
+  });
 
   return (
     <div className="flex flex-col justify-center items-start gap-y-3 py-4 space-y-3">
@@ -41,17 +48,38 @@ const PageQuestion = async () => {
         Regroupe les thématiques qui reviennent le plus souvent dans vos
         interrogations
       </span>
-      {questions.map((question, index) => (
-        <AskItem
-          key={index}
-          titre={question.question}
-          observation={question.observation}
-          image={question.image}
-          href={`/support/question/${question.id}`}
-        />
-      ))}
+      {questions ? (
+        <>
+          <div className="flex flex-col justify-center items-center gap-y-3 py-4">
+            {questions.map((question, index) => (
+              <AskItem
+                key={index}
+                titre={question.question}
+                observation={question.observation}
+                image={question.image}
+                href={`/support/question/${question.id}`}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <SkeletonDemo />
+      )}
     </div>
   );
 };
 
 export default PageQuestion;
+
+function SkeletonDemo({ rows = 5 }) {
+  return (
+    <div className="flex flex-col justify-center items-center gap-y-3 py-4">
+      {/* Corps du tableau */}
+      {Array.from({ length: rows }).map((_, rowIndex) => (
+        <div key={`row-${rowIndex}`} className="flex items-center space-x-2">
+          <Skeleton className="h-8 w-[550px]" />
+        </div>
+      ))}
+    </div>
+  );
+}
