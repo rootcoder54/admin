@@ -14,7 +14,7 @@ import { ChevronRight, HelpCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const PageQuestion = async () => {
+const PageQuestion = () => {
   const { data: questions } = useQuery<Question[]>({
     queryKey: ["questions"],
     queryFn: () => fetcher(`/api/question/list`)
