@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { editer } from "@/action/auth/edite";
 import { useState, useTransition } from "react";
 import FormError from "./form-error";
@@ -49,7 +48,6 @@ const formSchema = z
   });
 
 export function EditeForm() {
-  const route = useRouter();
   const { data: session } = useSession();
 
   const [error, setError] = useState<string | undefined>("");
