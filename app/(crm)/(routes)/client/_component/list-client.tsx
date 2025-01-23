@@ -38,7 +38,7 @@ export const ListClient = () => {
   );
   
   return (
-    <div className="container mx-auto ">
+    <div className="">
       <DataTable columns={columns} data={client} />
     </div>
   );

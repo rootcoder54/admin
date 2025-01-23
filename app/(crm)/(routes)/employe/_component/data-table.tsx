@@ -63,8 +63,10 @@ function DataTableEmploye<TData, TValue>({
 
   return (
     <div className="w-full h-full">
-      <DataToolBar table={table} />
-      <div className="rounded-md border">
+      <div className="container mx-auto">
+        <DataToolBar table={table} />
+      </div>
+      <div className="">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
