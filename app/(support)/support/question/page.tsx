@@ -1,4 +1,3 @@
-import { getQuestions } from "@/action/ask/get-questions";
 import { AskItem } from "@/app/(crm)/(routes)/ask/_component/askItem";
 import {
   Breadcrumb,
