@@ -1,3 +1,4 @@
+"use client";
 import { AskItem } from "@/app/(crm)/(routes)/ask/_component/askItem";
 import {
   Breadcrumb,
