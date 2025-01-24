@@ -16,9 +16,6 @@ const HeroFormation = () => {
           le pointage , generer les ordres de virement ....
         </span>
       </div>
-      <span className="text-5xl text-yellow-500">
-        Page en cours de creation ...
-      </span>
     </div>
   );
 };

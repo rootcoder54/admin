@@ -26,6 +26,7 @@ import {
 import { toast } from "sonner";
 import { formationLogin } from "../_components/loginFormation";
 import HeroFormation from "../_components/HeroFormation";
+import { ListFormation } from "./_component/formation";
 
 const FormationPage = () => {
   const [etat, setEtat] = useState(false);
@@ -79,6 +80,7 @@ const FormationPage = () => {
   return (
     <div>
       <HeroFormation />
+      <ListFormation />
       <Drawer open={etat}>
         <DrawerContent>
           <div className="mx-auto w-full max-w-sm py-8">
