@@ -27,6 +27,7 @@ import { FormPicker } from "../form/form-picker";
 import { bgChange } from "@/action/tache/update-font-board/bgChange";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 interface BoardOptionsProps {
   id: string;
@@ -70,15 +71,41 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
             <X className="h-4 w-4" />
           </Button>
         </PopoverClose>
-        <Button
-          variant="ghost"
-          onClick={onDelete}
-          disabled={isLoading}
-          className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal text-red-500 hover:text-red-500"
-        >
-          <Trash2 />
-          Supprimer cette liste
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant="ghost"
+              className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal text-red-500 hover:text-red-400"
+            >
+              <Trash2 />
+              Supprimer cette liste
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Suppression</DialogTitle>
+              <DialogDescription>
+                Etez-vous sûr de vouloir supprimer cette liste ?
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="sm:justify-start items-center">
+              <DialogClose asChild>
+                <Button type="button" variant="secondary">
+                  Annuler
+                </Button>
+              </DialogClose>
+              <Button
+                variant="destructive"
+                onClick={onDelete}
+                disabled={isLoading}
+              >
+                <Trash2 />
+                Supprimer
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
         <Dialog>
           <DialogTrigger asChild>
             <Button

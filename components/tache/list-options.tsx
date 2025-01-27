@@ -27,6 +27,16 @@ import { Separator } from "@/components/ui/separator";
 import { deleteList } from "@/action/tache/delete-list";
 import { copyList } from "@/action/tache/copy-list";
 import Link from "next/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "../ui/dialog";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 interface ListOptionsProps {
   data: List;
@@ -115,23 +125,47 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           </FormSubmit>
         </form>
         <Separator />
-        <form action={onDelete}>
-          <input hidden name="id" id="id" value={data.id} readOnly />
-          <input
-            hidden
-            name="boardId"
-            id="boardId"
-            value={data.boardId}
-            readOnly
-          />
-          <FormSubmit
-            variant="ghost"
-            className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal text-red-500 hover:text-red-400"
-          >
-            <Trash2 />
-            Supprimer la liste
-          </FormSubmit>
-        </form>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant="ghost"
+              className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal text-red-500 hover:text-red-400"
+            >
+              <Trash2 />
+              Supprimer la liste
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Suppression</DialogTitle>
+              <DialogDescription>
+                Etez-vous sûr de vouloir supprimer cette liste ?
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="sm:justify-start items-center">
+              <DialogClose asChild>
+                <Button type="button" variant="secondary">
+                  Annuler
+                </Button>
+              </DialogClose>
+              <form action={onDelete}>
+                <input hidden name="id" id="id" value={data.id} readOnly />
+                <input
+                  hidden
+                  name="boardId"
+                  id="boardId"
+                  value={data.boardId}
+                  readOnly
+                />
+                <FormSubmit
+                  variant="destructive"
+                >
+                  Supprimer
+                </FormSubmit>
+              </form>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         <Link
           href="/tache/[item]/[listId]"
           as={`/tache/${data.boardId}/${data.id}`}
