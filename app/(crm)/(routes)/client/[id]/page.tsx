@@ -6,7 +6,11 @@ interface ClientIdPageProps {
 
 const ClientId = async ({ params }: ClientIdPageProps) => {
   const { id } = await params;
-  return <ClientComponent clientId={id} />;
+  return (
+    <div>
+      <ClientComponent clientId={id} />
+    </div>
+  );
 };
 
 export default ClientId;

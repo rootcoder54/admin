@@ -20,7 +20,7 @@ const ClientPage = () => {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
-                  Gestion des clients
+                  Liste des clients
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>

@@ -6,7 +6,8 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage
+  BreadcrumbPage,
+  BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 
 import { CreateDialog } from "./_component/create";
@@ -17,9 +18,7 @@ import { fetcher } from "@/lib/fetcher";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Page = () => {
-  const {
-    data: questions,
-  } = useQuery<Question[]>({
+  const { data: questions } = useQuery<Question[]>({
     queryKey: ["questions"],
     queryFn: () => fetcher(`/api/question/list`)
   });
@@ -35,7 +34,9 @@ const Page = () => {
                 <BreadcrumbPage className="line-clamp-1">
                   Liste de Questions
                 </BreadcrumbPage>
-                <Separator orientation="vertical" className="mr-2 h-4" />
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
                   <CreateDialog />
                 </BreadcrumbPage>
@@ -69,7 +70,7 @@ const Page = () => {
 
 export default Page;
 
-function SkeletonDemo({ rows = 5}) {
+function SkeletonDemo({ rows = 5 }) {
   return (
     <div className="flex flex-col justify-center items-center gap-y-3 py-4">
       {/* Corps du tableau */}

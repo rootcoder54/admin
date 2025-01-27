@@ -3,7 +3,8 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage
+  BreadcrumbPage,
+  BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -30,7 +31,9 @@ const QuestionID = async ({ params }: QuestionIdPageProps) => {
                 <BreadcrumbPage className="line-clamp-1">
                   <Link href={"/ask"}>Liste de Questions</Link>
                 </BreadcrumbPage>
-                <Separator orientation="vertical" className="mr-2 h-4" />
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
                   {question?.question}
                 </BreadcrumbPage>
