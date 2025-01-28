@@ -1,5 +1,4 @@
 "use client";
-import { Spinner } from "@/components/spinner";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -86,7 +85,7 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
           {client?.dateInscription && (
             <div className="flex flex-col">
               <span className="text-sm text-neutral-600 dark:text-neutral-400">
-                Date d'inscription
+                Date d&apos;inscription
               </span>
               <span className="text-sm">{String(client?.dateInscription)}</span>
             </div>
