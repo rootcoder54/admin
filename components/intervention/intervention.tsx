@@ -35,7 +35,6 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/lib/fetcher";
 import { Spinner } from "@/components/spinner";
-import { AddIntevention } from "./addIntervention";
 import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {

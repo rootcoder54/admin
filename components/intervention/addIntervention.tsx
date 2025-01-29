@@ -1,18 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Plus, PlusIcon } from "lucide-react";
-import { z } from "zod";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -33,7 +22,7 @@ export const AddIntevention = () => {
       intervenant: "",
       nature: "",
       observations: "",
-      dateCloture: new Date(),
+      dateCloture: "",
       items: []
     }
   });
@@ -119,7 +108,7 @@ export const AddIntevention = () => {
             <FormItem>
               <FormLabel>Date de clôture</FormLabel>
               <FormControl>
-                <Input type="date" {...field} />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
