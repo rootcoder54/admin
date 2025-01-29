@@ -20,6 +20,9 @@
 # production
 /build
 
+# data base
+/lib/db.ts
+
 # misc
 .DS_Store
 *.pem
