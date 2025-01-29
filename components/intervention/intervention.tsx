@@ -110,7 +110,7 @@ const columns: ColumnDef<InterventionAll>[] = [
     cell: ({ row }) => {
       return (
         <div className="font-medium">
-          {String(row.original.client.createdAt)}
+          {String(row.original.createdAt)}
         </div>
       );
     }
@@ -119,7 +119,7 @@ const columns: ColumnDef<InterventionAll>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const client = row.original;
+      const intervention = row.original;
 
       return (
         <DropdownMenu>
@@ -134,12 +134,12 @@ const columns: ColumnDef<InterventionAll>[] = [
             <DropdownMenuItem>Copier nom client</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <a
-                href={`/client/${client.id}`}
+              <Link
+                href={`/client/${intervention.clientId}/intervention/${intervention.id}`}
                 className="w-full flex items-center justify-start gap-x-2"
               >
                 <Folder /> Details
-              </a>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Edit /> Editer

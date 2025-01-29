@@ -3,9 +3,9 @@
 import { db } from "@/lib/db";
 
 export const getInterventionId = async (id: string) => {
-  const intervention = await db.intervention.findMany({
+  const intervention = await db.intervention.findUnique({
     where: {
-      clientId: id
+       id
     },
     include: {
       items: {
