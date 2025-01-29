@@ -17,6 +17,7 @@ import { Tabs } from "@radix-ui/react-tabs";
 import { useQuery } from "@tanstack/react-query";
 import { Edit2, ListCheck, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { Intervention } from "@/components/intervention/intervention";
 
 export const ClientComponent = ({ clientId }: { clientId: string }) => {
   const { data: client } = useQuery<ClientList>({
@@ -115,7 +116,7 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
             <TabsTrigger value="contrat">Contrat</TabsTrigger>
           </TabsList>
           <TabsContent value="Intervention">
-            <span>Intervention</span>
+            <Intervention clientId={clientId} />
           </TabsContent>
           <TabsContent value="Base">
             <span>Base</span>
