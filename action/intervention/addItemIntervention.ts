@@ -2,12 +2,12 @@
 
 import { db } from "@/lib/db";
 
-export const addIntervention = async (
+export const addItemIntervention = async (
   date: Date = new Date(),
   debut: string,
   fin: string,
-  description: string = "",
-  interventionId: string
+  description: string | null = "",
+  interventionId: string | null | undefined
 ) => {
   const intervention = await db.itemIntervention.create({
     data: {

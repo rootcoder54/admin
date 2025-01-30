@@ -16,17 +16,17 @@ import { z } from "zod";
 import { useQuery } from "@tanstack/react-query";
 import { ClientList } from "@/types";
 import { fetcher } from "@/lib/fetcher";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { addIntervention } from "@/action/intervention/add-intervention";
 import { Spinner } from "../spinner";
+import { Intervention } from "@prisma/client";
+import { AddItemIntevention } from "./addItemIntervention";
 
 export const AddIntevention = ({ id }: { id: string }) => {
   const [isPending, startTransition] = useTransition();
 
-  const { data: client } = useQuery<ClientList>({
-    queryKey: ["clientId", id],
-    queryFn: () => fetcher(`/api/client/${id}`)
-  });
+  const [intervention, setIntervention] = useState<Intervention>();
+  const [item, setitem] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(InterventionSchema),
@@ -52,7 +52,10 @@ export const AddIntevention = ({ id }: { id: string }) => {
         "",
         values.dateCloture,
         values.clientId
-      ).then((data) => {});
+      ).then((data) => {
+        setIntervention(data);
+        setitem(true);
+      });
     });
   }
   if (isPending) {
@@ -64,6 +67,7 @@ export const AddIntevention = ({ id }: { id: string }) => {
   }
   return (
     <div>
+      {!item ? (
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
@@ -140,6 +144,9 @@ export const AddIntevention = ({ id }: { id: string }) => {
           </Button>
         </form>
       </Form>
+      ):(
+        <AddItemIntevention intervention={intervention} />
+      )}
     </div>
   );
 };
