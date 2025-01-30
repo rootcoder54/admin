@@ -12,8 +12,22 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { InterventionSchema } from "./shema";
+import { z } from "zod";
+import { useQuery } from "@tanstack/react-query";
+import { ClientList } from "@/types";
+import { fetcher } from "@/lib/fetcher";
+import { useTransition } from "react";
+import { addIntervention } from "@/action/intervention/add-intervention";
+import { Spinner } from "../spinner";
 
-export const AddIntevention = () => {
+export const AddIntevention = ({ id }: { id: string }) => {
+  const [isPending, startTransition] = useTransition();
+
+  const { data: client } = useQuery<ClientList>({
+    queryKey: ["clientId", id],
+    queryFn: () => fetcher(`/api/client/${id}`)
+  });
+
   const form = useForm({
     resolver: zodResolver(InterventionSchema),
     defaultValues: {
@@ -22,102 +36,110 @@ export const AddIntevention = () => {
       intervenant: "",
       nature: "",
       observations: "",
-      dateCloture: "",
-      items: []
+      dateCloture: new Date(),
+      clientId: id
     }
   });
 
-  const onSubmit = () => {};
+  function onSubmit(values: z.infer<typeof InterventionSchema>) {
+    startTransition(() => {
+      addIntervention(
+        values.numero,
+        values.service,
+        values.intervenant,
+        values.nature,
+        values.observations,
+        "",
+        values.dateCloture,
+        values.clientId
+      ).then((data) => {});
+    });
+  }
+  if (isPending) {
+    return (
+      <div className="w-full flex flex-row items-center justify-center">
+        <Spinner size={"lg"} />
+      </div>
+    );
+  }
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-        <FormField
-          control={form.control}
-          name="numero"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Numéro</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <FormField
+            control={form.control}
+            name="numero"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Numéro de la fiche</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="service"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Service concerné</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="service"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Service</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="intervenant"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Intervenants</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="intervenant"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Intervenant</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="nature"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nature de l'intervention</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="nature"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nature</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="observations"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Observations</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="observations"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Observations</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="dateCloture"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Date de clôture</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" variant={"secondary"}>
-          Soumettre
-        </Button>
-      </form>
-    </Form>
+          <Button type="submit" variant={"secondary"}>
+            Suivant
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 };

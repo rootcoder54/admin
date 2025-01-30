@@ -6,10 +6,10 @@ export const addIntervention = async (
   numero: string,
   service: string,
   intervenant: string,
-  nature: string = "",
-  observations: string = "",
-  fichier: string = "",
-  dateCloture: Date = new Date(),
+  nature: string | null = "",
+  observations: string | null = "",
+  fichier: string | null = "",
+  dateCloture: Date | null = new Date(),
   clientId: string
 ) => {
   const intervention = await db.intervention.create({

@@ -1,4 +1,4 @@
-"use client";
+import { getClientId } from "@/action/client/get-clientId";
 import { AddIntevention } from "@/components/intervention/addIntervention";
 import {
   Breadcrumb,
@@ -20,13 +20,10 @@ interface ClientIdPageProps {
   params: Promise<{ id: string }>;
 }
 
-const AddIntervention = ({ params }: ClientIdPageProps) => {
-  let id = "";
-  params.then((data) => (id = data.id));
-  const { data: client } = useQuery<ClientList>({
-    queryKey: ["clientId", id],
-    queryFn: () => fetcher(`/api/client/${id}`)
-  });
+const AddIntervention = async({ params }: ClientIdPageProps) => {
+  const {id}=await params
+  const client=await getClientId(id)
+
   return (
     <div>
       <header className="flex h-14 shrink-0 items-center gap-2">
@@ -67,7 +64,7 @@ const AddIntervention = ({ params }: ClientIdPageProps) => {
             </Button>
           </Link>
         </div>
-        <AddIntevention />
+        <AddIntevention id={id} />
       </div>
     </div>
   );

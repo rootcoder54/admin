@@ -15,7 +15,6 @@ export const InterventionSchema = z.object({
   nature: z.string().nullable().optional(),
   observations: z.string().nullable().optional(),
   fichier: z.string().nullable().optional(),
-  dateCloture: z.string().nullable().optional(),
-  items: z.array(ItemInterventionSchema),
+  dateCloture: z.date().nullable().optional(),
   clientId: z.string(),
 });
