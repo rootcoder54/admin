@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -114,7 +114,9 @@ export const AddIntevention = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Soumettre</Button>
+        <Button type="submit" variant={"secondary"}>
+          Soumettre
+        </Button>
       </form>
     </Form>
   );

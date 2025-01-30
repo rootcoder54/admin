@@ -1,3 +1,4 @@
+"use client";
 import { AddIntevention } from "@/components/intervention/addIntervention";
 import {
   Breadcrumb,
@@ -9,10 +10,23 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { fetcher } from "@/lib/fetcher";
+import { ClientList } from "@/types";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-const AddIntervention = () => {
+interface ClientIdPageProps {
+  params: Promise<{ id: string }>;
+}
+
+const AddIntervention = ({ params }: ClientIdPageProps) => {
+  let id = "";
+  params.then((data) => (id = data.id));
+  const { data: client } = useQuery<ClientList>({
+    queryKey: ["clientId", id],
+    queryFn: () => fetcher(`/api/client/${id}`)
+  });
   return (
     <div>
       <header className="flex h-14 shrink-0 items-center gap-2">
@@ -29,12 +43,16 @@ const AddIntervention = () => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
-                  Intervention
+                  <Link href={`/client/${client?.id}`}>
+                    {client?.nomClient}
+                  </Link>
                 </BreadcrumbPage>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage className="line-clamp-1">Add</BreadcrumbPage>
+                <BreadcrumbPage className="line-clamp-1">
+                  Add Intervention
+                </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -43,11 +61,12 @@ const AddIntervention = () => {
       </header>
       <div className="mx-auto w-full max-w-[1280px] p-8 flex flex-col space-y-2">
         <div>
-          <Button variant={"secondary"}>
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
+          <Link href={`/client/${client?.id}`}>
+            <Button variant={"secondary"}>
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
         </div>
-
         <AddIntevention />
       </div>
     </div>

@@ -21,7 +21,8 @@ import {
   Edit,
   Folder,
   MoreHorizontal,
-  PlusIcon
+  PlusIcon,
+  Trash2
 } from "lucide-react";
 import { InterventionAll } from "@/types";
 import {
@@ -108,9 +109,7 @@ const columns: ColumnDef<InterventionAll>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="font-medium">
-          {String(row.original.createdAt)}
-        </div>
+        <div className="font-medium">{String(row.original.createdAt)}</div>
       );
     }
   },
@@ -130,8 +129,6 @@ const columns: ColumnDef<InterventionAll>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Copier nom client</DropdownMenuItem>
-            <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Link
                 href={`/client/${intervention.clientId}/intervention/${intervention.id}`}
@@ -142,6 +139,11 @@ const columns: ColumnDef<InterventionAll>[] = [
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Edit /> Editer
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <span className="flex gap-x-2 text-red-500">
+                <Trash2 /> Supprimer
+              </span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -168,7 +170,7 @@ export const Intervention = ({ clientId }: { clientId: string }) => {
         <h2 className="text-xl font-semibold text-neutral-600 dark:text-neutral-400">
           Interventions
         </h2>
-        <Link href={"/client/intervention/add"}>
+        <Link href={`/client/${clientId}/intervention/add`}>
           <Button variant={"secondary"}>
             <PlusIcon />
             Ajouter
@@ -216,6 +218,7 @@ const ItemIntervention = <TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className="border-b"
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
