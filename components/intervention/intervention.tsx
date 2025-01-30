@@ -47,11 +47,19 @@ import {
   SelectTrigger,
   SelectValue
 } from "../ui/select";
+import { deleteIntervention } from "@/action/intervention/delete-intervention";
+import { toast } from "sonner";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+
+const supprimer = (id: string) => {
+  deleteIntervention(id).then((data) =>
+    toast.success(`Intervention ${data.id} supprimer`)
+  );
+};
 
 const columns: ColumnDef<InterventionAll>[] = [
   {
@@ -151,7 +159,10 @@ const columns: ColumnDef<InterventionAll>[] = [
               <Edit /> Editer
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <span className="flex gap-x-2 text-red-500">
+              <span
+                className="flex gap-x-2 text-red-500 cursor-pointer"
+                onClick={() => supprimer(intervention.id)}
+              >
                 <Trash2 /> Supprimer
               </span>
             </DropdownMenuItem>
