@@ -192,7 +192,7 @@ export const Intervention = ({ clientId }: { clientId: string }) => {
           Interventions
         </h2>
         <Link href={`/client/${clientId}/intervention/add`}>
-          <Button variant={"secondary"}>
+          <Button variant={"blue"}>
             <PlusIcon />
             Ajouter
           </Button>

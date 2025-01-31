@@ -49,7 +49,9 @@ export const AddItemIntevention = ({
         values.description,
         values.interventionId
       ).then((data) => {
-        
+        if (!data) {
+          return;
+        }
       });
     });
   }

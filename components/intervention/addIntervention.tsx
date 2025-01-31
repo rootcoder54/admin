@@ -13,9 +13,6 @@ import {
 } from "@/components/ui/form";
 import { InterventionSchema } from "./shema";
 import { z } from "zod";
-import { useQuery } from "@tanstack/react-query";
-import { ClientList } from "@/types";
-import { fetcher } from "@/lib/fetcher";
 import { useState, useTransition } from "react";
 import { addIntervention } from "@/action/intervention/add-intervention";
 import { Spinner } from "../spinner";
@@ -23,10 +20,8 @@ import { Intervention } from "@prisma/client";
 import { AddItemIntevention } from "./addItemIntervention";
 
 export const AddIntevention = ({ id }: { id: string }) => {
-  const [isPending, startTransition] = useTransition();
-
   const [intervention, setIntervention] = useState<Intervention>();
-  const [item, setitem] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm({
     resolver: zodResolver(InterventionSchema),
@@ -40,6 +35,7 @@ export const AddIntevention = ({ id }: { id: string }) => {
       clientId: id
     }
   });
+  const [item, setitem] = useState(false);
 
   function onSubmit(values: z.infer<typeof InterventionSchema>) {
     startTransition(() => {
@@ -65,88 +61,87 @@ export const AddIntevention = ({ id }: { id: string }) => {
       </div>
     );
   }
-  return (
-    <div>
-      {!item ? (
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-          <FormField
-            control={form.control}
-            name="numero"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Numéro de la fiche</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="service"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Service concerné</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+  if (!item) {
+    return (
+      <div>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+            <FormField
+              control={form.control}
+              name="numero"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Numéro de la fiche</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="service"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Service concerné</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="intervenant"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Intervenants</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="intervenant"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Intervenants</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="nature"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nature de l'intervention</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="nature"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nature de l&apos;intervention</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="observations"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Observations</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="observations"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Observations</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <Button type="submit" variant={"secondary"}>
-            Suivant
-          </Button>
-        </form>
-      </Form>
-      ):(
-        <AddItemIntevention intervention={intervention} />
-      )}
-    </div>
-  );
+            <Button type="submit" variant={"secondary"}>
+              Suivant
+            </Button>
+          </form>
+        </Form>
+      </div>
+    );
+  }
+  return <AddItemIntevention intervention={intervention} />;
 };
