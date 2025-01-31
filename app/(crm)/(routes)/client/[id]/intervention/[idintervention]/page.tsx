@@ -60,8 +60,7 @@ const PageIntervention = async ({ params }: IdPageProps) => {
               Editer
             </Button>
             <Button
-              variant={"outline"}
-              className="text-red-600 hover:text-red-600"
+              variant={"danger"}
             >
               <Trash2 />
               Supprimer

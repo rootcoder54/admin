@@ -95,7 +95,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
                 </Button>
               </DialogClose>
               <Button
-                variant="destructive"
+                variant="danger"
                 onClick={onDelete}
                 disabled={isLoading}
               >

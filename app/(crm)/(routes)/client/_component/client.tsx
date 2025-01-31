@@ -64,10 +64,7 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
               <Edit2 />
               Editer
             </Button>
-            <Button
-              variant={"outline"}
-              className="text-red-600 hover:text-red-600"
-            >
+            <Button variant={"danger"}>
               <Trash2 />
               Supprimer
             </Button>

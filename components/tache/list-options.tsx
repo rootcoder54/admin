@@ -158,7 +158,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
                   readOnly
                 />
                 <FormSubmit
-                  variant="destructive"
+                  variant="danger"
                 >
                   Supprimer
                 </FormSubmit>
