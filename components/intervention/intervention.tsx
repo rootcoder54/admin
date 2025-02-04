@@ -26,7 +26,6 @@ import {
   Folder,
   MoreHorizontal,
   PlusIcon,
-  Trash2
 } from "lucide-react";
 import { InterventionAll } from "@/types";
 import {
@@ -46,20 +45,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue
-} from "../ui/select";
-import { deleteIntervention } from "@/action/intervention/delete-intervention";
-import { toast } from "sonner";
+} from "@/components/ui/select";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-const supprimer = (id: string) => {
-  deleteIntervention(id).then((data) =>
-    toast.success(`Intervention ${data.id} supprimer`)
-  );
-};
 
 const columns: ColumnDef<InterventionAll>[] = [
   {
@@ -158,14 +150,6 @@ const columns: ColumnDef<InterventionAll>[] = [
             <DropdownMenuItem>
               <Edit /> Editer
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <span
-                className="flex gap-x-2 text-red-500 cursor-pointer"
-                onClick={() => supprimer(intervention.id)}
-              >
-                <Trash2 /> Supprimer
-              </span>
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -213,7 +197,7 @@ const ItemIntervention = <TData, TValue>({
     getCoreRowModel: getCoreRowModel()
   });
   return (
-    <div className="w-full bg-neutral-400/20 dark:bg-neutral-500/25 rounded-md p-4">
+    <div className="w-full ">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 export const getInterventionId = async (id: string) => {
   const intervention = await db.intervention.findUnique({
     where: {
-       id
+      id
     },
     include: {
       items: {
@@ -14,7 +14,8 @@ export const getInterventionId = async (id: string) => {
           date: true,
           debut: true,
           fin: true,
-          description: true
+          description: true,
+          interventionId: true
         }
       },
       client: {

@@ -1,3 +1,4 @@
+"use client";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,14 +11,32 @@ import {
   AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import { Trash2 } from "lucide-react";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
+import { deleteIntervention } from "@/action/intervention/delete-intervention";
+import { toast } from "sonner";
 
-export function DeteleIntervention() {
+export function DeteleIntervention({
+  interventionId
+}: {
+  interventionId: string | undefined;
+}) {
+  const route = useRouter();
+  const supprimer = (id: string) => {
+    deleteIntervention(id).then((data) => {
+      toast.success(`Intervention ${data.id} supprimer`);
+      route.push(`/client/${data.clientId}`);
+    });
+  };
+  if (!interventionId) {
+    return;
+  }
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <span className="flex gap-x-2 text-red-500">
+        <Button variant={"danger"}>
           <Trash2 /> Supprimer
-        </span>
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -28,7 +47,12 @@ export function DeteleIntervention() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Annuler</AlertDialogCancel>
-          <AlertDialogAction>Supprimer</AlertDialogAction>
+          <AlertDialogAction
+            onClick={() => supprimer(interventionId)}
+            className="bg-red-500 hover:bg-red-400 text-white"
+          >
+            Supprimer
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -9,8 +9,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Edit2, Trash2 } from "lucide-react";
+import { Edit2 } from "lucide-react";
+
 import Link from "next/link";
+import { DeteleIntervention } from "@/components/intervention/deleteIntervention";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -19,6 +29,7 @@ interface IdPageProps {
 const PageIntervention = async ({ params }: IdPageProps) => {
   const { idintervention } = await params;
   const intervention = await getInterventionId(idintervention);
+
   return (
     <div>
       <header className="flex h-14 shrink-0 items-center gap-2">
@@ -59,12 +70,7 @@ const PageIntervention = async ({ params }: IdPageProps) => {
               <Edit2 />
               Editer
             </Button>
-            <Button
-              variant={"danger"}
-            >
-              <Trash2 />
-              Supprimer
-            </Button>
+            <DeteleIntervention interventionId={intervention?.id} />
           </div>
         </div>
         <hr />
@@ -112,6 +118,36 @@ const PageIntervention = async ({ params }: IdPageProps) => {
             </span>
           </div>
         </div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Date</TableHead>
+              <TableHead>Debut</TableHead>
+              <TableHead>Fin</TableHead>
+              <TableHead>Description</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {intervention?.items.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell className="font-medium">
+                  {`${
+                    String(item.date.getDate()).length === 1
+                      ? "0" + String(item.date.getDate())
+                      : String(item.date.getDate())
+                  } / ${
+                    String(item.date.getMonth()).length === 1
+                      ? "0" + String(item.date.getMonth() + 1)
+                      : String(item.date.getMonth() + 1)
+                  } /  ${String(item.date.getFullYear())} `}
+                </TableCell>
+                <TableCell>{item.debut}</TableCell>
+                <TableCell>{item.fin}</TableCell>
+                <TableCell>{item.description}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

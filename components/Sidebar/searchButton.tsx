@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Dialog,
   DialogContent,
@@ -8,10 +8,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { SidebarMenuButton } from "../ui/sidebar";
 import { Search } from "lucide-react";
+import { useState } from "react";
 
 export const SearchButton = () => {
-
- 
+  const [filter, setFilter] = useState("");
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -27,10 +27,21 @@ export const SearchButton = () => {
           <Input
             type="text"
             placeholder="recherche..."
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
             className="flex h-11 w-full rounded-md border-0 bg-transparent py-3 text-lg outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
-        <div className="grid grid-cols-2 py-4">
+        <div className="flex flex-col">
+          {!filter ? (
+            <div className="flex justify-center items-center p-5 w-full">
+              <span>Taper</span>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center p-5 w-full">
+              <span>{filter}</span>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
