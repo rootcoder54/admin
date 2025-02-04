@@ -16,17 +16,13 @@ import { z } from "zod";
 
 import { useTransition } from "react";
 import { Spinner } from "../spinner";
-import { Intervention } from "@prisma/client";
 import { addItemIntervention } from "@/action/intervention/addItemIntervention";
 
 export const AddItemIntevention = ({
-  intervention
+  interventionId
 }: {
-  intervention: Intervention | undefined;
+  interventionId: string ;
 }) => {
-  if (!intervention) {
-    return;
-  }
   const [isPending, startTransition] = useTransition();
 
   const form = useForm({
@@ -36,7 +32,7 @@ export const AddItemIntevention = ({
       debut: "",
       fin: "",
       description: "",
-      interventionId: intervention.id
+      interventionId: interventionId
     }
   });
 

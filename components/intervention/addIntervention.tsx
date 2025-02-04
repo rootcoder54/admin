@@ -13,16 +13,14 @@ import {
 } from "@/components/ui/form";
 import { InterventionSchema } from "./shema";
 import { z } from "zod";
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 import { addIntervention } from "@/action/intervention/add-intervention";
 import { Spinner } from "../spinner";
-import { Intervention } from "@prisma/client";
-import { AddItemIntevention } from "./addItemIntervention";
+import { useRouter } from "next/navigation";
 
 export const AddIntevention = ({ id }: { id: string }) => {
-  const [intervention, setIntervention] = useState<Intervention>();
   const [isPending, startTransition] = useTransition();
-
+  const route = useRouter();
   const form = useForm({
     resolver: zodResolver(InterventionSchema),
     defaultValues: {
@@ -35,7 +33,6 @@ export const AddIntevention = ({ id }: { id: string }) => {
       clientId: id
     }
   });
-  const [item, setitem] = useState(false);
 
   function onSubmit(values: z.infer<typeof InterventionSchema>) {
     startTransition(() => {
@@ -49,8 +46,7 @@ export const AddIntevention = ({ id }: { id: string }) => {
         values.dateCloture,
         values.clientId
       ).then((data) => {
-        setIntervention(data);
-        setitem(true);
+        route.push(`/client/${data.clientId}/intervention/add/${data.id}`);
       });
     });
   }
@@ -61,87 +57,84 @@ export const AddIntevention = ({ id }: { id: string }) => {
       </div>
     );
   }
-  if (!item) {
-    return (
-      <div>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-            <FormField
-              control={form.control}
-              name="numero"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Numéro de la fiche</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="service"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Service concerné</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+  return (
+    <div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <FormField
+            control={form.control}
+            name="numero"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Numéro de la fiche</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="service"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Service concerné</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="intervenant"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Intervenants</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="intervenant"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Intervenants</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="nature"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Nature de l&apos;intervention</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="nature"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nature de l&apos;intervention</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="observations"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Observations</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="observations"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Observations</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <Button type="submit" variant={"secondary"}>
-              Suivant
-            </Button>
-          </form>
-        </Form>
-      </div>
-    );
-  }
-  return <AddItemIntevention intervention={intervention} />;
+          <Button type="submit" variant={"secondary"}>
+            Suivant
+          </Button>
+        </form>
+      </Form>
+    </div>
+  );
 };
