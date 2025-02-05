@@ -14,7 +14,7 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { PlusIcon } from "lucide-react";
+import { Edit } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -23,25 +23,36 @@ import {
   FormLabel,
   FormMessage
 } from "@/components/ui/form";
-import { addContact } from "@/action/contact/addContact";
 import { useTransition } from "react";
 import { toast } from "sonner";
 import { Spinner } from "../spinner";
+import { updateContact } from "@/action/contact/update-contact";
 
 const formSchema = z.object({
   nom: z.string().min(1, {
     message: "Le nom est obligatoire"
   }),
+  id: z.string(),
   telephone: z.string(),
   poste: z.string(),
   email: z.string(),
   clientId: z.string()
 });
 
-export function AddContact({
+export function EditeContact({
+  id,
+  nom,
+  telephone,
+  poste,
+  email,
   clientId,
   reload
 }: {
+  id: string;
+  nom: string;
+  telephone: string | null;
+  poste: string | null;
+  email: string | null;
   clientId: string;
   reload: () => void;
 }) {
@@ -49,10 +60,11 @@ export function AddContact({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nom: "",
-      telephone: "",
-      poste: "",
-      email: "",
+      id: id,
+      nom: nom,
+      telephone: telephone ? telephone : "",
+      poste: poste ? poste : "",
+      email: email ? email : "",
       clientId: clientId
     }
   });
@@ -60,14 +72,14 @@ export function AddContact({
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     startTransition(() => {
-      addContact(
+      updateContact(
+        values.id,
         values.nom,
         values.telephone,
-        values.email,
         values.poste,
-        values.clientId
+        values.email
       ).then((data) => {
-        toast.success(`Contact de ${data.nom} crée avec succes`);
+        toast.success(`Contact de ${data.nom} edité avec succes`);
         reload();
       });
     });
@@ -83,14 +95,13 @@ export function AddContact({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary">
-          <PlusIcon />
-          Ajouter
+        <Button variant="outline" size={"icon"}>
+          <Edit />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Ajouter un Contact</DialogTitle>
+          <DialogTitle>Editer Contact</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <Form {...form}>
