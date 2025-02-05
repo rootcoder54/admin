@@ -70,7 +70,6 @@ export function EditeContact({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     startTransition(() => {
       updateContact(
         values.id,
@@ -158,7 +157,7 @@ export function EditeContact({
                 </FormItem>
               )}
             />
-            <Button type="submit" variant={"outline"}>
+            <Button type="submit" variant={"secondary"} className="border">
               Enregistrer
             </Button>
           </form>

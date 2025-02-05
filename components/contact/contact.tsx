@@ -48,8 +48,8 @@ export const ContactList = ({ clientId }: { clientId: string }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((item, index) => (
-            <TableRow key={index}>
+          {data.map((item) => (
+            <TableRow key={item.id}>
               <TableCell className="font-medium">{item.nom}</TableCell>
               <TableCell>{item.telephone}</TableCell>
               <TableCell>{item.email}</TableCell>

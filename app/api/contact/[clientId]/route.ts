@@ -12,6 +12,9 @@ export async function GET(
       where: {
         clientId: clientId
       },
+      orderBy: {
+        nom: "asc"
+      }
     });
 
     return NextResponse.json(contact);
