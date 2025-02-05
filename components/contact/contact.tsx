@@ -14,9 +14,10 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Spinner } from "../spinner";
 import { AddContact } from "./addContact";
+import { DeleteContact } from "./deleteContact";
 
 export const ContactList = ({ clientId }: { clientId: string }) => {
-  const { data,refetch } = useQuery<Contact[]>({
+  const { data, refetch } = useQuery<Contact[]>({
     queryKey: ["contactId", clientId],
     queryFn: () => fetcher(`/api/contact/${clientId}`)
   });
@@ -42,6 +43,7 @@ export const ContactList = ({ clientId }: { clientId: string }) => {
             <TableHead>Telephone</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Poste</TableHead>
+            <TableHead>action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -51,11 +53,14 @@ export const ContactList = ({ clientId }: { clientId: string }) => {
               <TableCell>{item.telephone}</TableCell>
               <TableCell>{item.email}</TableCell>
               <TableCell>{item.poste}</TableCell>
+              <TableCell>
+                <DeleteContact id={item.id} reload={() => refetch()} />
+              </TableCell>
             </TableRow>
           ))}
           {data.length === 0 && (
             <TableRow>
-              <TableCell colSpan={3} className="text-center">
+              <TableCell colSpan={5} className="text-center">
                 Pas de contact
               </TableCell>
             </TableRow>
