@@ -6,6 +6,7 @@ export const addContact = async (
   nom: string,
   telephone: string,
   email: string,
+  poste: string,
   clientId: string
 ) => {
   const contact = await db.contact.create({
@@ -13,6 +14,7 @@ export const addContact = async (
       nom,
       telephone,
       email,
+      poste,
       clientId
     }
   });

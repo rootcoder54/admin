@@ -33,6 +33,7 @@ const formSchema = z.object({
     message: "Le nom est obligatoire"
   }),
   telephone: z.string(),
+  poste: z.string(),
   email: z.string(),
   clientId: z.string()
 });
@@ -50,6 +51,7 @@ export function AddContact({
     defaultValues: {
       nom: "",
       telephone: "",
+      poste: "",
       email: "",
       clientId: clientId
     }
@@ -62,10 +64,11 @@ export function AddContact({
         values.nom,
         values.telephone,
         values.email,
+        values.poste,
         values.clientId
       ).then((data) => {
         toast.success(`Contact de ${data.nom} crée avec succes`);
-        reload()
+        reload();
       });
     });
   }
@@ -111,6 +114,19 @@ export function AddContact({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="poste"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Poste</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>

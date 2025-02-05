@@ -14,10 +14,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Spinner } from "../spinner";
 import { AddContact } from "./addContact";
-import { useRouter } from "next/navigation";
 
 export const ContactList = ({ clientId }: { clientId: string }) => {
-  const router = useRouter();
   const { data,refetch } = useQuery<Contact[]>({
     queryKey: ["contactId", clientId],
     queryFn: () => fetcher(`/api/contact/${clientId}`)
@@ -43,6 +41,7 @@ export const ContactList = ({ clientId }: { clientId: string }) => {
             <TableHead>Nom</TableHead>
             <TableHead>Telephone</TableHead>
             <TableHead>Email</TableHead>
+            <TableHead>Poste</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -51,6 +50,7 @@ export const ContactList = ({ clientId }: { clientId: string }) => {
               <TableCell className="font-medium">{item.nom}</TableCell>
               <TableCell>{item.telephone}</TableCell>
               <TableCell>{item.email}</TableCell>
+              <TableCell>{item.poste}</TableCell>
             </TableRow>
           ))}
           {data.length === 0 && (
