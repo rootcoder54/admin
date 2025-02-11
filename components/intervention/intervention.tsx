@@ -4,8 +4,12 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable
+  useReactTable,
+  getSortedRowModel,
+  getFilteredRowModel
 } from "@tanstack/react-table";
+import { Table as TableS } from "@tanstack/react-table";
+
 import {
   Table,
   TableBody,
@@ -26,6 +30,7 @@ import {
   Folder,
   MoreHorizontal,
   PlusIcon,
+  X
 } from "lucide-react";
 import { InterventionAll } from "@/types";
 import {
@@ -46,12 +51,12 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import { Input } from "../ui/input";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
-
 
 const columns: ColumnDef<InterventionAll>[] = [
   {
@@ -156,6 +161,38 @@ const columns: ColumnDef<InterventionAll>[] = [
     }
   }
 ];
+interface DataTableToolbarProps<TData> {
+  table: TableS<TData>;
+}
+
+function ToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
+  const isFiltered = table.getState().columnFilters.length > 0;
+
+  return (
+    <div className="flex items-center gap-3">
+      <Input
+        placeholder="Filter par technicien..."
+        value={
+          (table.getColumn("intervenant")?.getFilterValue() as string) ?? ""
+        }
+        onChange={(event) =>
+          table.getColumn("intervenant")?.setFilterValue(event.target.value)
+        }
+        className="max-w-sm"
+      />
+      {isFiltered && (
+        <Button
+          variant="destructive"
+          onClick={() => table.resetColumnFilters()}
+          className="h-8 px-2 lg:px-3"
+        >
+          Annuler
+          <X />
+        </Button>
+      )}
+    </div>
+  );
+}
 
 export const Intervention = ({ clientId }: { clientId: string }) => {
   const { data } = useQuery<InterventionAll[]>({
@@ -194,10 +231,13 @@ const ItemIntervention = <TData, TValue>({
   const table = useReactTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel()
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel()
   });
   return (
-    <div className="w-full ">
+    <div className="w-full space-y-2">
+      <ToolBar table={table} />
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
