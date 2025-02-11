@@ -1,15 +1,15 @@
 import { AddItemIntevention } from "@/components/intervention/addItemIntervention";
 
 interface ClientIdPageProps {
-  params: Promise<{ interventionId: string }>;
+  params: Promise<{ id: string; interventionId: string }>;
 }
 
 const AddIntervention = async ({ params }: ClientIdPageProps) => {
-  const { interventionId } = await params;
+  const { id, interventionId } = await params;
 
   return (
     <div>
-      <AddItemIntevention interventionId={interventionId} />
+      <AddItemIntevention clientId={id} interventionId={interventionId} />
     </div>
   );
 };

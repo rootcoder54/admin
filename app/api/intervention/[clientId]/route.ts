@@ -12,6 +12,9 @@ export async function GET(
       where: {
         clientId: clientId
       },
+      orderBy: {
+        dateCloture: "desc"
+      },
       include: {
         items: {
           select: {

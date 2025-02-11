@@ -17,11 +17,14 @@ import { z } from "zod";
 import { useTransition } from "react";
 import { Spinner } from "../spinner";
 import { addItemIntervention } from "@/action/intervention/addItemIntervention";
+import Link from "next/link";
 
 export const AddItemIntevention = ({
-  interventionId
+  interventionId,
+  clientId
 }: {
-  interventionId: string ;
+  interventionId: string;
+  clientId: string;
 }) => {
   const [isPending, startTransition] = useTransition();
 
@@ -102,10 +105,14 @@ export const AddItemIntevention = ({
               </FormItem>
             )}
           />
-
-          <Button type="submit" variant={"secondary"}>
-            Enregistrer
-          </Button>
+          <div className="flex flex-row space-x-1">
+            <Button type="submit" variant={"secondary"}>
+              Enregistrer
+            </Button>
+            <Link href={`/client/${clientId}/intervention/${interventionId}`}>
+              <Button>Terminer</Button>
+            </Link>
+          </div>
         </form>
       </Form>
     </div>
