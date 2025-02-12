@@ -8,7 +8,6 @@ export const addIntervention = async (
   intervenant: string,
   nature: string | null = "",
   observations: string | null = "",
-  fichier: string | null = "",
   dateCloture: Date | null = new Date(),
   clientId: string
 ) => {
@@ -19,7 +18,6 @@ export const addIntervention = async (
       intervenant,
       nature,
       observations,
-      fichier,
       dateCloture,
       clientId
     }

@@ -21,6 +21,7 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
+import { FicheIntervention } from "@/components/intervention/documentIntervention";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -66,6 +67,7 @@ const PageIntervention = async ({ params }: IdPageProps) => {
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-xl font-semibold">Intervention</h2>
           <div className="flex gap-x-3">
+            <FicheIntervention />
             <Button variant={"secondary"}>
               <Edit2 />
               Editer

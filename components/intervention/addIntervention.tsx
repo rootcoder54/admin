@@ -42,7 +42,6 @@ export const AddIntevention = ({ id }: { id: string }) => {
         values.intervenant,
         values.nature,
         values.observations,
-        "",
         values.dateCloture,
         values.clientId
       ).then((data) => {
