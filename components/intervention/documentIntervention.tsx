@@ -15,10 +15,14 @@ import { useState, useTransition } from "react";
 import { Spinner } from "../spinner";
 import { handle } from "@/action/intervention/fiche-intervention";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
-export function FicheIntervention() {
+export function FicheIntervention({
+  idIntervention
+}: {
+  idIntervention: string;
+}) {
   const [isPending, startTransition] = useTransition();
-  const [nom, setNom] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
 
   if (isPending) {
@@ -31,9 +35,9 @@ export function FicheIntervention() {
 
   const submit = () => {
     startTransition(() => {
-      handle(file, nom).then((data) => {
+      handle(file, idIntervention).then((data) => {
         if (data !== undefined) {
-          console.log("ooh");
+          toast.success(`Fiche enregistrer`);
         }
       });
     });
@@ -43,7 +47,7 @@ export function FicheIntervention() {
       <DialogTrigger asChild>
         <Button variant="secondary">
           <PlusIcon />
-          Ajouter
+          Fiche
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -51,14 +55,13 @@ export function FicheIntervention() {
           <DialogTitle>Ajouter un Document</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <form>
-          <Input type="text" onChange={(e) => setNom(e.target.value)} />
+        <form className="space-y-2">
           <Input
             type="file"
             onChange={(e) => setFile(e.target.files?.[0] || null)}
           />
           <Button variant={"secondary"} onClick={submit}>
-            Upload
+            charge
           </Button>
         </form>
       </DialogContent>
