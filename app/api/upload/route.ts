@@ -31,6 +31,7 @@ export async function POST(request: Request) {
         documentId: pdfFile.id
       }
     });
+    console.log(interv);
     return NextResponse.json(pdfFile);
   } catch (error) {
     console.error(error);
