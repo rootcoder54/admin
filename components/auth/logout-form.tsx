@@ -6,14 +6,18 @@ import { LogOut } from "lucide-react";
 import { logout } from "@/action/auth/logout";
 import { useTransition } from "react";
 import { Spinner } from "../spinner";
+import { useRouter } from "next/navigation";
 
 const LogoutForm = () => {
   const [isPending, startTransition] = useTransition();
-
+  const router = useRouter();
   const submit = () => {
     startTransition(() => {
       logout();
     });
+  };
+  const back = () => {
+    router.back();
   };
   return (
     <div className={cn("flex flex-col gap-6")}>
@@ -37,7 +41,9 @@ const LogoutForm = () => {
                   <LogOut />
                   Deconnecter
                 </Button>
-                <Button variant={"destructive"}>Annuler</Button>
+                <Button type="button" variant={"destructive"} onClick={back}>
+                  Annuler
+                </Button>
               </form>
             </CardContent>
           </div>

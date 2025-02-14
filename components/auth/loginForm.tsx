@@ -135,6 +135,12 @@ export function LoginForm({
                   </Button>
                 </form>
               </Form>
+              <div className="flex items-center justify-center py-4">
+                Aller sur le
+                <a href={"/support"}>
+                  <Button variant={"link"}>Support</Button>
+                </a>
+              </div>
             </CardContent>
           </>
         )}
