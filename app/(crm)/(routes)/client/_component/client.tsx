@@ -18,7 +18,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Edit2, ListCheck, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { Intervention } from "@/components/intervention/intervention";
-import {  ContactList } from "@/components/contact/contact";
+import { ContactList } from "@/components/contact/contact";
+import { BaseList } from "@/components/base/base";
 
 export const ClientComponent = ({ clientId }: { clientId: string }) => {
   const { data: client } = useQuery<ClientList>({
@@ -117,7 +118,7 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
             <Intervention clientId={clientId} />
           </TabsContent>
           <TabsContent value="Base">
-            <span>Base</span>
+            <BaseList clientId={clientId} />
           </TabsContent>
           <TabsContent value="contact">
             <ContactList clientId={clientId} />

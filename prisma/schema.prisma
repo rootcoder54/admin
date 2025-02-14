@@ -121,9 +121,10 @@ model Client {
   contacts      Contact[]
   contrats      Contrat[]
   interventions Intervention[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  bases         Base[]
+  logiciels     Logiciel[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
 model Contact {
@@ -185,6 +186,43 @@ model Document {
   id      String @id @default(uuid())
   nom     String
   fichier Bytes
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Base {
+  id         String   @id @default(uuid())
+  societe    String
+  chemin     String
+  convention String
+  poste      Int
+  employe    Int
+  date       DateTime
+  commentaire String?
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Logiciel {
+  id             String   @id @default(uuid())
+  nom            String
+  version        String
+  versionInterne String
+  societe        Boolean
+  poste          Int
+  employe        Int
+  clientServeur  Boolean
+  type           String
+  dateAchat      DateTime
+  dossier        String
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

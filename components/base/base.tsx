@@ -1,11 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  useReactTable
-} from "@tanstack/react-table";
+
 import {
   Table,
   TableBody,
@@ -14,153 +8,18 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import {
-  ArrowDown,
-  ArrowUp,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-  ChevronsUpDown,
-  Edit,
-  Folder,
-  MoreHorizontal,
-  PlusIcon,
-} from "lucide-react";
-import { InterventionAll } from "@/types";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/lib/fetcher";
-import { Spinner } from "@/components/spinner";
-import Link from "next/link";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
+import { Base } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
+import { Spinner } from "../spinner";
+import { AddBase } from "./addBase";
+import { DeleteBase } from "./deleteBase";
 
-
-const columns: ColumnDef<InterventionAll>[] = [
-  {
-    accessorKey: "intervenant",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Technicien
-          {column.getIsSorted() === "desc" ? (
-            <ArrowDown />
-          ) : column.getIsSorted() === "asc" ? (
-            <ArrowUp />
-          ) : (
-            <ChevronsUpDown />
-          )}
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize">{row.original.intervenant}</div>
-    )
-  },
-  {
-    accessorKey: "service",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Service
-          {column.getIsSorted() === "desc" ? (
-            <ArrowDown />
-          ) : column.getIsSorted() === "asc" ? (
-            <ArrowUp />
-          ) : (
-            <ChevronsUpDown />
-          )}
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="lowercase">{row.original.service}</div>
-  },
-  {
-    accessorKey: "createdAt",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Date
-          {column.getIsSorted() === "desc" ? (
-            <ArrowDown />
-          ) : column.getIsSorted() === "asc" ? (
-            <ArrowUp />
-          ) : (
-            <ChevronsUpDown />
-          )}
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      return (
-        <div className="font-medium">{String(row.original.createdAt)}</div>
-      );
-    }
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const intervention = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Link
-                href={`/client/${intervention.clientId}/intervention/${intervention.id}`}
-                className="w-full flex items-center justify-start gap-x-2"
-              >
-                <Folder /> Details
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Edit /> Editer
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    }
-  }
-];
-
-export const Intervention = ({ clientId }: { clientId: string }) => {
-  const { data } = useQuery<InterventionAll[]>({
-    queryKey: ["InterventionId", clientId],
-    queryFn: () => fetcher(`/api/intervention/${clientId}`)
+export const BaseList = ({ clientId }: { clientId: string }) => {
+  const { data, refetch } = useQuery<Base[]>({
+    queryKey: ["baseId", clientId],
+    queryFn: () => fetcher(`/api/base/${clientId}`)
   });
   if (!data) {
     return (
@@ -173,143 +32,54 @@ export const Intervention = ({ clientId }: { clientId: string }) => {
     <div className="w-full flex flex-col space-y-2 p-5 border rounded-md">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold text-neutral-600 dark:text-neutral-400">
-          Interventions
+          Base de Donnée
         </h2>
-        <Link href={`/client/${clientId}/intervention/add`}>
-          <Button variant={"blue"}>
-            <PlusIcon />
-            Ajouter
-          </Button>
-        </Link>
+        <AddBase clientId={clientId} reload={() => refetch()} />
       </div>
-      <ItemIntervention columns={columns} data={data} />
-    </div>
-  );
-};
-
-const ItemIntervention = <TData, TValue>({
-  columns,
-  data
-}: DataTableProps<TData, TValue>) => {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel()
-  });
-  return (
-    <div className="w-full ">
       <Table>
         <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          ))}
+          <TableRow>
+            <TableHead>Societé</TableHead>
+            <TableHead>Convention</TableHead>
+            <TableHead>Chemin</TableHead>
+            <TableHead>Poste</TableHead>
+            <TableHead>Employé</TableHead>
+            <TableHead>action</TableHead>
+          </TableRow>
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-                className="border-b"
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
+          {data.map((item) => (
+            <TableRow key={item.id}>
+              <TableCell className="font-medium">{item.societe}</TableCell>
+              <TableCell>{item.convention}</TableCell>
+              <TableCell>{item.chemin}</TableCell>
+              <TableCell>{item.poste}</TableCell>
+              <TableCell>{item.employe}</TableCell>
+              <TableCell className="flex space-x-2">
+                <DeleteBase id={item.id} reload={() => refetch()} />
+                {/*
+                  <EditeContact
+                    id={item.id}
+                    nom={item.nom}
+                    telephone={item.telephone}
+                    email={item.email}
+                    poste={item.poste}
+                    clientId={item.clientId}
+                    reload={() => refetch()}
+                  />
+                */}
+              </TableCell>
+            </TableRow>
+          ))}
+          {data.length === 0 && (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                Aucune Intervention enregistré.
+              <TableCell colSpan={5} className="text-center">
+                Pas de Base enregistré
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-between px-2">
-        <div></div>
-        <div className="flex items-center space-x-6 lg:space-x-8">
-          <div className="flex items-center space-x-2">
-            <p className="text-sm font-medium">Lignes par page</p>
-            <Select
-              value={`${table.getState().pagination.pageSize}`}
-              onValueChange={(value) => {
-                table.setPageSize(Number(value));
-              }}
-            >
-              <SelectTrigger className="h-8 w-[70px]">
-                <SelectValue
-                  placeholder={table.getState().pagination.pageSize}
-                />
-              </SelectTrigger>
-              <SelectContent side="top">
-                {[10, 20, 30, 40, 50].map((pageSize) => (
-                  <SelectItem key={pageSize} value={`${pageSize}`}>
-                    {pageSize}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-            Page {table.getState().pagination.pageIndex + 1} de{" "}
-            {table.getPageCount()}
-          </div>
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="outline"
-              className="hidden h-8 w-8 p-0 lg:flex"
-              onClick={() => table.setPageIndex(0)}
-              disabled={!table.getCanPreviousPage()}
-            >
-              <span className="sr-only">Go to first page</span>
-              <ChevronsLeft />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-8 w-8 p-0"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              <span className="sr-only">Go to previous page</span>
-              <ChevronLeft />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-8 w-8 p-0"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              <span className="sr-only">Go to next page</span>
-              <ChevronRight />
-            </Button>
-            <Button
-              variant="outline"
-              className="hidden h-8 w-8 p-0 lg:flex"
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              disabled={!table.getCanNextPage()}
-            >
-              <span className="sr-only">Go to last page</span>
-              <ChevronsRight />
-            </Button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
