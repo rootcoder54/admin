@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Edit2 } from "lucide-react";
+import { Edit2, File } from "lucide-react";
 
 import Link from "next/link";
 import { DeteleIntervention } from "@/components/intervention/deleteIntervention";
@@ -22,6 +22,7 @@ import {
   TableRow
 } from "@/components/ui/table";
 import { FicheIntervention } from "@/components/intervention/documentIntervention";
+import { getDocumentId } from "@/action/intervention/get-document";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -30,7 +31,7 @@ interface IdPageProps {
 const PageIntervention = async ({ params }: IdPageProps) => {
   const { idintervention } = await params;
   const intervention = await getInterventionId(idintervention);
-
+  const document = await getDocumentId(intervention?.documentId);
   return (
     <div>
       <header className="flex h-14 shrink-0 items-center gap-2">
@@ -67,7 +68,19 @@ const PageIntervention = async ({ params }: IdPageProps) => {
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-xl font-semibold">Intervention</h2>
           <div className="flex gap-x-3">
-            <FicheIntervention idIntervention={idintervention} />
+            {document ? (
+              <Link
+                href={`/imprime/intervention/${document.id}`}
+                target="_blank"
+              >
+                <Button variant={"outline"}>
+                  <File />
+                  Fiche
+                </Button>
+              </Link>
+            ) : (
+              <FicheIntervention idIntervention={idintervention}  />
+            )}
             <Button variant={"secondary"}>
               <Edit2 />
               Editer
