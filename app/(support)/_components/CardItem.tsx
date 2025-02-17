@@ -1,8 +1,4 @@
-import {
-  Card,
-  CardDescription,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { motion } from "motion/react";
 
@@ -15,14 +11,6 @@ const listes = [
     blank: true
   },
   {
-    titre: "Vos questions fréquentes",
-    description:
-      "Les thématiques qui reviennent le plus souvent dans vos interrogations",
-    image: "/question.png",
-    lien: "/support/question",
-    blank: false
-  },
-  {
     titre: "Manuel d'utilisation de TimeSheet",
     description: "Notre manuel pour vous aider aavec votre pointage",
     image: "/timesheet.png",
@@ -30,7 +18,14 @@ const listes = [
     blank: true
   },
   {
-    titre: "Les fiches pratiques",
+    titre: "Manuel de calcul des taxes",
+    description: "Les formules de calcul des taxes ITS AMO INPS ...",
+    image: "/taxe.png",
+    lien: "https://malisystem.com/assets/docs/taxe.pdf",
+    blank: true
+  },
+  {
+    titre: "Les Videos pratiques",
     description:
       "Pleines d'informations utiles pour vous aider à utiliser votre plateforme",
     image: "/astuce.png",
@@ -38,11 +33,12 @@ const listes = [
     blank: false
   },
   {
-    titre: "Manuel de calcul des taxes",
-    description: "Les formules de calcul des taxes ITS AMO INPS ...",
-    image: "/taxe.png",
-    lien: "https://malisystem.com/assets/docs/taxe.pdf",
-    blank: true
+    titre: "Vos questions fréquentes",
+    description:
+      "Les thématiques qui reviennent le plus souvent dans vos interrogations",
+    image: "/question.png",
+    lien: "/support/question",
+    blank: false
   }
 ];
 
