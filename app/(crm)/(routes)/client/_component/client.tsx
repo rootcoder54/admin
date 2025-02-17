@@ -20,6 +20,7 @@ import Link from "next/link";
 import { Intervention } from "@/components/intervention/intervention";
 import { ContactList } from "@/components/contact/contact";
 import { BaseList } from "@/components/base/base";
+import { LogicielList } from "@/components/logiciel/logiciel";
 
 export const ClientComponent = ({ clientId }: { clientId: string }) => {
   const { data: client } = useQuery<ClientList>({
@@ -110,7 +111,7 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
         <Tabs defaultValue="Intervention">
           <TabsList className="">
             <TabsTrigger value="Intervention">Intervention</TabsTrigger>
-            <TabsTrigger value="Base">Base</TabsTrigger>
+            <TabsTrigger value="Base">Licence</TabsTrigger>
             <TabsTrigger value="contact">Contact</TabsTrigger>
             <TabsTrigger value="contrat">Contrat</TabsTrigger>
           </TabsList>
@@ -118,7 +119,11 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
             <Intervention clientId={clientId} />
           </TabsContent>
           <TabsContent value="Base">
-            <BaseList clientId={clientId} />
+            <div className="space-y-3">
+              <LogicielList clientId={clientId} />
+              <hr />
+              <BaseList clientId={clientId} />
+            </div>
           </TabsContent>
           <TabsContent value="contact">
             <ContactList clientId={clientId} />
