@@ -21,6 +21,7 @@ import { Intervention } from "@/components/intervention/intervention";
 import { ContactList } from "@/components/contact/contact";
 import { BaseList } from "@/components/base/base";
 import { LogicielList } from "@/components/logiciel/logiciel";
+import { format } from "date-fns";
 
 export const ClientComponent = ({ clientId }: { clientId: string }) => {
   const { data: client } = useQuery<ClientList>({
@@ -88,7 +89,9 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
               <span className="text-sm text-neutral-600 dark:text-neutral-400">
                 Date d&apos;inscription
               </span>
-              <span className="text-sm">{String(client?.dateInscription)}</span>
+              <span className="text-sm">
+                {format(client?.dateInscription, "yyyy-MM-dd")}
+              </span>
             </div>
           )}
           {client?.adresse && (

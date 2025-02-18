@@ -52,6 +52,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { Input } from "../ui/input";
+import { format } from "date-fns";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -124,7 +125,10 @@ const columns: ColumnDef<InterventionAll>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="font-medium">{String(row.original.createdAt)}</div>
+        <div className="font-medium">
+          {row.original.dateCloture &&
+            format(row.original.dateCloture, "yyyy-MM-dd")}
+        </div>
       );
     }
   },
