@@ -26,12 +26,17 @@ export const getInterventionId = async (id: string) => {
           adresse: true,
           telephone: true,
           activite: true,
-
           numero: true,
           dateInscription: true,
-
           dateLastVisite: true,
           dateNewVisite: true
+        }
+      },
+      document:{
+        select :{
+          id:true,
+          nom:true,
+          
         }
       }
     }

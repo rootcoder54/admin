@@ -161,6 +161,7 @@ model Intervention {
   dateCloture  DateTime?
 
   documentId String?
+  document   Document? @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
   items ItemIntervention[]
 
@@ -187,18 +188,19 @@ model Document {
   nom     String
   fichier Bytes
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Intervention Intervention[]
 }
 
 model Base {
-  id         String   @id @default(uuid())
-  societe    String
-  chemin     String
-  convention String
-  poste      Int
-  employe    Int
-  date       DateTime
+  id          String   @id @default(uuid())
+  societe     String
+  chemin      String
+  convention  String
+  poste       Int
+  employe     Int
+  date        DateTime
   commentaire String?
 
   clientId String

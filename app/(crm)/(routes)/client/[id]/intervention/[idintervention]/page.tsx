@@ -22,7 +22,6 @@ import {
   TableRow
 } from "@/components/ui/table";
 import { FicheIntervention } from "@/components/intervention/documentIntervention";
-import { getDocumentId } from "@/action/intervention/get-document";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -31,7 +30,6 @@ interface IdPageProps {
 const PageIntervention = async ({ params }: IdPageProps) => {
   const { idintervention } = await params;
   const intervention = await getInterventionId(idintervention);
-  const document = await getDocumentId(intervention?.documentId);
   return (
     <div>
       <header className="flex h-14 shrink-0 items-center gap-2">
@@ -68,9 +66,9 @@ const PageIntervention = async ({ params }: IdPageProps) => {
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-xl font-semibold">Intervention</h2>
           <div className="flex gap-x-3">
-            {document ? (
+            {intervention?.document ? (
               <Link
-                href={`/imprime/intervention/${document.id}`}
+                href={`/imprime/intervention/${intervention.document.id}`}
                 target="_blank"
               >
                 <Button variant={"outline"}>
@@ -79,7 +77,7 @@ const PageIntervention = async ({ params }: IdPageProps) => {
                 </Button>
               </Link>
             ) : (
-              <FicheIntervention idIntervention={idintervention}  />
+              <FicheIntervention idIntervention={idintervention} />
             )}
             <Button variant={"secondary"}>
               <Edit2 />

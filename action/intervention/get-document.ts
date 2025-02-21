@@ -9,6 +9,10 @@ export const getDocumentId = async (id: string | null | undefined) => {
   const document = await db.document.findUnique({
     where: {
       id
+    },
+    select: {
+      id: true,
+      nom: true
     }
   });
   return document;
