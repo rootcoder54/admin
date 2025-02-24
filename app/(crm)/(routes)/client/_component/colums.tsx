@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import Link from "next/link";
+import { format } from "date-fns";
+
 
 export type Client = {
   id: string;
@@ -152,7 +154,7 @@ export const columns: ColumnDef<Client>[] = [
     cell: ({ row }) => {
       return (
         <div className="font-medium">
-          {String(row.getValue("dateInscription"))}
+          {format(row.getValue("dateInscription"), "yyyy-MM-dd")}
         </div>
       );
     }
