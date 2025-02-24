@@ -126,7 +126,7 @@ export function AddBase({
           Ajouter
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[625px]">
         <DialogHeader>
           <DialogTitle>Ajouter une Base</DialogTitle>
           <DialogDescription></DialogDescription>

@@ -24,6 +24,7 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
+import { Textarea } from "../ui/textarea";
 
 export const AddItemIntevention = ({
   interventionId,
@@ -136,7 +137,6 @@ export const AddItemIntevention = ({
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
             name="description"
@@ -144,7 +144,11 @@ export const AddItemIntevention = ({
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                <Textarea
+                  placeholder="Description de l 'intervention"
+                  className="resize-none"
+                  {...field}
+                />
                 </FormControl>
                 <FormMessage />
               </FormItem>
