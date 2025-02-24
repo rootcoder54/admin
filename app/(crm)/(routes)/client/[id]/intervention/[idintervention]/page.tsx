@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Edit2, File } from "lucide-react";
+import { Edit2, File, PlusCircle, Trash2 } from "lucide-react";
 
 import Link from "next/link";
 import { DeteleIntervention } from "@/components/intervention/deleteIntervention";
@@ -138,6 +138,15 @@ const PageIntervention = async ({ params }: IdPageProps) => {
               <TableHead>Debut</TableHead>
               <TableHead>Fin</TableHead>
               <TableHead>Description</TableHead>
+              <TableHead>
+                <Link
+                  href={`/client/${intervention?.clientId}/intervention/add/${intervention?.id}`}
+                >
+                  <Button variant={"secondary"} size={"icon"}>
+                    <PlusCircle />
+                  </Button>
+                </Link>
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -157,6 +166,11 @@ const PageIntervention = async ({ params }: IdPageProps) => {
                 <TableCell>{item.debut}</TableCell>
                 <TableCell>{item.fin}</TableCell>
                 <TableCell>{item.description}</TableCell>
+                <TableCell>
+                  <Button variant={"danger"} size={"icon"}>
+                    <Trash2 />
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
