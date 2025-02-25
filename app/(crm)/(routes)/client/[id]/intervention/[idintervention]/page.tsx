@@ -21,7 +21,6 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import { FicheIntervention } from "@/components/intervention/documentIntervention";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -77,7 +76,14 @@ const PageIntervention = async ({ params }: IdPageProps) => {
                 </Button>
               </Link>
             ) : (
-              <FicheIntervention idIntervention={idintervention} />
+              <Link
+                href={`/client/${intervention?.clientId}/intervention/${intervention?.id}/file`}
+              >
+                <Button variant={"outline"}>
+                  <PlusCircle />
+                  Fiche
+                </Button>
+              </Link>
             )}
             <Button variant={"secondary"}>
               <Edit2 />

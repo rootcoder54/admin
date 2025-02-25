@@ -15,6 +15,14 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { deleteIntervention } from "@/action/intervention/delete-intervention";
 import { toast } from "sonner";
+import { deleteDocument } from "@/action/intervention/delete-document";
+import { useTransition } from "react";
+import { Spinner } from "../spinner";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "../ui/dialog";
 
 export function DeteleIntervention({
   interventionId
@@ -22,12 +30,34 @@ export function DeteleIntervention({
   interventionId: string | undefined;
 }) {
   const route = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   const supprimer = (id: string) => {
-    deleteIntervention(id).then((data) => {
-      toast.success(`Intervention ${data.id} supprimer`);
-      route.push(`/client/${data.clientId}`);
+    startTransition(() => {
+      deleteIntervention(id).then((data) => {
+        if (data.documentId) {
+          deleteDocument(data.documentId).then((item) => {
+            console.log(item);
+            toast.success(`Intervention supprimer`);
+            route.push(`/client/${data.clientId}`);
+          });
+        }
+      });
     });
   };
+  if (isPending) {
+    return (
+      <Dialog open={true}>
+        <DialogContent>
+          <DialogTitle />
+          <div className="w-full flex items-center justify-center p-6">
+            <Spinner />
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   if (!interventionId) {
     return;
   }
