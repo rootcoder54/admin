@@ -5,16 +5,16 @@ import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import frLocale from "@fullcalendar/core/locales/fr";
 import { useState } from "react";
-import { useCardModal } from "@/hooks/use-card-modal";
+//import { useCardModal } from "@/hooks/use-card-modal";
 
 const Page = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const cardModal = useCardModal();
+  //const cardModal = useCardModal();
 
   const handleDateClick = (info: DateClickArg) => {
     setSelectedDate(info.dateStr);
     //alert(`Vous avez cliqué sur la date : ${info.dateStr}`);
-    cardModal.onOpen("076a28d1-05de-440f-bf8e-07023a1ab4b7")
+    //cardModal.onOpen("076a28d1-05de-440f-bf8e-07023a1ab4b7")
   };
   return (
     <div className="w-full min-h-screen p-4">
