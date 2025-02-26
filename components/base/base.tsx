@@ -24,7 +24,7 @@ export const BaseList = ({ clientId }: { clientId: string }) => {
   if (!data) {
     return (
       <div className="w-full flex items-center justify-center p-6">
-        <Spinner />
+        <Spinner size={"lg"} />
       </div>
     );
   }
