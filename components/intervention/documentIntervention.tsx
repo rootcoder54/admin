@@ -45,7 +45,7 @@ export function FicheIntervention({
   if (state) {
     return (
       <div className="w-full flex flex-row items-center justify-center">
-        <Spinner size={"lg"} />
+        <Spinner size={"icon"} />
       </div>
     );
   }

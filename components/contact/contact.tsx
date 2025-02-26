@@ -26,7 +26,7 @@ export const ContactList = ({ clientId }: { clientId: string }) => {
   if (!data) {
     return (
       <div className="w-full flex items-center justify-center p-6">
-        <Spinner size={"lg"} />
+        <Spinner size={"icon"} />
       </div>
     );
   }
