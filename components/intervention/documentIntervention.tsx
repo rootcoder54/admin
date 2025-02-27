@@ -2,13 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Spinner } from "../spinner";
 import { handle } from "@/action/intervention/fiche-intervention";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { ArrowBigLeftIcon, File } from "lucide-react";
+import { ArrowBigLeftIcon, CircleHelp, File } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
@@ -23,6 +23,7 @@ export function FicheIntervention({
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [state, setstate] = useState(false);
+  const [message, setmessage] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handlerChange = (file: File | null) => {
@@ -33,8 +34,16 @@ export function FicheIntervention({
     fileRef.current?.click();
   };
 
+  useEffect(() => {
+    if (file) setmessage("");
+  }, [file]);
+
   const submit = () => {
-    setstate(true);
+    if (file) {
+      setstate(true);
+    } else {
+      setmessage("Choisissez un fichier !");
+    }
     handle(file, idIntervention).then((data) => {
       if (data !== undefined) {
         toast.success(`Fiche enregistrer`);
@@ -104,7 +113,13 @@ export function FicheIntervention({
           </div>
         </div>
       )}
-      <Button variant={"secondary"} onClick={submit}>
+      {message && (
+        <div className="bg-destructive/15 rounded p-3 flex gap-x-3 text-destructive items-center">
+          <CircleHelp className="h-6 w-6" />
+          {message}
+        </div>
+      )}
+      <Button variant={"secondary"} type="button" onClick={submit}>
         charge
       </Button>
     </form>

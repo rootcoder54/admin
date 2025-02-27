@@ -44,7 +44,11 @@ const PageIntervention = async ({ params }: IdPageProps) => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
-                  Intervention
+                  <Link
+                    href={`/client/${intervention?.clientId}/intervention/${intervention?.id}`}
+                  >
+                    Intervention
+                  </Link>
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -53,7 +57,10 @@ const PageIntervention = async ({ params }: IdPageProps) => {
         <div className="ml-auto px-3"></div>
       </header>
       <div className="mx-auto w-full max-w-[1280px] p-8 flex flex-col space-y-2">
-        <FicheIntervention idClient={intervention?.clientId} idIntervention={idintervention} />
+        <FicheIntervention
+          idClient={intervention?.clientId}
+          idIntervention={idintervention}
+        />
       </div>
     </div>
   );

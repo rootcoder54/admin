@@ -18,11 +18,7 @@ import { toast } from "sonner";
 import { deleteDocument } from "@/action/intervention/delete-document";
 import { useTransition } from "react";
 import { Spinner } from "../spinner";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
 
 export function DeteleIntervention({
   interventionId
@@ -51,7 +47,7 @@ export function DeteleIntervention({
         <DialogContent>
           <DialogTitle />
           <div className="w-full flex items-center justify-center p-6">
-            <Spinner />
+            <Spinner size={"icon"} />
           </div>
         </DialogContent>
       </Dialog>
