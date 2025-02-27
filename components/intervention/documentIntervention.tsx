@@ -8,8 +8,10 @@ import { handle } from "@/action/intervention/fiche-intervention";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { File } from "lucide-react";
+import { ArrowBigLeftIcon, File } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Separator } from "../ui/separator";
 
 export function FicheIntervention({
   idIntervention,
@@ -51,7 +53,18 @@ export function FicheIntervention({
   }
   return (
     <form className="space-y-2 flex flex-col justify-center">
-      <h3>Chargé la fiche d&apos;intervention </h3>
+      <div className="flex flex-row items-center gap-x-2">
+        <Link
+          href={`/client/${idClient}/intervention/${idIntervention}`}
+          className="flex items-center"
+        >
+          <ArrowBigLeftIcon />
+          <span>Retour</span>
+        </Link>
+        <Separator orientation="vertical" className="mx-2 h-6 bg-white" />
+        <h3>Chargé la fiche d&apos;intervention </h3>
+      </div>
+
       <div
         className={cn(
           "relative group-hover/file:shadow-2xl cursor-pointer z-40 bg-white dark:bg-neutral-900 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md",
