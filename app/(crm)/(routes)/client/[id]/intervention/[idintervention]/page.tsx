@@ -173,12 +173,17 @@ const PageIntervention = async ({ params }: IdPageProps) => {
                 <TableCell>{item.fin}</TableCell>
                 <TableCell>{item.description}</TableCell>
                 <TableCell>
-                  <Button variant={"danger"} size={"icon"}>
-                    <Trash2 />
-                  </Button>
+                  <Link
+                    href={`/client/${intervention?.clientId}/intervention/${intervention?.id}/delete/${item.id}`}
+                  >
+                    <Button variant={"danger"} size={"icon"}>
+                      <Trash2 />
+                    </Button>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}
+            
           </TableBody>
         </Table>
       </div>

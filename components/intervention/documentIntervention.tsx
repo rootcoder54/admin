@@ -114,7 +114,7 @@ export function FicheIntervention({
         </div>
       )}
       {message && (
-        <div className="bg-destructive/15 rounded p-3 flex gap-x-3 text-destructive items-center">
+        <div className="bg-red-900/35 rounded p-3 flex justify-center gap-x-3 text-destructive items-center">
           <CircleHelp className="h-6 w-6" />
           {message}
         </div>
