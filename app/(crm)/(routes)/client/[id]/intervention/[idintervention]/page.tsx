@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Edit2, File, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, PlusCircle, Trash2 } from "lucide-react";
 
 import Link from "next/link";
 import { DeteleIntervention } from "@/components/intervention/deleteIntervention";
@@ -21,6 +21,7 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
+import Image from "next/image";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -65,26 +66,14 @@ const PageIntervention = async ({ params }: IdPageProps) => {
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-xl font-semibold">Intervention</h2>
           <div className="flex gap-x-3">
-            {intervention?.document ? (
-              <Link
-                href={`/imprime/intervention/${intervention.document.id}`}
-                target="_blank"
-              >
-                <Button variant={"outline"}>
-                  <File />
-                  Fiche
-                </Button>
-              </Link>
-            ) : (
-              <Link
-                href={`/client/${intervention?.clientId}/intervention/${intervention?.id}/file`}
-              >
-                <Button variant={"outline"}>
-                  <PlusCircle />
-                  Fiche
-                </Button>
-              </Link>
-            )}
+            <Link
+              href={`/client/${intervention?.clientId}/intervention/${intervention?.id}/file`}
+            >
+              <Button variant={"outline"}>
+                <PlusCircle />
+                Fiche
+              </Button>
+            </Link>
             <Button variant={"secondary"}>
               <Edit2 />
               Editer
@@ -183,9 +172,27 @@ const PageIntervention = async ({ params }: IdPageProps) => {
                 </TableCell>
               </TableRow>
             ))}
-            
           </TableBody>
         </Table>
+        {intervention?.document ? (
+          <Link
+            href={`/imprime/intervention/${intervention.document.id}`}
+            target="_blank"
+          >
+            <div className="border flex flex-col w-48 rounded-md hover:shadow-lg">
+              <div className="flex-1 justify-center p-5 h-3/4">
+                <Image
+                  src={"/PDF.png"}
+                  alt="PDF"
+                  className="w-full h-full"
+                  width={50}
+                  height={50}
+                />
+              </div>
+              <div className="border-t p-5 text-center">Fiche</div>
+            </div>
+          </Link>
+        ) : null}
       </div>
     </div>
   );
