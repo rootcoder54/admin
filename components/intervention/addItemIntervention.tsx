@@ -17,7 +17,6 @@ import { z } from "zod";
 import { useTransition } from "react";
 import { Spinner } from "../spinner";
 import { addItemIntervention } from "@/action/intervention/addItemIntervention";
-import Link from "next/link";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 import { format } from "date-fns";
@@ -26,6 +25,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { Textarea } from "../ui/textarea";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export const AddItemIntevention = ({
   interventionId,
@@ -35,6 +35,7 @@ export const AddItemIntevention = ({
   clientId: string;
 }) => {
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(ItemInterventionSchema),
@@ -57,7 +58,7 @@ export const AddItemIntevention = ({
         values.interventionId
       ).then((data) => {
         toast.success("Enregistrer avec Success");
-        form.reset();
+        router.push(`/client/${clientId}/intervention/${interventionId}`);
         if (!data) {
           return;
         }
@@ -160,9 +161,6 @@ export const AddItemIntevention = ({
             <Button type="submit" variant={"secondary"}>
               Enregistrer
             </Button>
-            <Link href={`/client/${clientId}/intervention/${interventionId}`}>
-              <Button>Terminer</Button>
-            </Link>
           </div>
         </form>
       </Form>
