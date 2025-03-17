@@ -35,9 +35,9 @@ export function DeteleIntervention({
           deleteDocument(data.documentId).then((item) => {
             console.log(item);
             toast.success(`Intervention supprimer`);
-            route.push(`/client/${data.clientId}`);
           });
         }
+        route.push(`/client/${data.clientId}`);
       });
     });
   };
