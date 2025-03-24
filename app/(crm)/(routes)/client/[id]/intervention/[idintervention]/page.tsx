@@ -22,6 +22,7 @@ import {
   TableRow
 } from "@/components/ui/table";
 import Image from "next/image";
+import { ObservationForm } from "@/components/intervention/observation-form";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -111,14 +112,6 @@ const PageIntervention = async ({ params }: IdPageProps) => {
           </div>
           <div className="flex gap-x-2">
             <span className="text-sm text-neutral-600 dark:text-neutral-400">
-              Observation :
-            </span>
-            <span className="text-sm">
-              {affiche(intervention?.observations)}
-            </span>
-          </div>
-          <div className="flex gap-x-2">
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
               Date Cloture :
             </span>
             <span className="text-sm">
@@ -193,6 +186,11 @@ const PageIntervention = async ({ params }: IdPageProps) => {
             </div>
           </Link>
         ) : null}
+        <div className="flex flex-col space-y-2">
+          <span>Observation</span>
+          <hr />
+          <ObservationForm id={intervention?.id} observation={intervention?.observations} />
+        </div>
       </div>
     </div>
   );
