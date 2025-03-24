@@ -17,6 +17,13 @@ import { useTransition } from "react";
 import { addIntervention } from "@/action/intervention/add-intervention";
 import { Spinner } from "../spinner";
 import { useRouter } from "next/navigation";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 export const AddIntevention = ({ id }: { id: string }) => {
   const [isPending, startTransition] = useTransition();
@@ -108,7 +115,26 @@ export const AddIntevention = ({ id }: { id: string }) => {
               <FormItem>
                 <FormLabel>Nature de l&apos;intervention</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selectionné le type de l'intervention" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Support et assistance">
+                        Support et assistance
+                      </SelectItem>
+                      <SelectItem value="Installation">Installation</SelectItem>
+                      <SelectItem value="Extension de licence">
+                        Extension de licence
+                      </SelectItem>
+                      <SelectItem value="Maintenance">Maintenance</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
