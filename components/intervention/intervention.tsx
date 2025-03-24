@@ -61,50 +61,6 @@ interface DataTableProps<TData, TValue> {
 
 const columns: ColumnDef<InterventionAll>[] = [
   {
-    accessorKey: "intervenant",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Technicien
-          {column.getIsSorted() === "desc" ? (
-            <ArrowDown />
-          ) : column.getIsSorted() === "asc" ? (
-            <ArrowUp />
-          ) : (
-            <ChevronsUpDown />
-          )}
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="capitalize">{row.original.intervenant}</div>
-    )
-  },
-  {
-    accessorKey: "service",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Service
-          {column.getIsSorted() === "desc" ? (
-            <ArrowDown />
-          ) : column.getIsSorted() === "asc" ? (
-            <ArrowUp />
-          ) : (
-            <ChevronsUpDown />
-          )}
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="lowercase">{row.original.service}</div>
-  },
-  {
     accessorKey: "createdAt",
     header: ({ column }) => {
       return (
@@ -131,6 +87,50 @@ const columns: ColumnDef<InterventionAll>[] = [
         </div>
       );
     }
+  },
+  {
+    accessorKey: "nature",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nature
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className="lowercase">{row.original.nature}</div>
+  },
+  {
+    accessorKey: "intervenant",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Technicien
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="capitalize">{row.original.intervenant}</div>
+    )
   },
   {
     id: "actions",
