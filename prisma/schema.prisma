@@ -158,7 +158,7 @@ model Intervention {
   intervenant  String
   nature       String?
   observations String?
-  dateCloture  DateTime?
+  dateCloture  DateTime
 
   documentId String?
   document   Document? @relation(fields: [documentId], references: [id], onDelete: Cascade)

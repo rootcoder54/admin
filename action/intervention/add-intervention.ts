@@ -8,7 +8,7 @@ export const addIntervention = async (
   intervenant: string,
   nature: string | null = "",
   observations: string | null = "",
-  dateCloture: Date | null = new Date(),
+  dateCloture: Date = new Date(),
   clientId: string
 ) => {
   const intervention = await db.intervention.create({

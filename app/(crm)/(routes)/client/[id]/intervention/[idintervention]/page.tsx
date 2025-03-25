@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import { ObservationForm } from "@/components/intervention/observation-form";
+import { format } from "date-fns";
 
 interface IdPageProps {
   params: Promise<{ idintervention: string }>;
@@ -110,12 +111,13 @@ const PageIntervention = async ({ params }: IdPageProps) => {
             </span>
             <span className="text-sm">{affiche(intervention?.nature)}</span>
           </div>
-          <div className="flex gap-x-2">
+          <div className="flex gap-x-2 font-extrabold">
             <span className="text-sm text-neutral-600 dark:text-neutral-400">
               Date Cloture :
             </span>
             <span className="text-sm">
-              {String(intervention?.createdAt.getDate())}
+              {intervention?.dateCloture &&
+                format(intervention?.dateCloture, "yyyy-MM-dd")}
             </span>
           </div>
         </div>
@@ -141,15 +143,7 @@ const PageIntervention = async ({ params }: IdPageProps) => {
             {intervention?.items.map((item) => (
               <TableRow key={item.id}>
                 <TableCell className="font-medium">
-                  {`${
-                    String(item.date.getDate()).length === 1
-                      ? "0" + String(item.date.getDate())
-                      : String(item.date.getDate())
-                  } / ${
-                    String(item.date.getMonth()).length === 1
-                      ? "0" + String(item.date.getMonth() + 1)
-                      : String(item.date.getMonth() + 1)
-                  } /  ${String(item.date.getFullYear())} `}
+                  {format(item.date, "yyyy-MM-dd")}
                 </TableCell>
                 <TableCell>{item.debut}</TableCell>
                 <TableCell>{item.fin}</TableCell>
@@ -189,7 +183,10 @@ const PageIntervention = async ({ params }: IdPageProps) => {
         <div className="flex flex-col space-y-2">
           <span>Observation</span>
           <hr />
-          <ObservationForm id={intervention?.id} observation={intervention?.observations} />
+          <ObservationForm
+            id={intervention?.id}
+            observation={intervention?.observations}
+          />
         </div>
       </div>
     </div>
