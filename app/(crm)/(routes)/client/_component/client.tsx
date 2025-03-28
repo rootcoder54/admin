@@ -22,6 +22,7 @@ import { ContactList } from "@/components/contact/contact";
 import { BaseList } from "@/components/base/base";
 import { LogicielList } from "@/components/logiciel/logiciel";
 import { format } from "date-fns";
+import { ContratList } from "@/components/contrat/contrat";
 
 export const ClientComponent = ({ clientId }: { clientId: string }) => {
   const { data: client } = useQuery<ClientList>({
@@ -132,7 +133,7 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
             <ContactList clientId={clientId} />
           </TabsContent>
           <TabsContent value="contrat">
-            <span>Contrat</span>
+            <ContratList clientId={clientId} />
           </TabsContent>
         </Tabs>
       </div>

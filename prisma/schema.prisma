@@ -145,14 +145,17 @@ model Contrat {
   type         String?
   reconduction String?
 
-  documentId String?
+  document Document[]
 
   clientId String
   client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Intervention {
-  id           String    @id @default(uuid())
+  id           String   @id @default(uuid())
   numero       String
   service      String
   intervenant  String
@@ -187,6 +190,9 @@ model Document {
   id      String @id @default(uuid())
   nom     String
   fichier Bytes
+
+  contratId String?
+  contrat   Contrat? @relation(fields: [contratId], references: [id], onDelete: Cascade)
 
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
