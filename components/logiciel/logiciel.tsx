@@ -15,6 +15,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "../spinner";
 import { DeleteBase } from "./deleteLogiciel";
 import { AddLogiciel } from "./addLogiciel";
+import { Button } from "../ui/button";
+import { Printer } from "lucide-react";
+import Link from "next/link";
 
 export const LogicielList = ({ clientId }: { clientId: string }) => {
   const { data, refetch } = useQuery<Logiciel[]>({
@@ -34,7 +37,15 @@ export const LogicielList = ({ clientId }: { clientId: string }) => {
         <h2 className="text-xl font-semibold text-neutral-600 dark:text-neutral-400">
           Logiciel
         </h2>
-        <AddLogiciel clientId={clientId} reload={() => refetch()} />
+        <div className="flex gap-x-3">
+          <Link href={`/imprime/licence/${clientId}`} target="_blank">
+            <Button variant={"outline"}>
+              {" "}
+              <Printer /> Imprimer la licence
+            </Button>
+          </Link>
+          <AddLogiciel clientId={clientId} reload={() => refetch()} />
+        </div>
       </div>
       <Table>
         <TableHeader>
@@ -51,7 +62,9 @@ export const LogicielList = ({ clientId }: { clientId: string }) => {
         <TableBody>
           {data.map((item) => (
             <TableRow key={item.id}>
-              <TableCell className="font-medium">{item.nom} - {item.version}</TableCell>
+              <TableCell className="font-medium">
+                {item.nom} - {item.version}
+              </TableCell>
               <TableCell>{item.versionInterne}</TableCell>
               <TableCell>{item.poste}</TableCell>
               <TableCell>{item.employe}</TableCell>
