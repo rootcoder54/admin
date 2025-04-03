@@ -42,16 +42,19 @@ const Licence = ({ idClient }: { idClient: string }) => {
       </div>
     );
   }
-  if(logiciels.length < 1 && bases.length < 1) {
+  if (logiciels.length < 1 && bases.length < 1) {
     return (
-        <div>
-            Pas de licence
-        </div>
-    )
+      <div className="min-h-screen flex flex-col justify-center items-center">
+        <span className="text-2xl font-extrabold">Pas de licence</span>
+      </div>
+    );
   }
-  const mostRecentItem = bases.reduce((latest, item) =>
-    new Date(item.updatedAt) > new Date(latest.updatedAt) ? item : latest
-  );
+  const mostRecentItem =
+    bases.length >= 1
+      ? bases.reduce((latest, item) =>
+          new Date(item.updatedAt) > new Date(latest.updatedAt) ? item : latest
+        )
+      : null;
 
   return (
     <div>
@@ -95,13 +98,6 @@ const Licence = ({ idClient }: { idClient: string }) => {
             </TableRow>
           </TableHeader>
           <TableBody className="border-b-2">
-            {!logiciels && (
-              <TableRow>
-                <TableCell colSpan={9} className="text-center">
-                  Aucun logiciel trouvé
-                </TableCell>
-              </TableRow>
-            )}
             {logiciels.map((item) => (
               <TableRow key={item.id}>
                 <TableCell className="font-medium border-2">
@@ -167,7 +163,10 @@ const Licence = ({ idClient }: { idClient: string }) => {
 
         <div className="w-full flex flex-row justify-between border-t-2 border-b-2 px-5 py-1">
           <span>DERNIER MISE A JOUR /ACHAT/EXTENSION</span>
-          <span>DATE : {format(mostRecentItem.updatedAt, "dd/MM/yyyy")}</span>
+          <span>
+            DATE :{" "}
+            {mostRecentItem && format(mostRecentItem.updatedAt, "dd/MM/yyyy")}
+          </span>
         </div>
       </div>
     </div>
