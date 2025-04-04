@@ -29,15 +29,24 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Calendar } from "../ui/calendar";
+import { useQuery } from "@tanstack/react-query";
+import { ClientList } from "@/types";
+import { fetcher } from "@/lib/fetcher";
+import { Textarea } from "../ui/textarea";
 
 export const AddIntevention = ({ id }: { id: string }) => {
   const [isPending, startTransition] = useTransition();
   const route = useRouter();
+  const { data: client } = useQuery<ClientList>({
+    queryKey: ["clientId", id],
+    queryFn: () => fetcher(`/api/client/${id}`)
+  });
+
   const form = useForm({
     resolver: zodResolver(InterventionSchema),
     defaultValues: {
-      numero: "",
-      service: "",
+      numero: client && client.numero !== null ? client.numero : "Aucun",
+      service: "Genie logiciel",
       intervenant: "",
       nature: "",
       observations: "",
@@ -79,7 +88,7 @@ export const AddIntevention = ({ id }: { id: string }) => {
               <FormItem>
                 <FormLabel>Numéro de la fiche</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} readOnly disabled />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -153,7 +162,7 @@ export const AddIntevention = ({ id }: { id: string }) => {
               <FormItem>
                 <FormLabel>Observations</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Textarea {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
