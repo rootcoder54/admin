@@ -14,6 +14,7 @@ import { Base, Client, Logiciel } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import "../../_component/style.css";
+import Image from "next/image";
 
 const Licence = ({ idClient }: { idClient: string }) => {
   const { data: logiciels } = useQuery<Logiciel[]>({
@@ -34,6 +35,7 @@ const Licence = ({ idClient }: { idClient: string }) => {
   const handlePrint = () => {
     window.print();
   };
+
 
   if (!logiciels || !bases || !client) {
     return (
@@ -64,6 +66,15 @@ const Licence = ({ idClient }: { idClient: string }) => {
         </Button>
       </div>
       <div className="flex flex-col space-y-5 p-5 rounded-md">
+
+        <Image
+          src={"/facturehead.PNG"}
+          alt="Facture Header"
+          width={10000}
+          height={10000}
+          className="w-full h-16 mx-auto"
+        />
+
         <div className="flex flex-row justify-between border-b-2 border-black">
           <h2 className="uppercase font-bold">
             NOM CLIENT : {client.nomClient}
