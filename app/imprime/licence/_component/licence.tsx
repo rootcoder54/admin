@@ -15,19 +15,20 @@ import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import "../../_component/style.css";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const Licence = ({ idClient }: { idClient: string }) => {
-  const { data: logiciels } = useQuery<Logiciel[]>({
+  const { data: logiciels, isSuccess: truelogiciel } = useQuery<Logiciel[]>({
     queryKey: ["logicielId", idClient],
     queryFn: () => fetcher(`/api/logiciel/${idClient}`)
   });
 
-  const { data: client } = useQuery<Client>({
+  const { data: client, isSuccess: trueclient } = useQuery<Client>({
     queryKey: ["clientId", idClient],
     queryFn: () => fetcher(`/api/client/${idClient}`)
   });
 
-  const { data: bases } = useQuery<Base[]>({
+  const { data: bases, isSuccess: truebases } = useQuery<Base[]>({
     queryKey: ["baseId", idClient],
     queryFn: () => fetcher(`/api/base/${idClient}`)
   });
@@ -36,6 +37,11 @@ const Licence = ({ idClient }: { idClient: string }) => {
     window.print();
   };
 
+  useEffect(() => {
+    if (truelogiciel && truebases && trueclient) {
+      window.print();
+    }
+  }, [truelogiciel, truebases, trueclient]);
 
   if (!logiciels || !bases || !client) {
     return (
@@ -66,7 +72,6 @@ const Licence = ({ idClient }: { idClient: string }) => {
         </Button>
       </div>
       <div className="flex flex-col space-y-5 p-5 rounded-md">
-
         <Image
           src={"/facturehead.PNG"}
           alt="Facture Header"
