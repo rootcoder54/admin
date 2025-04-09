@@ -4,7 +4,8 @@ import {
   Client,
   Board,
   Intervention,
-  ItemIntervention
+  ItemIntervention,
+  Requete
 } from "@prisma/client";
 
 export type ListWithCards = List & { cards: Card[] };
@@ -19,3 +20,5 @@ export type InterventionAll = Intervention & {
   items: ItemIntervention[];
   client: Client;
 };
+
+export type RequeteWithClient = Requete & { client: Client };

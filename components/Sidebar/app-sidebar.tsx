@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {
+  AlignLeft,
   Calendar,
   FileArchive,
   HelpCircle,
@@ -12,11 +13,7 @@ import {
   UserSquareIcon
 } from "lucide-react";
 
-import {
-  Sidebar,
-  SidebarHeader,
-  SidebarRail
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarHeader, SidebarRail } from "@/components/ui/sidebar";
 import { UserButton } from "@/components/Sidebar/userButton";
 import { NavItems } from "./navItems";
 import { usePathname } from "next/navigation";
@@ -47,6 +44,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: UserSquareIcon,
         badge: "10",
         isActive: pathname.startsWith("/client")
+      },
+      {
+        title: "Requête",
+        url: "/requete",
+        icon: AlignLeft,
+        badge: "10",
+        isActive: pathname.startsWith("/requete")
       },
       {
         title: "Calendrier",

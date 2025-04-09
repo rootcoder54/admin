@@ -41,6 +41,8 @@ import { fetcher } from "@/lib/fetcher";
 import { addRequete } from "@/action/requete/add";
 import { toast } from "sonner";
 import { Spinner } from "../spinner";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 const formSchema = z.object({
   sujet: z.string().min(1, {
@@ -55,10 +57,14 @@ const formSchema = z.object({
 });
 
 const FormAddRequete = () => {
+  const router = useRouter();
+
   const { data: clientList, isLoading } = useQuery<ClientList[]>({
     queryKey: ["clients"],
     queryFn: () => fetcher(`/api/client`)
   });
+
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -74,19 +80,30 @@ const FormAddRequete = () => {
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    addRequete(
-      values.sujet,
-      values.description,
-      values.type,
-      values.demandeur,
-      values.technicien,
-      values.dateDebut,
-      values.clientId
-    ).then((data) => {
-      form.reset();
-      toast.success(`Requête ajoutée avec succès ${data.sujet} `);
+    startTransition(() => {
+      addRequete(
+        values.sujet,
+        values.description,
+        values.type,
+        values.demandeur,
+        values.technicien,
+        values.dateDebut,
+        values.clientId
+      ).then((data) => {
+        form.reset();
+        toast.success(`Requête ajoutée avec succès ${data.sujet} `);
+        router.push("/requete");
+      });
     });
   }
+  if (isPending) {
+    return (
+      <div className="w-full flex flex-row items-center justify-center">
+        <Spinner size={"lg"} />
+      </div>
+    );
+  }
+  
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">

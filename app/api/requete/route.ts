@@ -7,6 +7,14 @@ export async function GET() {
     const requetes = await db.requete.findMany({
       orderBy: {
         createdAt: "desc"
+      },
+      include: {
+        client: {
+          select: {
+            nomClient: true,
+            
+          }
+        }
       }
     });
 
