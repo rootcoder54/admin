@@ -20,9 +20,10 @@ import { fetcher } from "@/lib/fetcher";
 import { Spinner } from "@/components/spinner";
 import { format } from "date-fns";
 import { RequeteWithClient } from "@/types";
+import { DeleteRequete } from "@/components/requete/delete_requete";
 
 const PageRequete = () => {
-  const { data: requetes } = useQuery<RequeteWithClient[]>({
+  const { data: requetes, refetch } = useQuery<RequeteWithClient[]>({
     queryKey: ["requeteid"],
     queryFn: () => fetcher(`/api/requete`)
   });
@@ -54,6 +55,7 @@ const PageRequete = () => {
               <TableHead>Technicien</TableHead>
               <TableHead>Client</TableHead>
               <TableHead>Etat</TableHead>
+              <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -65,11 +67,21 @@ const PageRequete = () => {
                 <TableCell>{requete.sujet}</TableCell>
                 <TableCell>{requete.technicien}</TableCell>
                 <TableCell>{requete.client.nomClient}</TableCell>
+                <TableCell>{!requete.etat ? "EN_COURS" : "TERMINE"}</TableCell>
                 <TableCell>
-                  {!requete.etat ? "EN_COURS" : "TERMINE"}
+                  <DeleteRequete id={requete.id} reload={refetch} />
                 </TableCell>
               </TableRow>
             ))}
+            {requetes.length === 0 && (
+              <TableRow className="h-24 w-full items-center justify-center text-center">
+                <TableCell colSpan={6}>
+                  <div className="flex w-full items-center justify-center text-center">
+                    Aucune requête
+                  </div>
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       ) : (
