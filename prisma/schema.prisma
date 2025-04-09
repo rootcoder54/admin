@@ -125,6 +125,7 @@ model Client {
   logiciels     Logiciel[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  Requete       Requete[]
 }
 
 model Contact {
@@ -228,6 +229,28 @@ model Logiciel {
   type           String
   dateAchat      DateTime
   dossier        String
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Requete {
+  id String @id @default(uuid())
+
+  sujet       String
+  description String?
+  type        String?
+  reponse     String?
+  observation String?
+  
+  demandeur  String?
+  technicien String?
+  dateDebut  DateTime
+  dateFin    DateTime?
+  etat       Boolean
 
   clientId String
   client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)

@@ -23,7 +23,7 @@ export function NavItems({
   }[];
 }) {
   return (
-    <ScrollArea  className="h-full w-full">
+    <ScrollArea className="h-full w-full">
       <SidebarMenu className="gap-y-1">
         <SidebarMenuItem>
           <Mode />
@@ -33,8 +33,10 @@ export function NavItems({
         </SidebarMenuItem>
         <SidebarMenuItem>
           <SidebarMenuButton>
-            <AlignLeft />
-            <span>Nouvelle requête</span>
+            <Link href={"/requete/add"} className="flex items-center gap-x-1">
+              <AlignLeft />
+              <span>Nouvelle requête</span>
+            </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
         <hr />
