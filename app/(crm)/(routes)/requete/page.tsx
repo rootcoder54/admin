@@ -1,12 +1,5 @@
 "use client";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from "@/components/ui/table";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,9 +11,9 @@ import { Separator } from "@/components/ui/separator";
 import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/lib/fetcher";
 import { Spinner } from "@/components/spinner";
-import { format } from "date-fns";
 import { RequeteWithClient } from "@/types";
-import { DeleteRequete } from "@/components/requete/delete_requete";
+import DataTable from "@/components/requete/list";
+import { columns } from "@/components/requete/list/colums";
 
 const PageRequete = () => {
   const { data: requetes, refetch } = useQuery<RequeteWithClient[]>({
@@ -45,8 +38,15 @@ const PageRequete = () => {
         </div>
         <div className="ml-auto px-3"></div>
       </header>
-
       {requetes ? (
+        <DataTable columns={columns} data={requetes} reload={refetch} />
+      ) : (
+        <div className="h-24 flex items-center w-full justify-center text-center">
+          <Spinner size={"lg"} />
+        </div>
+      )}
+
+      {/*{requetes ? (
         <Table>
           <TableHeader>
             <TableRow>
@@ -88,7 +88,7 @@ const PageRequete = () => {
         <div className="h-24 flex items-center w-full justify-center text-center">
           <Spinner size={"lg"} />
         </div>
-      )}
+      )} */}
     </>
   );
 };
