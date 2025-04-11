@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import { Image, MoreHorizontal, Printer, Trash2, X } from "lucide-react";
+import { ImageIcon, MoreHorizontal, Printer, Trash2, X } from "lucide-react";
 
 import { useAction } from "@/hooks/use-action";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -112,7 +112,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
               variant="ghost"
               className="h-auto w-full justify-start rounded-none p-2 px-5 text-sm font-normal"
             >
-              <Image />
+              <ImageIcon />
               Changer l&apos;image de font
             </Button>
           </DialogTrigger>
