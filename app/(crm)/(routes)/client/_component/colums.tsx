@@ -8,7 +8,7 @@ import {
   ChevronsUpDown,
   Edit,
   Folder,
-  MoreHorizontal,
+  MoreHorizontal
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,6 @@ import {
 import { toast } from "sonner";
 import Link from "next/link";
 import { format } from "date-fns";
-
 
 export type Client = {
   id: string;
@@ -128,6 +127,9 @@ export const columns: ColumnDef<Client>[] = [
         </Button>
       );
     },
+    filterFn: (row, columnId, filterValue) => {
+      return filterValue.includes(row.getValue(columnId));
+    },
     cell: ({ row }) => {
       return <div className="font-medium">{row.getValue("activite")}</div>;
     }
@@ -180,7 +182,10 @@ export const columns: ColumnDef<Client>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <a href={`/client/${client.id}`} className="w-full flex items-center justify-start gap-x-2">
+              <a
+                href={`/client/${client.id}`}
+                className="w-full flex items-center justify-start gap-x-2"
+              >
                 <Folder /> Details
               </a>
             </DropdownMenuItem>

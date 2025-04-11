@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -19,7 +20,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { DeleteRequete } from "../delete_requete";
-import { RequeteWithClient } from "@/types";
+import { ClientList, RequeteWithClient } from "@/types";
 import Link from "next/link";
 import {
   Popover,
@@ -27,6 +28,9 @@ import {
   PopoverTrigger
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
+import ClientFilter from "./client-filter";
+import { useQuery } from "@tanstack/react-query";
+import { fetcher } from "@/lib/fetcher";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -39,6 +43,11 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
   const [id, setId] = useState("");
   const [encour, setEncour] = useState<boolean>(false);
   const [fin, setFin] = useState<boolean>(false);
+
+  const { data: clients } = useQuery<ClientList[]>({
+    queryKey: ["clients"],
+    queryFn: () => fetcher(`/api/client`)
+  });
 
   const selectedRowsData = table
     .getRowModel()
@@ -118,6 +127,16 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
               </div>
             </PopoverContent>
           </Popover>
+        )}
+        {table.getColumn("clientId") && (
+          <ClientFilter
+            column={table.getColumn("clientId")}
+            title="Client"
+            options={clients?.map((client) => ({
+              label: client.nomClient,
+              value: client.id
+            }))}
+          />
         )}
         {isFiltered && (
           <Button

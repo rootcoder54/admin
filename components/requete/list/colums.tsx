@@ -9,21 +9,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { format } from "date-fns";
 import { RequeteWithClient } from "@/types";
-
+import Link from "next/link";
 
 export const columns: ColumnDef<RequeteWithClient>[] = [
   {
     id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
@@ -78,7 +68,11 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("sujet")}</div>
+    cell: ({ row }) => (
+      <div>
+        <Link href={`requete/${row.original.id}`}>{row.getValue("sujet")}</Link>
+      </div>
+    )
   },
   {
     accessorKey: "technicien",
@@ -121,6 +115,9 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
           )}
         </Button>
       );
+    },
+    filterFn: (row, columnId, filterValue) => {
+      return filterValue.includes(row.getValue(columnId));
     },
     cell: ({ row }) => {
       return <div className="font-medium">{row.original.client.nomClient}</div>;

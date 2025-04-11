@@ -49,8 +49,8 @@ const activites = [
     icon: Home
   },
   {
-    value: "Technologie",
-    label: "Technologie",
+    value: "PRI",
+    label: "PRI",
     icon: Telescope
   },
   {
@@ -75,7 +75,11 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
     .rows.filter((row) => rowSelected[row.id]); // Récupérer les données des lignes sélectionnées
   useEffect(() => {
     selectedRowsData.forEach((row) => {
-      const rowData = row.original as { nomClient: string; adresse: string; activite: string };;
+      const rowData = row.original as {
+        nomClient: string;
+        adresse: string;
+        activite: string;
+      };
       setNom(rowData.nomClient);
       setAdresse(rowData.adresse);
       setActivite(rowData.activite);
