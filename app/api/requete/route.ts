@@ -9,12 +9,8 @@ export async function GET() {
         createdAt: "desc"
       },
       include: {
-        client: {
-          select: {
-            nomClient: true,
-            
-          }
-        }
+        client: true,
+        Intervention: true
       }
     });
 

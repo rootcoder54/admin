@@ -65,7 +65,7 @@ export const DetailRequet = ({ id }: { id: string }) => {
       </header>
       <div className="mx-auto w-full max-w-[1280px] p-8 flex flex-col space-y-2">
         <div className="flex flex-row justify-between items-center">
-          <h2 className="text-xl font-semibold">
+          <h2 className="text-xl font-semibold space-x-2">
             Requête: {requete.sujet}{" "}
             <Badge>{requete.etat ? "TERMINE" : "EN_COURS"}</Badge>
           </h2>
@@ -78,52 +78,38 @@ export const DetailRequet = ({ id }: { id: string }) => {
           </div>
         </div>
         <hr />
-        <div className="border rounded-md flex flex-row items-center justify-between gap-x-2 p-5">
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
-              Client
-            </span>
+        <div className="border rounded-md p-5 grid grid-cols-3 gap-4 gap-y-9">
+          <div className="flex flex-col space-y-1">
+            <span className="text-sm font-bold underline">Client :</span>
             <span className="text-sm">{requete.client.nomClient} </span>
           </div>
 
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
-              Demandeur
-            </span>
+          <div className="flex flex-col space-y-1">
+            <span className="text-sm font-bold underline">Demandeur :</span>
             <span className="text-sm">{requete.demandeur}</span>
           </div>
 
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
-              Date
-            </span>
+          <div className="flex flex-col space-y-1">
+            <span className="text-sm font-bold underline">Date :</span>
             <span className="text-sm">
               {format(requete.dateDebut, "yyyy-MM-dd")}
             </span>
           </div>
-        </div>
 
-        <div className="border rounded-md flex flex-row items-center justify-between gap-x-2 p-5">
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
-              Etat
-            </span>
+          <div className="flex flex-col space-y-1">
+            <span className="text-sm font-bold underline">Etat :</span>
             <span className="text-sm">
               <Badge>{requete.etat ? "TERMINE" : "EN_COURS"}</Badge>
             </span>
           </div>
 
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
-              Technicien
-            </span>
+          <div className="flex flex-col space-y-1">
+            <span className="text-sm font-bold underline">Technicien :</span>
             <span className="text-sm">{requete.technicien}</span>
           </div>
 
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">
-              Type
-            </span>
+          <div className="flex flex-col space-y-1">
+            <span className="text-sm font-bold underline">Type :</span>
             <span className="text-sm">{requete.type}</span>
           </div>
         </div>

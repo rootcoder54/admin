@@ -21,4 +21,4 @@ export type InterventionAll = Intervention & {
   client: Client;
 };
 
-export type RequeteWithClient = Requete & { client: Client };
+export type RequeteWithClient = Requete & { client: Client ,Intervention: Intervention[]};

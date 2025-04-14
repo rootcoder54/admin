@@ -167,6 +167,9 @@ model Intervention {
   documentId String?
   document   Document? @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
+  requeteId String?
+  requete   Requete? @relation(fields: [requeteId], references: [id], onDelete: Cascade)
+
   items ItemIntervention[]
 
   clientId String
@@ -245,7 +248,7 @@ model Requete {
   type        String?
   reponse     String?
   observation String?
-  
+
   demandeur  String?
   technicien String?
   dateDebut  DateTime
@@ -254,6 +257,8 @@ model Requete {
 
   clientId String
   client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  Intervention Intervention[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
