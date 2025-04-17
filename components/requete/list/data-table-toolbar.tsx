@@ -165,10 +165,12 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
                   Detail
                 </Button>
               </Link>
-              <Button size={"lg"} variant={"blue"}>
-                <FileArchive />
-                Intervention
-              </Button>
+              <Link href={`/requete/intervention/${id}`}>
+                <Button size={"lg"} variant={"blue"}>
+                  <FileArchive />
+                  Intervention
+                </Button>
+              </Link>
             </>
           )}
         </div>
