@@ -39,56 +39,14 @@ const PageRequete = () => {
         <div className="ml-auto px-3"></div>
       </header>
       {requetes ? (
-        <DataTable columns={columns} data={requetes} reload={refetch} />
+        <div className="flex w-full flex-col gap-4 px-3 pt-2">
+          <DataTable columns={columns} data={requetes} reload={refetch} />
+        </div>
       ) : (
         <div className="h-24 flex items-center w-full justify-center text-center">
           <Spinner size={"lg"} />
         </div>
       )}
-
-      {/*{requetes ? (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Date</TableHead>
-              <TableHead>Sujet</TableHead>
-              <TableHead>Technicien</TableHead>
-              <TableHead>Client</TableHead>
-              <TableHead>Etat</TableHead>
-              <TableHead>Action</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {requetes.map((requete) => (
-              <TableRow key={requete.id}>
-                <TableCell className="font-medium">
-                  {format(requete.dateDebut, "yyyy-MM-dd")}
-                </TableCell>
-                <TableCell>{requete.sujet}</TableCell>
-                <TableCell>{requete.technicien}</TableCell>
-                <TableCell>{requete.client.nomClient}</TableCell>
-                <TableCell>{!requete.etat ? "EN_COURS" : "TERMINE"}</TableCell>
-                <TableCell>
-                  <DeleteRequete id={requete.id} reload={refetch} />
-                </TableCell>
-              </TableRow>
-            ))}
-            {requetes.length === 0 && (
-              <TableRow className="h-24 w-full items-center justify-center text-center">
-                <TableCell colSpan={6}>
-                  <div className="flex w-full items-center justify-center text-center">
-                    Aucune requête
-                  </div>
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      ) : (
-        <div className="h-24 flex items-center w-full justify-center text-center">
-          <Spinner size={"lg"} />
-        </div>
-      )} */}
     </>
   );
 };
