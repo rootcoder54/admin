@@ -20,7 +20,8 @@ export async function GET(
                 telephone: true,
                 numero: true,
             }
-        }
+        },
+        Intervention:true
       }
     });
 

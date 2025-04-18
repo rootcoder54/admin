@@ -34,7 +34,13 @@ import { ClientList } from "@/types";
 import { fetcher } from "@/lib/fetcher";
 import { Textarea } from "../ui/textarea";
 
-export const AddIntevention = ({ id }: { id: string }) => {
+export const AddIntevention = ({
+  id,
+  requeteId
+}: {
+  id: string;
+  requeteId: string | undefined;
+}) => {
   const [isPending, startTransition] = useTransition();
   const route = useRouter();
   const { data: client } = useQuery<ClientList>({
@@ -64,9 +70,10 @@ export const AddIntevention = ({ id }: { id: string }) => {
         values.nature,
         values.observations,
         values.dateCloture,
-        values.clientId
+        values.clientId,
+        requeteId
       ).then((data) => {
-        route.push(`/client/${data.clientId}/intervention/add/${data.id}`);
+        route.push(`/intervention/${data.clientId}/add/item/${data.id}`);
       });
     });
   }

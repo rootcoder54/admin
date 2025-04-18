@@ -17,6 +17,14 @@ import { Spinner } from "../spinner";
 import { Button } from "../ui/button";
 import { FileX, PlusCircle } from "lucide-react";
 import { Badge } from "../ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 
 export const InterventionRequete = ({ id }: { id: string }) => {
   const { data: requete } = useQuery<RequeteWithClient>({
@@ -68,27 +76,59 @@ export const InterventionRequete = ({ id }: { id: string }) => {
             <Badge>{requete.etat ? "TERMINE" : "EN_COURS"}</Badge>
           </h2>
           <div className="flex gap-x-3">
-            <Button variant={"gray"} size={"lg"}>
-              <PlusCircle />
-              Ajouter
-            </Button>
+            <Link href={`/intervention/${requete.clientId}/add/${requete.id}`}>
+              <Button variant={"gray"} size={"lg"}>
+                <PlusCircle />
+                Ajouter
+              </Button>
+            </Link>
           </div>
         </div>
         <hr />
         <div className="flex flex-col space-y-2">
           {requete.Intervention ? (
-            requete.Intervention.map((intervention) => (
-              <div key={intervention.id} className="border rounded-md p-5">
-                <span> {intervention.clientId}</span>
-              </div>
-            ))
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Sujet</TableHead>
+                  <TableHead>Nature</TableHead>
+                  <TableHead>Technicien</TableHead>
+                  <TableHead>Service</TableHead>
+                  <TableHead>Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {requete.Intervention.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>{requete.sujet}</TableCell>
+                    <TableCell>{item.nature}</TableCell>
+                    <TableCell>{item.intervenant}</TableCell>
+                    <TableCell>{item.service}</TableCell>
+                    <TableCell>
+                      <Button>Details</Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+                {requete.Intervention.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center">
+                      Aucune intervention pour cette requête
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
           ) : (
             <div className="border rounded-md p-5 flex flex-col items-center justify-center space-y-4">
               <FileX className="size-11" />
               <span> Aucune intervention pour cette requête</span>
-              <Button variant={"blue"} size={"lg"}>
-                <PlusCircle className="size-11" /> Ajouter{" "}
-              </Button>
+              <Link
+                href={`/intervention/${requete.clientId}/add/${requete.id}`}
+              >
+                <Button variant={"blue"} size={"lg"}>
+                  <PlusCircle className="size-11" /> Ajouter{" "}
+                </Button>
+              </Link>
             </div>
           )}
         </div>

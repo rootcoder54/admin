@@ -58,7 +58,7 @@ export const AddItemIntevention = ({
         values.interventionId
       ).then((data) => {
         toast.success("Enregistrer avec Success");
-        router.push(`/client/${clientId}/intervention/${interventionId}`);
+        router.push(`/requete/intervention/${clientId}`);
         if (!data) {
           return;
         }

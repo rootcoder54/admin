@@ -9,7 +9,7 @@ const AddIntervention = async ({ params }: ClientIdPageProps) => {
 
   return (
     <div>
-      <AddIntevention id={id} />
+      <AddIntevention id={id} requeteId={undefined} />
     </div>
   );
 };

@@ -9,7 +9,8 @@ export const addIntervention = async (
   nature: string | null = "",
   observations: string | null = "",
   dateCloture: Date = new Date(),
-  clientId: string
+  clientId: string,
+  requeteId: string | undefined
 ) => {
   const intervention = await db.intervention.create({
     data: {
@@ -19,7 +20,8 @@ export const addIntervention = async (
       nature,
       observations,
       dateCloture,
-      clientId
+      clientId,
+      requeteId
     }
   });
   return intervention;
