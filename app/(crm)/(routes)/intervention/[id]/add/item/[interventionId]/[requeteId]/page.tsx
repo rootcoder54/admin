@@ -20,7 +20,7 @@ const AddIntervention = async ({ params }: ClientIdPageProps) => {
         </Link>
         <h1 className="text-2xl font-bold">Ajouter une intervention</h1>
       </div>
-      <AddItemIntevention clientId={requeteId} interventionId={interventionId} />
+      <AddItemIntevention clientId={requeteId}  interventionId={interventionId} />
     </div>
   );
 };

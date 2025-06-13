@@ -73,7 +73,7 @@ export const AddIntevention = ({
         values.clientId,
         requeteId
       ).then((data) => {
-        route.push(`/intervention/${data.clientId}/add/item/${data.id}`);
+        route.push(`/intervention/${data.clientId}/add/item/${data.id}/${requeteId}`);
       });
     });
   }
