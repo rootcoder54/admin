@@ -248,6 +248,7 @@ model Requete {
   type        String?
   reponse     String?
   observation String?
+  logiciel    String?
 
   demandeur  String?
   technicien String?

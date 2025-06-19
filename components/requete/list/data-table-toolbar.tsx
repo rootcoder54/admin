@@ -60,7 +60,7 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
 
   return (
     <div className="flex items-center gap-3 py-4">
-      <div className="flex flex-col gap-3">
+      <div className="flex md:flex-row flex-col gap-3">
         <div className="flex items-center gap-3">
           <Input
             placeholder="Filter Sujet..."
@@ -149,7 +149,7 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
             </Button>
           )}
           <Link href={`/requete/add`}>
-            <Button variant="outline" size={"lg"}>
+            <Button variant="outline" size={"sm"}>
               <PlusIcon />
               Ajouter
             </Button>
@@ -160,13 +160,13 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
             <>
               <DeleteRequete reload={reload} id={id} />
               <Link href={`/requete/${id}`}>
-                <Button variant="gray" size={"lg"}>
+                <Button variant="gray" size={"sm"}>
                   <PlusIcon />
                   Detail
                 </Button>
               </Link>
               <Link href={`/requete/intervention/${id}`}>
-                <Button size={"lg"} variant={"blue"}>
+                <Button size={"sm"} variant={"blue"}>
                   <FileArchive />
                   Intervention
                 </Button>

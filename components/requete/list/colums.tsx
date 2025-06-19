@@ -32,7 +32,7 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Date
+          Numero
           {column.getIsSorted() === "desc" ? (
             <ArrowDown />
           ) : column.getIsSorted() === "asc" ? (
@@ -45,7 +45,8 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
     },
     cell: ({ row }) => (
       <div className="capitalize">
-        {format(row.getValue("dateDebut"), "yyyy-MM-dd HH:mm")}
+        {format(row.getValue("dateDebut"), "yyyyMMdd_HHmm_")}
+        {row.original.logiciel ? row.original.logiciel : "RHPaie"}_#
       </div>
     )
   },

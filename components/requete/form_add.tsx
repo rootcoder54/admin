@@ -52,6 +52,7 @@ const formSchema = z.object({
   type: z.string(),
   demandeur: z.string(),
   technicien: z.string(),
+  logiciel: z.string(),
   dateDebut: z.date(),
   heure: z.string(),
   clientId: z.string()
@@ -75,8 +76,9 @@ const FormAddRequete = () => {
       type: "",
       demandeur: "",
       technicien: "",
+      logiciel: "RHPaie",
       dateDebut: new Date(),
-      heure:new Date().getHours()+":"+new Date().getMinutes(),
+      heure: new Date().getHours() + ":" + new Date().getMinutes(),
       clientId: ""
     }
   });
@@ -89,6 +91,7 @@ const FormAddRequete = () => {
         values.type,
         values.demandeur,
         values.technicien,
+        values.logiciel,
         values.dateDebut,
         values.heure,
         values.clientId
@@ -106,7 +109,7 @@ const FormAddRequete = () => {
       </div>
     );
   }
-  
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -167,6 +170,34 @@ const FormAddRequete = () => {
                       Extension de licence
                     </SelectItem>
                     <SelectItem value="Maintenance">Maintenance</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="logiciel"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Logiciel</FormLabel>
+              <FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selectionné le type" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="RHPaie">RHPaie</SelectItem>
+                    <SelectItem value="TimeSheet">TimeSheet</SelectItem>
+                    <SelectItem value="RHFacture">RHFacture</SelectItem>
+                    <SelectItem value="RHData">RHData</SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>

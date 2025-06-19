@@ -8,6 +8,7 @@ export const addRequete = async (
   type: string,
   demandeur: string,
   technicien: string,
+  logiciel: string,
   dateDebut: Date,
   heure: string,
   clientId: string
@@ -25,6 +26,7 @@ export const addRequete = async (
       type,
       demandeur,
       technicien,
+      logiciel,
       dateDebut,
       etat: false,
       clientId
