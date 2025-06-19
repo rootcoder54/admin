@@ -45,7 +45,7 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
     },
     cell: ({ row }) => (
       <div className="capitalize">
-        {format(row.getValue("dateDebut"), "yyyy-MM-dd")}
+        {format(row.getValue("dateDebut"), "yyyy-MM-dd HH:mm")}
       </div>
     )
   },

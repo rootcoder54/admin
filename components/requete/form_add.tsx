@@ -53,6 +53,7 @@ const formSchema = z.object({
   demandeur: z.string(),
   technicien: z.string(),
   dateDebut: z.date(),
+  heure: z.string(),
   clientId: z.string()
 });
 
@@ -75,6 +76,7 @@ const FormAddRequete = () => {
       demandeur: "",
       technicien: "",
       dateDebut: new Date(),
+      heure:new Date().getHours()+":"+new Date().getMinutes(),
       clientId: ""
     }
   });
@@ -88,6 +90,7 @@ const FormAddRequete = () => {
         values.demandeur,
         values.technicien,
         values.dateDebut,
+        values.heure,
         values.clientId
       ).then((data) => {
         form.reset();
@@ -231,6 +234,19 @@ const FormAddRequete = () => {
                   />
                 </PopoverContent>
               </Popover>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="heure"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Heure</FormLabel>
+              <FormControl>
+                <Input type="time" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

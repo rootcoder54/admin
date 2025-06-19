@@ -9,8 +9,15 @@ export const addRequete = async (
   demandeur: string,
   technicien: string,
   dateDebut: Date,
+  heure: string,
   clientId: string
 ) => {
+
+  const heureParts = heure.split(":");
+  const heureInt = parseInt(heureParts[0], 10);
+  const minuteInt = parseInt(heureParts[1], 10);
+  dateDebut.setHours(heureInt, minuteInt);
+  
   const base = await db.requete.create({
     data: {
       sujet,
