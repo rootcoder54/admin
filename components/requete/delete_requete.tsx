@@ -47,7 +47,6 @@ export function DeleteRequete({
       <AlertDialogTrigger asChild>
         <Button variant="destructive" size={"sm"}>
           <Trash2 />
-          Supprimer
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

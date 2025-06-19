@@ -7,6 +7,7 @@ import {
   CheckCircle,
   ChevronDown,
   FileArchive,
+  FileStack,
   Gamepad,
   PlusIcon,
   X
@@ -161,8 +162,7 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
               <DeleteRequete reload={reload} id={id} />
               <Link href={`/requete/${id}`}>
                 <Button variant="gray" size={"sm"}>
-                  <PlusIcon />
-                  Detail
+                  <FileStack />
                 </Button>
               </Link>
               <Link href={`/requete/intervention/${id}`}>
