@@ -86,12 +86,12 @@ function DataTable<TData, TValue>({
         <DataToolBar table={table} reload={reload} />
       </div>
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-neutral-300 dark:bg-neutral-700">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow className="" key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead className="text-black dark:text-white" key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -104,7 +104,7 @@ function DataTable<TData, TValue>({
             </TableRow>
           ))}
         </TableHeader>
-        <TableBody>
+        <TableBody className="border-b border-neutral-200 dark:border-neutral-800">
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
