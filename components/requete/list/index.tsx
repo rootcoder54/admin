@@ -91,7 +91,10 @@ function DataTable<TData, TValue>({
             <TableRow className="" key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead className="text-black dark:text-white" key={header.id}>
+                  <TableHead
+                    className="text-black dark:text-white"
+                    key={header.id}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -112,15 +115,7 @@ function DataTable<TData, TValue>({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
                 onClick={() => {
-                  const isSelected = row.getIsSelected();
-
-                  // Si la ligne est déjà sélectionnée, on la désélectionne
-                  if (isSelected) {
-                    table.setRowSelection({});
-                  } else {
-                    // Sinon on sélectionne uniquement cette ligne
-                    table.setRowSelection({ [row.id]: true });
-                  }
+                  table.setRowSelection({ [row.id]: true });
                 }}
               >
                 {row.getVisibleCells().map((cell) => (

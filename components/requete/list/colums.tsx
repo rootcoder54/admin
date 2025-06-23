@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { format } from "date-fns";
 import { RequeteWithClient } from "@/types";
-import Link from "next/link";
+import DetailRequet from "../detail_requete";
 
 export const columns: ColumnDef<RequeteWithClient>[] = [
   {
@@ -70,8 +70,11 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
       );
     },
     cell: ({ row }) => (
-      <div>
-        <Link href={`requete/${row.original.id}`}>{row.getValue("sujet")}</Link>
+      <div className="group flex items-center gap-2">
+        {row.getValue("sujet")}
+        <div className="hidden group-hover:block items-center">
+          <DetailRequet id={row.original.id} />
+        </div>
       </div>
     )
   },

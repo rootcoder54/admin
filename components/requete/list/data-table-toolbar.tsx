@@ -7,7 +7,6 @@ import {
   CheckCircle,
   ChevronDown,
   FileArchive,
-  FileStack,
   Gamepad,
   PlusIcon,
   X
@@ -27,6 +26,7 @@ import { Badge } from "@/components/ui/badge";
 import ClientFilter from "./client-filter";
 import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/lib/fetcher";
+import DetailRequet from "../detail_requete";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -160,11 +160,13 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
           {table.getFilteredSelectedRowModel().rows.length !== 0 && (
             <>
               <DeleteRequete reload={reload} id={id} />
-              <Link href={`/requete/${id}`}>
+              {/*<Link href={`/requete/${id}`}>
                 <Button variant="gray" size={"sm"}>
                   <FileStack />
                 </Button>
               </Link>
+              */}
+              <DetailRequet id={id} />
               <Link href={`/requete/intervention/${id}`}>
                 <Button size={"sm"} variant={"blue"}>
                   <FileArchive />

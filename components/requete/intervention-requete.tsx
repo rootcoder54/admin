@@ -55,12 +55,6 @@ export const InterventionRequete = ({ id }: { id: string }) => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage className="line-clamp-1">
-                  <Link href={`/requete/${id}`}>{requete.sujet} </Link>
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage className="line-clamp-1">
                   Intervention Requete
                 </BreadcrumbPage>
               </BreadcrumbItem>
