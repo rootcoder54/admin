@@ -43,7 +43,11 @@ const ClientFilter = <TData, TValue>({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 border-dashed">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full border-dashed hover:dark:bg-stone-900"
+        >
           <PlusCircle />
           {title}
           {selectedValues?.size > 0 && (
@@ -81,7 +85,7 @@ const ClientFilter = <TData, TValue>({
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0" align="start">
+      <PopoverContent className="w-auto p-0" side="bottom" align="start">
         <Command>
           <CommandInput placeholder={title} />
           <CommandList>

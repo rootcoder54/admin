@@ -6,12 +6,9 @@ import { FileArchive, PlusIcon, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { DeleteRequete } from "../delete_requete";
-import { ClientList, RequeteWithClient } from "@/types";
+import { RequeteWithClient } from "@/types";
 import Link from "next/link";
 
-import ClientFilter from "./client-filter";
-import { useQuery } from "@tanstack/react-query";
-import { fetcher } from "@/lib/fetcher";
 import DetailRequet from "../detail_requete";
 import SearchFilter from "./search-filter";
 import { Input } from "@/components/ui/input";
@@ -29,11 +26,6 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
   };
   const rowSelected = table.getState().rowSelection;
   const [id, setId] = useState("");
-
-  const { data: clients } = useQuery<ClientList[]>({
-    queryKey: ["clients"],
-    queryFn: () => fetcher(`/api/client`)
-  });
 
   const selectedRowsData = table
     .getRowModel()
@@ -125,19 +117,9 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
               }}
               className="h-8 px-2 lg:px-3"
             >
-              Annuler
+              Effacer les filtres
               <X />
             </Button>
-          )}
-          {table.getColumn("clientId") && (
-            <ClientFilter
-              column={table.getColumn("clientId")}
-              title="Client"
-              options={clients?.map((client) => ({
-                label: client.nomClient,
-                value: client.id
-              }))}
-            />
           )}
           <Link href={`/requete/add`}>
             <Button variant="outline" size={"sm"}>

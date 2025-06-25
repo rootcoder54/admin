@@ -50,7 +50,6 @@ function highlightMatch(text: string, search: string) {
   return result;
 }
 
-
 export const columns: ColumnDef<RequeteWithClient>[] = [
   {
     id: "select",
@@ -109,7 +108,7 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
         </Button>
       );
     },
-    cell: ({ row ,column}) => {
+    cell: ({ row, column }) => {
       const value = row.getValue<string>("sujet") || "";
       const filter = column.getFilterValue() as string;
       return (
@@ -141,8 +140,14 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => {
-      return <div className="font-medium">{row.getValue("technicien")}</div>;
+    cell: ({ row, column }) => {
+      const value = row.getValue<string>("technicien") || "";
+      const filter = column.getFilterValue() as string;
+      return (
+        <div className="flex items-center">
+          {highlightMatch(value, filter || "")}
+        </div>
+      );
     }
   },
   {
@@ -168,8 +173,14 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => {
-      return <div className="font-medium">{row.getValue("demandeur")}</div>;
+    cell: ({ row, column }) => {
+      const value = row.getValue<string>("demandeur") || "";
+      const filter = column.getFilterValue() as string;
+      return (
+        <div className="flex items-center">
+          {highlightMatch(value, filter || "")}
+        </div>
+      );
     },
     enableHiding: true
   },

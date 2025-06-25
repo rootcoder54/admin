@@ -21,11 +21,21 @@ import {
 } from "@/components/ui/select";
 import { SlidersHorizontal } from "lucide-react";
 import { CalendarDateRangePicker } from "./date-range-picker";
+import ClientFilter from "./client-filter";
+import { ClientList } from "@/types";
+import { useQuery } from "@tanstack/react-query";
+import { fetcher } from "@/lib/fetcher";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
 }
 function SearchFilter<TData>({ table }: DataTableToolbarProps<TData>) {
+
+    const { data: clients } = useQuery<ClientList[]>({
+    queryKey: ["clients"],
+    queryFn: () => fetcher(`/api/client`)
+  });
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -125,10 +135,24 @@ function SearchFilter<TData>({ table }: DataTableToolbarProps<TData>) {
             <CalendarDateRangePicker table={table} />
           </div>
 
+          <div className="flex items-center space-x-2">
+            <Label className="w-36" htmlFor="client">
+              Client
+            </Label>
+            {table.getColumn("clientId") && (
+              <ClientFilter
+                column={table.getColumn("clientId")}
+                title="Client"
+                options={clients?.map((client) => ({
+                  label: client.nomClient,
+                  value: client.id
+                }))}
+              />
+            )}
+          </div>
+
           <PopoverClose asChild>
-            <Button variant="blue">
-              Filtrer
-            </Button>
+            <Button variant="blue">Filtrer</Button>
           </PopoverClose>
         </div>
       </PopoverContent>
