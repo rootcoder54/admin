@@ -1,13 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Table } from "@tanstack/react-table";
 import {
-  CheckCheckIcon,
-  CheckCircle,
-  ChevronDown,
   FileArchive,
-  Gamepad,
   PlusIcon,
   X
 } from "lucide-react";
@@ -17,16 +12,13 @@ import { useEffect, useState } from "react";
 import { DeleteRequete } from "../delete_requete";
 import { ClientList, RequeteWithClient } from "@/types";
 import Link from "next/link";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from "@/components/ui/popover";
-import { Badge } from "@/components/ui/badge";
+
 import ClientFilter from "./client-filter";
 import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "@/lib/fetcher";
 import DetailRequet from "../detail_requete";
+import SearchFilter from "./search-filter";
+import { Input } from "@/components/ui/input";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -37,8 +29,6 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const rowSelected = table.getState().rowSelection;
   const [id, setId] = useState("");
-  const [encour, setEncour] = useState<boolean>(false);
-  const [fin, setFin] = useState<boolean>(false);
 
   const { data: clients } = useQuery<ClientList[]>({
     queryKey: ["clients"],
@@ -72,7 +62,9 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
             className="max-w-sm"
           />
 
-          {table.getColumn("etat") && (
+          <SearchFilter table={table} />
+
+          {/* table.getColumn("etat") && (
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant="outline" className="border-dashed border-2">
@@ -124,7 +116,7 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
                 </div>
               </PopoverContent>
             </Popover>
-          )}
+          )*/}
           {table.getColumn("clientId") && (
             <ClientFilter
               column={table.getColumn("clientId")}
@@ -139,8 +131,6 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
             <Button
               variant="destructive"
               onClick={() => {
-                setEncour(false);
-                setFin(false);
                 table.resetColumnFilters();
               }}
               className="h-8 px-2 lg:px-3"

@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { format } from "date-fns";
 import { RequeteWithClient } from "@/types";
 import DetailRequet from "../detail_requete";
+import { dateBetween } from "./date-filter";
 
 export const columns: ColumnDef<RequeteWithClient>[] = [
   {
@@ -25,7 +26,7 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
     enableHiding: false
   },
   {
-    accessorKey: "dateDebut",
+    accessorKey: "numero",
     header: ({ column }) => {
       return (
         <Button
@@ -45,7 +46,7 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
     },
     cell: ({ row }) => (
       <div className="capitalize">
-        {format(row.getValue("dateDebut"), "yyyyMMdd_HHmm_")}
+        {format(row.original.dateDebut, "yyyyMMdd_HHmm_")}
         {row.original.logiciel ? row.original.logiciel : "RHPaie"}_#
       </div>
     )
@@ -100,6 +101,38 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
     cell: ({ row }) => {
       return <div className="font-medium">{row.getValue("technicien")}</div>;
     }
+  },
+  {
+    accessorKey: "logiciel",
+    enableHiding: true
+  },
+  {
+    accessorKey: "demandeur",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Demandeur
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return <div className="font-medium">{row.getValue("demandeur")}</div>;
+    },
+    enableHiding: true
+  },
+  {
+    accessorKey: "dateDebut",
+    filterFn: dateBetween
   },
   {
     accessorKey: "clientId",
