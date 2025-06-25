@@ -44,6 +44,7 @@ function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({
       logiciel: false,
+      dateDebut: false,
     });
   const [rowSelection, setRowSelection] = React.useState({});
 

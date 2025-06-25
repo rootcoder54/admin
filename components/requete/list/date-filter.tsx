@@ -1,11 +1,12 @@
 import { RequeteWithClient } from "@/types";
-import {  FilterFn } from "@tanstack/react-table";
+import { FilterFn } from "@tanstack/react-table";
 
-export const dateBetween: FilterFn<RequeteWithClient> = (row, columnId, value) => {
-  const [start, end] = value ?? [];
+export const dateBetween: FilterFn<RequeteWithClient> = (row, columnId, filterValue: [Date | undefined, Date | undefined]) => {
+  const [start, end] = filterValue ?? [];
   const cellDate = new Date(row.getValue(columnId));
 
-  if (start && cellDate < new Date(start)) return false;
-  if (end && cellDate > new Date(end)) return false;
+  if (start && cellDate < start) return false;
+  if (end && cellDate > end) return false;
+
   return true;
 };

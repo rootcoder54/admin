@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Popover,
+  PopoverClose,
   PopoverContent,
   PopoverTrigger
 } from "@/components/ui/popover";
@@ -19,12 +20,12 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { SlidersHorizontal } from "lucide-react";
+import { CalendarDateRangePicker } from "./date-range-picker";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
 }
 function SearchFilter<TData>({ table }: DataTableToolbarProps<TData>) {
- 
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -80,13 +81,10 @@ function SearchFilter<TData>({ table }: DataTableToolbarProps<TData>) {
             <Input
               placeholder="demandeur"
               value={
-                (table.getColumn("demandeur")?.getFilterValue() as string) ??
-                ""
+                (table.getColumn("demandeur")?.getFilterValue() as string) ?? ""
               }
               onChange={(event) =>
-                table
-                  .getColumn("demandeur")
-                  ?.setFilterValue(event.target.value)
+                table.getColumn("demandeur")?.setFilterValue(event.target.value)
               }
               className="max-w-sm"
             />
@@ -121,12 +119,17 @@ function SearchFilter<TData>({ table }: DataTableToolbarProps<TData>) {
           </div>
 
           <div className="flex items-center space-x-2">
-              <Label className="w-36" htmlFor="date">
-                Date
-              </Label>
-              
+            <Label className="w-36" htmlFor="">
+              Date
+            </Label>
+            <CalendarDateRangePicker table={table} />
           </div>
 
+          <PopoverClose asChild>
+            <Button variant="blue">
+              Filtrer
+            </Button>
+          </PopoverClose>
         </div>
       </PopoverContent>
     </Popover>
