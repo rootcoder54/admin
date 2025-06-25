@@ -53,6 +53,8 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
     <div className="flex items-center gap-3 py-4">
       <div className="flex md:flex-row flex-col gap-3">
         <div className="flex items-center gap-3">
+          <SearchFilter table={table} />
+
           <Input
             placeholder="Filter Sujet..."
             value={(table.getColumn("sujet")?.getFilterValue() as string) ?? ""}
@@ -61,8 +63,6 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
             }
             className="max-w-sm"
           />
-
-          <SearchFilter table={table} />
 
           {/* table.getColumn("etat") && (
             <Popover>

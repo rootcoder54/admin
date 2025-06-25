@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { addDays, format } from "date-fns";
+import { fr } from "date-fns/locale";
 import { DateRange } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -78,11 +79,11 @@ export function CalendarDateRangePicker<TData>({
             {from ? (
               to ? (
                 <>
-                  {format(from, "LLL dd, y")} -{" "}
-                  {format(addDays(to, -1), "LLL dd, y")}
+                  {format(from, "LLL dd, y", { locale: fr })} -{" "}
+                  {format(addDays(to, -1), "LLL dd, y", { locale: fr })}
                 </>
               ) : (
-                format(from, "LLL dd, y")
+                format(from, "LLL dd, y", { locale: fr })
               )
             ) : (
               <span>Choisis la date</span>
@@ -91,6 +92,7 @@ export function CalendarDateRangePicker<TData>({
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="end">
           <Calendar
+            locale={fr}
             initialFocus
             mode="range"
             defaultMonth={date?.from}
