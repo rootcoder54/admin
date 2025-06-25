@@ -57,7 +57,9 @@ export function CalendarDateRangePicker<TData>({
 
   // Appliquer le filtre à la table quand `dateFilter` change
   React.useEffect(() => {
-    table.getColumn("dateDebut")?.setFilterValue(dateFilter);
+    if (dateFilter[0] !== undefined || dateFilter[1] !== undefined) {
+      table.getColumn("dateDebut")?.setFilterValue(dateFilter);
+    }
   }, [dateFilter, table]);
 
   return (

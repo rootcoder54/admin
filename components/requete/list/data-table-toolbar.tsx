@@ -1,11 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Table } from "@tanstack/react-table";
-import {
-  FileArchive,
-  PlusIcon,
-  X
-} from "lucide-react";
+import { FileArchive, PlusIcon, X } from "lucide-react";
 
 import { useEffect, useState } from "react";
 
@@ -27,6 +23,10 @@ interface DataTableToolbarProps<TData> {
 
 function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+  const deselectRows = () => {
+    table.getState().rowSelection = {};
+    table.setRowSelection({});
+  };
   const rowSelected = table.getState().rowSelection;
   const [id, setId] = useState("");
 
@@ -117,16 +117,6 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
               </PopoverContent>
             </Popover>
           )*/}
-          {table.getColumn("clientId") && (
-            <ClientFilter
-              column={table.getColumn("clientId")}
-              title="Client"
-              options={clients?.map((client) => ({
-                label: client.nomClient,
-                value: client.id
-              }))}
-            />
-          )}
           {isFiltered && (
             <Button
               variant="destructive"
@@ -138,6 +128,16 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
               Annuler
               <X />
             </Button>
+          )}
+          {table.getColumn("clientId") && (
+            <ClientFilter
+              column={table.getColumn("clientId")}
+              title="Client"
+              options={clients?.map((client) => ({
+                label: client.nomClient,
+                value: client.id
+              }))}
+            />
           )}
           <Link href={`/requete/add`}>
             <Button variant="outline" size={"sm"}>
@@ -163,6 +163,9 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
                   Intervention
                 </Button>
               </Link>
+              <Button variant={"gray"} size={"sm"} onClick={deselectRows}>
+                Deselectionné
+              </Button>
             </>
           )}
         </div>
