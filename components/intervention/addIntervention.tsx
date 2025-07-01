@@ -29,29 +29,25 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Calendar } from "../ui/calendar";
-import { useQuery } from "@tanstack/react-query";
-import { ClientList } from "@/types";
-import { fetcher } from "@/lib/fetcher";
 import { Textarea } from "../ui/textarea";
 
 export const AddIntevention = ({
   id,
-  requeteId
+  requeteId,
+  numero
 }: {
   id: string;
   requeteId: string | undefined;
+  numero: string;
 }) => {
   const [isPending, startTransition] = useTransition();
   const route = useRouter();
-  const { data: client } = useQuery<ClientList>({
-    queryKey: ["clientId", id],
-    queryFn: () => fetcher(`/api/client/${id}`)
-  });
+
 
   const form = useForm({
     resolver: zodResolver(InterventionSchema),
     defaultValues: {
-      numero: client && client.numero !== null ? client.numero : "Aucun",
+      numero: numero,
       service: "Genie logiciel",
       intervenant: "",
       nature: "",
@@ -73,7 +69,9 @@ export const AddIntevention = ({
         values.clientId,
         requeteId
       ).then((data) => {
-        route.push(`/intervention/${data.clientId}/add/item/${data.id}/${requeteId}`);
+        route.push(
+          `/intervention/${data.clientId}/add/item/${data.id}/${requeteId}`
+        );
       });
     });
   }
