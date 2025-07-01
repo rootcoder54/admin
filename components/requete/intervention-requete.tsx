@@ -3,20 +3,20 @@
 import { fetcher } from "@/lib/fetcher";
 import { RequeteWithClient } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { SidebarTrigger } from "../ui/sidebar";
-import { Separator } from "../ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from "../ui/breadcrumb";
+} from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import { Spinner } from "../spinner";
-import { Button } from "../ui/button";
+import { Spinner } from "@/components/spinner";
+import { Button } from "@/components/ui/button";
 import { FileX, PlusCircle } from "lucide-react";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -25,6 +25,7 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
+import DetailInter from "./detail_intervention";
 
 export const InterventionRequete = ({ id }: { id: string }) => {
   const { data: requete } = useQuery<RequeteWithClient>({
@@ -63,7 +64,7 @@ export const InterventionRequete = ({ id }: { id: string }) => {
         </div>
         <div className="ml-auto px-3"></div>
       </header>
-      <div className="mx-auto w-full max-w-[1280px] p-8 flex flex-col space-y-2">
+      <div className="mx-auto w-full max-w-[1280px] py-8 flex flex-col space-y-2">
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-xl font-semibold space-x-2">
             Requête: {requete.sujet}{" "}
@@ -99,7 +100,7 @@ export const InterventionRequete = ({ id }: { id: string }) => {
                     <TableCell>{item.intervenant}</TableCell>
                     <TableCell>{item.service}</TableCell>
                     <TableCell>
-                      <Button>Details</Button>
+                      <DetailInter id={item.id} />
                     </TableCell>
                   </TableRow>
                 ))}

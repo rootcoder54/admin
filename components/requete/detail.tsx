@@ -3,23 +3,23 @@
 import { fetcher } from "@/lib/fetcher";
 import { RequeteWithClient } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { SidebarTrigger } from "../ui/sidebar";
-import { Separator } from "../ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator
-} from "../ui/breadcrumb";
+} from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import { Spinner } from "../spinner";
-import { Button } from "../ui/button";
+import { Spinner } from "@/components/spinner";
+import { Button } from "@/components/ui/button";
 import { Edit2 } from "lucide-react";
 import { DeleteRequete } from "./delete_requete";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 export const DetailRequet = ({ id }: { id: string }) => {
   const router = useRouter();

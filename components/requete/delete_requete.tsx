@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { useTransition } from "react";
 import { toast } from "sonner";
-import { Spinner } from "../spinner";
+import { Spinner } from "@/components/spinner";
 import { deleteRequete } from "@/action/requete/delete";
 
 export function DeleteRequete({

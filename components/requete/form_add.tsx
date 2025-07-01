@@ -12,16 +12,16 @@ import {
   FormLabel,
   FormMessage
 } from "@/components/ui/form";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
-} from "../ui/select";
+} from "@/components/ui/select";
 import {
   Command,
   CommandEmpty,
@@ -30,17 +30,17 @@ import {
   CommandItem,
   CommandList
 } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
-import { Calendar } from "../ui/calendar";
+import { Calendar } from "@/components/ui/calendar";
 import { useQuery } from "@tanstack/react-query";
 import { ClientList } from "@/types";
 import { fetcher } from "@/lib/fetcher";
 import { addRequete } from "@/action/requete/add";
 import { toast } from "sonner";
-import { Spinner } from "../spinner";
+import { Spinner } from "@/components/spinner";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 

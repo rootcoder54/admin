@@ -23,15 +23,15 @@ import {
   Trello,
   Users
 } from "lucide-react";
-import { Skeleton } from "../ui/skeleton";
-import { Badge } from "../ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Badge } from "@/components/ui/badge";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger
 } from "@/components/ui/hover-card";
 import { format } from "date-fns";
-import { Separator } from "../ui/separator";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
 const DetailRequet = ({ id }: { id: string }) => {
