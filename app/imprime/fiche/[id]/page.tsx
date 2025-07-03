@@ -224,7 +224,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center font-semibold">
             <span>au capital de 0; N°RC: 0 NIF:N° Compte: 0</span>
             <span>LAFIABOUGOU , BP.</span>
             <span>Tel: Fax: - Email: email@malisystem.com</span>

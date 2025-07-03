@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import { Spinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
-import { FileX, PlusCircle } from "lucide-react";
+import { FileArchive, FileX, PlusCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -71,6 +71,12 @@ export const InterventionRequete = ({ id }: { id: string }) => {
             <Badge>{requete.etat ? "TERMINE" : "EN_COURS"}</Badge>
           </h2>
           <div className="flex gap-x-3">
+            <Link href={`/imprime/fiche/${requete.clientId}`} target="_blank">
+              <Button variant={"blue"} size={"lg"}>
+                <FileArchive />
+                Fiche
+              </Button>
+            </Link>
             <Link href={`/intervention/${requete.clientId}/add/${requete.id}`}>
               <Button variant={"gray"} size={"lg"}>
                 <PlusCircle />
