@@ -31,19 +31,19 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell colSpan={2} className="py-1 pb-0">
+              <TableCell colSpan={2} className="py-1 pb-0 px-1">
                 <div>
                   <span className="font-bold">Créateur</span>
                 </div>
               </TableCell>
-              <TableCell colSpan={2} className="py-1 pb-0">
+              <TableCell colSpan={2} className="py-1 pb-0 px-1">
                 <div>
                   <span className="font-bold">Dernier modificateur :</span>
                 </div>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 py-3">
+              <TableCell className="border-2 border-zinc-800 py-3 px-1">
                 <div className="flex flex-col">
                   <span className="font-bold">
                     Fiche d&apos;intervention n° :
@@ -51,19 +51,19 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
                   <span>0458/{format(new Date(), "yyyy")}</span>
                 </div>
               </TableCell>
-              <TableCell className="border-2 py-3">
+              <TableCell className="border-2 border-zinc-800 py-3 px-1">
                 <div className="flex flex-col">
                   <span className="font-bold">Date de création :</span>
                   <span>{format(new Date(), "dd/MM/yyyy")}</span>
                 </div>
               </TableCell>
-              <TableCell className="border-2 py-3">
+              <TableCell className="border-2 border-zinc-800 py-3 px-1">
                 <div className="flex flex-col">
                   <span className="font-bold">Heure de création :</span>
                   <span>{format(new Date(), "HH:mm")}</span>
                 </div>
               </TableCell>
-              <TableCell className="border-2 py-3">
+              <TableCell className="border-2 border-zinc-800 py-3 px-1">
                 <div className="flex flex-col">
                   <span className="font-bold">Service concerné :</span>
                   <span> _</span>
@@ -71,13 +71,13 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 py-3 px-1" colSpan={2}>
+              <TableCell className="border-2 border-zinc-800 py-3 px-1" colSpan={2}>
                 <div className="flex flex-row">
                   <span className="font-bold">Nom du client :</span>
                   <span className="ml-2">{client.nomClient}</span>
                 </div>
               </TableCell>
-              <TableCell className="border-2 py-3 px-1" colSpan={2}>
+              <TableCell className="border-2 border-zinc-800 py-3 px-1" colSpan={2}>
                 <div className="flex flex-row">
                   <span className="font-bold">Intervenants :</span>
                   <span className="ml-2"></span>
@@ -85,7 +85,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 py-1 h-9 px-1" colSpan={4}>
+              <TableCell className="border-2 border-zinc-800 py-1 h-9 px-1" colSpan={4}>
                 <div className="flex flex-row justify-between">
                   <div>
                     <span className="font-bold">Adresse : </span>
@@ -104,7 +104,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
             </TableRow>
             <TableRow>
               <TableCell
-                className="border-2 bg-zinc-200 text-center p-0"
+                className="border-2 border-b-0 border-zinc-800 bg-zinc-200 text-center p-0"
                 colSpan={4}
               >
                 <span className="font-bold">Matériel concerné</span>
@@ -115,30 +115,30 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Référence</span>
               </TableCell>
-              <TableCell colSpan={2} className="border-2 py-1">
+              <TableCell colSpan={2} className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Désignation</span>
               </TableCell>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Fabricant</span>
               </TableCell>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Nouv.com</span>
               </TableCell>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Anc .com</span>
               </TableCell>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Différence</span>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={7} className="border-2 py-3"></TableCell>
+              <TableCell colSpan={7} className="border-2 border-zinc-800 py-3"></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={7} className="border-2 py-2">
+              <TableCell colSpan={7} className="border-2 border-zinc-800 py-2">
                 <div className="flex">
                   <span className="font-bold">Déplacement facturé :</span>
                   <span></span>
@@ -146,7 +146,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={7} className="border-2 py-1">
+              <TableCell colSpan={7} className="border-2 border-zinc-800 py-1">
                 <div className="flex items-center justify-center w-full text-center">
                   <span className="font-bold text-center">
                     Nature de l&apos;intervention :
@@ -157,7 +157,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
             <TableRow>
               <TableCell
                 colSpan={7}
-                className="border-2 border-b-0 py-4"
+                className="border-2 border-b-0 border-zinc-800 py-4"
               ></TableCell>
             </TableRow>
           </TableBody>
@@ -165,47 +165,47 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell colSpan={6} className="border-2 py-2 bg-zinc-200">
+              <TableCell colSpan={6} className="border-2 border-zinc-800 py-2 bg-zinc-200">
                 <div className="flex items-center justify-center w-full text-center">
                   <span className="font-bold text-center">INTERVENTIONS :</span>
                 </div>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Date:</span>
               </TableCell>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Heure début:</span>
               </TableCell>
-              <TableCell className="border-2 py-1">
+              <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Heure fin:</span>
               </TableCell>
-              <TableCell className="border-2 py-1" colSpan={3}>
+              <TableCell className="border-2 border-zinc-800 py-1" colSpan={3}>
                 <span className="font-bold">Descriptif:</span>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 h-20"></TableCell>
-              <TableCell className="border-2 h-20"></TableCell>
-              <TableCell className="border-2 h-20"></TableCell>
-              <TableCell className="border-2 h-20" colSpan={3}></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20" colSpan={3}></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 h-20"></TableCell>
-              <TableCell className="border-2 h-20"></TableCell>
-              <TableCell className="border-2 h-20"></TableCell>
-              <TableCell className="border-2 h-20" colSpan={3}></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-zinc-800 h-20" colSpan={3}></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={6} className="border-2 py-1">
+              <TableCell colSpan={6} className="border-2 border-zinc-800 py-1">
                 <div className="flex items-center justify-center w-full text-center">
                   <span className="font-bold">Observations:</span>
                 </div>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={6} className="border-2 h-24"></TableCell>
+              <TableCell colSpan={6} className="border-2 border-zinc-800 h-24"></TableCell>
             </TableRow>
           </TableBody>
         </Table>
