@@ -14,7 +14,7 @@ const PrintButton = () => {
   }, []);
 
   return (
-    <Button variant={"outline"} onClick={handlePrint} className="no-print">
+    <Button variant={"blue"} onClick={handlePrint} className="no-print">
       Imprimer
     </Button>
   );

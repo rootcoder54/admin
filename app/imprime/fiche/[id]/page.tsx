@@ -15,10 +15,10 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
     return <div className="text-center text-red-500">Client non trouvé</div>;
   }
   return (
-    <div id="pdf-content" className="h-full p-10 py-5 space-y-3">
+    <div id="pdf-content" className="max-h-full p-10 py-5 space-y-3">
       <PrintButton />
       <div className="flex flex-col mx-auto">
-        <div className="flex flex-row items-end justify-start gap-2 mb-2 border-b-2">
+        <div className="flex flex-row items-end justify-start gap-2 mb-2 border-b border-zinc-900">
           <Image
             src={"/msys.png"}
             alt="logo"
@@ -71,13 +71,19 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 border-zinc-800 py-3 px-1" colSpan={2}>
+              <TableCell
+                className="border-2 border-zinc-800 py-3 px-1"
+                colSpan={2}
+              >
                 <div className="flex flex-row">
                   <span className="font-bold">Nom du client :</span>
                   <span className="ml-2">{client.nomClient}</span>
                 </div>
               </TableCell>
-              <TableCell className="border-2 border-zinc-800 py-3 px-1" colSpan={2}>
+              <TableCell
+                className="border-2 border-zinc-800 py-3 px-1"
+                colSpan={2}
+              >
                 <div className="flex flex-row">
                   <span className="font-bold">Intervenants :</span>
                   <span className="ml-2"></span>
@@ -85,7 +91,10 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="border-2 border-zinc-800 py-1 h-9 px-1" colSpan={4}>
+              <TableCell
+                className="border-2 border-zinc-800 py-1 h-9 px-1"
+                colSpan={4}
+              >
                 <div className="flex flex-row justify-between">
                   <div>
                     <span className="font-bold">Adresse : </span>
@@ -135,7 +144,10 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={7} className="border-2 border-zinc-800 py-3"></TableCell>
+              <TableCell
+                colSpan={7}
+                className="border-2 border-zinc-800 py-3"
+              ></TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={7} className="border-2 border-zinc-800 py-2">
@@ -165,9 +177,17 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell colSpan={6} className="border-2 border-zinc-800 py-2 bg-zinc-200">
+              <TableCell
+                colSpan={6}
+                className="border-2 border-zinc-800 py-2 bg-zinc-200"
+              >
                 <div className="flex items-center justify-center w-full text-center">
-                  <span className="font-bold text-center">INTERVENTIONS :</span>
+                  <span
+                    className="font-bold text-center"
+                    style={{ letterSpacing: "12px" }}
+                  >
+                    INTERVENTIONS:
+                  </span>
                 </div>
               </TableCell>
             </TableRow>
@@ -189,13 +209,19 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
-              <TableCell className="border-2 border-zinc-800 h-20" colSpan={3}></TableCell>
+              <TableCell
+                className="border-2 border-zinc-800 h-20"
+                colSpan={3}
+              ></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
-              <TableCell className="border-2 border-zinc-800 h-20" colSpan={3}></TableCell>
+              <TableCell
+                className="border-2 border-zinc-800 h-20"
+                colSpan={3}
+              ></TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={6} className="border-2 border-zinc-800 py-1">
@@ -205,7 +231,10 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={6} className="border-2 border-zinc-800 h-24"></TableCell>
+              <TableCell
+                colSpan={6}
+                className="border-2 border-zinc-800 h-24"
+              ></TableCell>
             </TableRow>
           </TableBody>
         </Table>
