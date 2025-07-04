@@ -235,7 +235,9 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               <TableCell
                 colSpan={4}
                 className="border-2 border-zinc-800 h-24"
-              ></TableCell>
+              >
+                {intervention.observations}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>

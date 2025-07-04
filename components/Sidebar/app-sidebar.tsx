@@ -53,6 +53,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         isActive: pathname.startsWith("/requete")
       },
       {
+        title: "Intervention",
+        url: "/interv",
+        icon: AlignLeft,
+        badge: "10",
+        isActive: pathname.startsWith("/interv")
+      },
+      {
         title: "Calendrier",
         url: "/calendrier",
         icon: Calendar,
