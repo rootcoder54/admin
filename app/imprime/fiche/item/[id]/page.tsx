@@ -48,7 +48,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
                   <span className="font-bold">
                     Fiche d&apos;intervention n° :
                   </span>
-                  <span>0458/{format(new Date(), "yyyy")}</span>
+                  <span>{intervention.numero}/{format(new Date(), "yyyy")}</span>
                 </div>
               </TableCell>
               <TableCell className="border-2 border-zinc-800 py-3 px-1">
