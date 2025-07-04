@@ -40,7 +40,7 @@ export function FicheVide() {
           {"Fiche Intervention"}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-full p-0">
         <Command>
           <CommandInput placeholder="Search framework..." className="h-9" />
           <CommandList>
@@ -55,7 +55,7 @@ export function FicheVide() {
                   <Link
                     href={`/imprime/fiche/${client.id}`}
                     target="_blank"
-                    className="p-3 w-full"
+                    className="p-2 w-full"
                   >
                     {client.nomClient}
                   </Link>
