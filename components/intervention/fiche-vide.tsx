@@ -42,7 +42,7 @@ export function FicheVide() {
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
+          <CommandInput placeholder="Recherche client..." className="h-9" />
           <CommandList>
             <CommandEmpty>Pas de client.</CommandEmpty>
             <CommandGroup>
