@@ -127,9 +127,10 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Référence</span>
               </TableCell>
-              <TableCell colSpan={2} className="border-2 border-zinc-800 py-1">
+              <TableCell className="border-2 border-r-0 border-zinc-800 py-1">
                 <span className="font-bold">Désignation</span>
               </TableCell>
+              <TableCell className="border-2 border-l-0 border-zinc-800 py-1"></TableCell>
               <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Fabricant</span>
               </TableCell>
@@ -178,7 +179,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
           <TableBody>
             <TableRow>
               <TableCell
-                colSpan={6}
+                colSpan={8}
                 className="border-2 border-zinc-800 py-2 bg-zinc-200"
               >
                 <div className="flex items-center justify-center w-full text-center">
@@ -201,30 +202,36 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               <TableCell className="border-2 border-zinc-800 py-1">
                 <span className="font-bold">Heure fin:</span>
               </TableCell>
-              <TableCell className="border-2 border-zinc-800 py-1" colSpan={3}>
+              <TableCell className="border-2 border-r-0 border-zinc-800 py-1">
                 <span className="font-bold">Descriptif:</span>
               </TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 py-1"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 py-1"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 py-1"></TableCell>
+              <TableCell className="border-2 border-l-0 border-zinc-800 py-1"></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
-              <TableCell
-                className="border-2 border-zinc-800 h-20"
-                colSpan={3}
-              ></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-l-0 border-zinc-800 h-20"></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
               <TableCell className="border-2 border-zinc-800 h-20"></TableCell>
-              <TableCell
-                className="border-2 border-zinc-800 h-20"
-                colSpan={3}
-              ></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-r-0 border-l-0 border-zinc-800 h-20"></TableCell>
+              <TableCell className="border-2 border-l-0 border-zinc-800 h-20"></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={6} className="border-2 border-zinc-800 py-1">
+              <TableCell colSpan={8} className="border-2 border-zinc-800 py-1">
                 <div className="flex items-center justify-center w-full text-center">
                   <span className="font-bold">Observations:</span>
                 </div>
@@ -232,7 +239,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
             </TableRow>
             <TableRow>
               <TableCell
-                colSpan={6}
+                colSpan={8}
                 className="border-2 border-zinc-800 h-24"
               ></TableCell>
             </TableRow>
