@@ -35,29 +35,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Employé",
         url: "/employe",
         icon: Users,
-        badge: "10",
         isActive: pathname === "/employe"
       },
       {
         title: "Client",
         url: "/client",
         icon: UserSquareIcon,
-        badge: "10",
         isActive: pathname.startsWith("/client")
       },
       {
         title: "Requête",
         url: "/requete",
         icon: AlignLeft,
-        badge: "10",
         isActive: pathname.startsWith("/requete")
       },
       {
         title: "Intervention",
-        url: "/interv",
+        url: "/intervention",
         icon: AlignLeft,
-        badge: "10",
-        isActive: pathname.startsWith("/interv")
+        isActive: pathname.startsWith("/intervention")
       },
       {
         title: "Calendrier",

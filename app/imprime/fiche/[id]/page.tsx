@@ -38,7 +38,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
               <TableCell colSpan={2} className="py-1 pb-0 px-1">
                 <div>
-                  <span className="font-bold">Dernier modificateur :</span>
+                  <span className="font-bold">Dernier modificateur : {format(new Date(),"dd/MM/yyyy")}</span>
                 </div>
               </TableCell>
             </TableRow>

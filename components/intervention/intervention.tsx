@@ -29,10 +29,10 @@ import {
   Edit,
   Folder,
   MoreHorizontal,
-  PlusIcon,
+  SlidersHorizontal,
   X
 } from "lucide-react";
-import { InterventionAll } from "@/types";
+import { ClientList, InterventionAll } from "@/types";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -53,6 +53,32 @@ import {
 } from "@/components/ui/select";
 import { Input } from "../ui/input";
 import { format } from "date-fns";
+import ClientFilter from "../requete/list/client-filter";
+
+import {
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverTrigger
+} from "@/components/ui/popover";
+import { Label } from "@/components/ui/label";
+import { FilterDateIntervention } from "./date-range-picker";
+
+import { FilterFn } from "@tanstack/react-table";
+
+const dateBetween: FilterFn<InterventionAll> = (
+  row,
+  columnId,
+  filterValue: [Date | undefined, Date | undefined]
+) => {
+  const [start, end] = filterValue ?? [];
+  const cellDate = new Date(row.getValue(columnId));
+
+  if (start && cellDate < start) return false;
+  if (end && cellDate > end) return false;
+
+  return true;
+};
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -79,6 +105,7 @@ const columns: ColumnDef<InterventionAll>[] = [
         </Button>
       );
     },
+    filterFn: dateBetween,
     cell: ({ row }) => {
       return (
         <div className="font-medium">
@@ -108,6 +135,30 @@ const columns: ColumnDef<InterventionAll>[] = [
       );
     },
     cell: ({ row }) => <div className="lowercase">{row.original.nature}</div>
+  },
+  {
+    accessorKey: "clientId",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Client
+          {column.getIsSorted() === "desc" ? (
+            <ArrowDown />
+          ) : column.getIsSorted() === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
+        </Button>
+      );
+    },
+    filterFn: (row, columnId, filterValue) => {
+      return filterValue.includes(row.getValue(columnId));
+    },
+    cell: ({ row }) => <div className="">{row.original.client.nomClient}</div>
   },
   {
     accessorKey: "intervenant",
@@ -174,6 +225,7 @@ function ToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
 
   return (
     <div className="flex items-center gap-3">
+      <SearchFilter table={table} />
       <Input
         placeholder="Filter par technicien..."
         value={
@@ -190,7 +242,7 @@ function ToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
           onClick={() => table.resetColumnFilters()}
           className="h-8 px-2 lg:px-3"
         >
-          Annuler
+          Effacer le filtre
           <X />
         </Button>
       )}
@@ -198,10 +250,10 @@ function ToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
   );
 }
 
-export const Intervention = ({ clientId }: { clientId: string }) => {
+export const Intervention = () => {
   const { data } = useQuery<InterventionAll[]>({
-    queryKey: ["InterventionId", clientId],
-    queryFn: () => fetcher(`/api/intervention/${clientId}`)
+    queryKey: ["InterventionId"],
+    queryFn: () => fetcher(`/api/intervention`)
   });
   if (!data) {
     return (
@@ -211,17 +263,11 @@ export const Intervention = ({ clientId }: { clientId: string }) => {
     );
   }
   return (
-    <div className="w-full flex flex-col space-y-2 p-5 border rounded-md">
+    <div className="w-full flex flex-col space-y-2 p-5 rounded-md">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold text-neutral-600 dark:text-neutral-400">
           Interventions
         </h2>
-        <Link href={`/client/${clientId}/intervention/add`}>
-          <Button variant={"outline"}>
-            <PlusIcon />
-            Ajouter
-          </Button>
-        </Link>
       </div>
       <ItemIntervention columns={columns} data={data} />
     </div>
@@ -235,6 +281,9 @@ const ItemIntervention = <TData, TValue>({
   const table = useReactTable({
     data,
     columns,
+    filterFns: {
+      dateBetween
+    },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel()
@@ -357,3 +406,89 @@ const ItemIntervention = <TData, TValue>({
     </div>
   );
 };
+
+function SearchFilter<TData>({ table }: DataTableToolbarProps<TData>) {
+  const { data: clients } = useQuery<ClientList[]>({
+    queryKey: ["clients"],
+    queryFn: () => fetcher(`/api/client`)
+  });
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">
+          <SlidersHorizontal />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent
+        className="w-auto dark:bg-stone-800"
+        side="bottom"
+        align="start"
+      >
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center space-x-2">
+            <Label className="w-36" htmlFor="search">
+              Technicien
+            </Label>
+            <Input
+              placeholder="Technicien ..."
+              value={
+                (table.getColumn("intervenant")?.getFilterValue() as string) ??
+                ""
+              }
+              onChange={(event) =>
+                table
+                  .getColumn("intervenant")
+                  ?.setFilterValue(event.target.value)
+              }
+              className="max-w-sm"
+            />
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Label className="w-36" htmlFor="search">
+              Nature
+            </Label>
+            <Input
+              placeholder="Nature..."
+              value={
+                (table.getColumn("nature")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("nature")?.setFilterValue(event.target.value)
+              }
+              className="max-w-sm"
+            />
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Label className="w-36" htmlFor="">
+              Date
+            </Label>
+            <FilterDateIntervention table={table} />
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Label className="w-36" htmlFor="client">
+              Client
+            </Label>
+            {table.getColumn("clientId") && (
+              <ClientFilter
+                column={table.getColumn("clientId")}
+                title="Client"
+                options={clients?.map((client) => ({
+                  label: client.nomClient,
+                  value: client.id
+                }))}
+              />
+            )}
+          </div>
+
+          <PopoverClose asChild>
+            <Button variant="blue">Filtrer</Button>
+          </PopoverClose>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
