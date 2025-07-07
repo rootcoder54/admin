@@ -201,7 +201,7 @@ const columns: ColumnDef<InterventionAll>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>
               <Link
-                href={`/client/${intervention.clientId}/intervention/${intervention.id}`}
+                href={`/intervention/detail/${intervention.id}`}
                 className="w-full flex items-center justify-start gap-x-2"
               >
                 <Folder /> Details

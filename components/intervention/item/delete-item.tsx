@@ -22,7 +22,8 @@ export function DeleteItem({ id, idClient }: { id: string; idClient: string }) {
     startTransition(() => {
       deleteItem(id).then((data) => {
         toast.success(`Item de ${data.description} supprimé avec succes`);
-        router.push(`/client/${idClient}/intervention/${data.interventionId}`);
+        console.log(idClient);
+        router.push(`/intervention/detail/${data.interventionId}`);
       });
     });
   };

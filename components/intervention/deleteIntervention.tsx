@@ -37,7 +37,7 @@ export function DeteleIntervention({
             toast.success(`Intervention supprimer`);
           });
         }
-        route.push(`/client/${data.clientId}`);
+        route.push(`/intervention`);
       });
     });
   };
