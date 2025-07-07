@@ -89,7 +89,7 @@ export const AddIntevention = ({
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
             name="numero"
@@ -161,6 +161,22 @@ export const AddIntevention = ({
 
           <FormField
             control={form.control}
+            name="nature"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Propos du client / Nature de l&apos;intervention
+                </FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="service"
             render={({ field }) => (
               <FormItem>
@@ -181,39 +197,6 @@ export const AddIntevention = ({
                 <FormLabel>Intervenants</FormLabel>
                 <FormControl>
                   <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="nature"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nature de l&apos;intervention</FormLabel>
-                <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selectionné le type de l'intervention" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="Support et assistance">
-                        Support et assistance
-                      </SelectItem>
-                      <SelectItem value="Installation">Installation</SelectItem>
-                      <SelectItem value="Extension de licence">
-                        Extension de licence
-                      </SelectItem>
-                      <SelectItem value="Maintenance">Maintenance</SelectItem>
-                    </SelectContent>
-                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
