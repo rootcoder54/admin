@@ -120,7 +120,7 @@ export const ClientComponent = ({ clientId }: { clientId: string }) => {
             <TabsTrigger value="contrat">Contrat</TabsTrigger>
           </TabsList>
           <TabsContent value="Intervention">
-            <Intervention clientId={clientId} />
+            <Intervention />
           </TabsContent>
           <TabsContent value="Base">
             <div className="space-y-3">
