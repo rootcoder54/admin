@@ -34,25 +34,27 @@ import { Textarea } from "../ui/textarea";
 export const AddIntevention = ({
   id,
   requeteId,
-  numero
+  client
 }: {
   id: string;
   requeteId: string | undefined;
-  numero: string;
+  client: string | undefined;
 }) => {
   const [isPending, startTransition] = useTransition();
   const route = useRouter();
 
-
   const form = useForm({
     resolver: zodResolver(InterventionSchema),
     defaultValues: {
-      numero: numero,
+      numero: "",
       service: "Genie logiciel",
       intervenant: "",
       nature: "",
       observations: "",
       dateCloture: new Date(),
+      client: client,
+      creepar: "",
+      afacturee: "Non facturée",
       clientId: id
     }
   });
@@ -66,6 +68,8 @@ export const AddIntevention = ({
         values.nature,
         values.observations,
         values.dateCloture,
+        values.creepar,
+        values.afacturee,
         values.clientId,
         requeteId
       ).then((data) => {
@@ -91,7 +95,62 @@ export const AddIntevention = ({
             name="numero"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Numéro de la fiche</FormLabel>
+                <FormLabel>ID de la fiche</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="creepar"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Crée par</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="afacturee"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>A facturer</FormLabel>
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="A facture" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Non facturée">Non facturée</SelectItem>
+                      <SelectItem value="Facturée">Facturée</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="client"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Client</FormLabel>
                 <FormControl>
                   <Input {...field} readOnly disabled />
                 </FormControl>
@@ -99,6 +158,7 @@ export const AddIntevention = ({
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="service"

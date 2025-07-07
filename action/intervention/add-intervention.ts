@@ -9,9 +9,12 @@ export const addIntervention = async (
   nature: string | null = "",
   observations: string | null = "",
   dateCloture: Date = new Date(),
+  creepar: string | null = "",
+  afacturee: string | null = "Non facturée",
   clientId: string,
   requeteId: string | undefined
 ) => {
+  const isFacturee = afacturee === "Facturée" ? true : false;
   const intervention = await db.intervention.create({
     data: {
       numero,
@@ -20,9 +23,12 @@ export const addIntervention = async (
       nature,
       observations,
       dateCloture,
+      creePar: creepar,
+      afacturee: isFacturee,
       clientId,
       requeteId
     }
   });
+  console.log("Intervention added:", intervention);
   return intervention;
 };

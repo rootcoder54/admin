@@ -12,8 +12,9 @@ const AddIntervention = async ({ params }: ClientIdPageProps) => {
   const { id, requeteId } = await params;
 
   const client = await getClientId(id);
-  const numero = client && client.numero ? client.numero : "Aucun";
-
+  if (!client) {
+    return <div>Client not found</div>;
+  }
   return (
     <div className="p-8 flex flex-col space-y-2">
       <div className="flex flex-row items-center space-x-4">
@@ -24,7 +25,7 @@ const AddIntervention = async ({ params }: ClientIdPageProps) => {
         </Link>
         <h1 className="text-2xl font-bold">Ajouter une intervention</h1>
       </div>
-      <AddIntevention id={id} requeteId={requeteId} numero={numero} />
+      <AddIntevention id={id} requeteId={requeteId} client={client.nomClient} />
     </div>
   );
 };

@@ -33,7 +33,9 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
             <TableRow>
               <TableCell colSpan={2} className="py-1 pb-0 px-1">
                 <div>
-                  <span className="font-bold">Créateur</span>
+                  <span className="font-bold">
+                    Créateur: {intervention.creePar}
+                  </span>
                 </div>
               </TableCell>
               <TableCell colSpan={2} className="py-1 pb-0 px-1">
@@ -48,7 +50,9 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
                   <span className="font-bold">
                     Fiche d&apos;intervention n° :
                   </span>
-                  <span>{intervention.numero}/{format(new Date(), "yyyy")}</span>
+                  <span>
+                    {intervention.numero}/{format(new Date(), "yyyy")}
+                  </span>
                 </div>
               </TableCell>
               <TableCell className="border-2 border-zinc-800 py-3 px-1">
@@ -152,9 +156,9 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
             </TableRow>
             <TableRow>
               <TableCell colSpan={7} className="border-2 border-zinc-800 py-2">
-                <div className="flex">
+                <div className="flex gap-x-3">
                   <span className="font-bold">Déplacement facturé :</span>
-                  <span></span>
+                  <span>{intervention.afacturee ? "Oui" : "Non"}</span>
                 </div>
               </TableCell>
             </TableRow>
@@ -232,10 +236,7 @@ const FicheIntervention = async ({ params }: FicheIdPageProps) => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell
-                colSpan={4}
-                className="border-2 border-zinc-800 h-24"
-              >
+              <TableCell colSpan={4} className="border-2 border-zinc-800 h-24">
                 {intervention.observations}
               </TableCell>
             </TableRow>

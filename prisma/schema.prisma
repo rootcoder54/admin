@@ -162,6 +162,8 @@ model Intervention {
   intervenant  String
   nature       String?
   observations String?
+  creePar      String?
+  afacturee    Boolean  @default(false)
   dateCloture  DateTime
 
   documentId String?

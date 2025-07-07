@@ -29,6 +29,7 @@ import {
   Edit,
   Folder,
   MoreHorizontal,
+  Printer,
   SlidersHorizontal,
   X
 } from "lucide-react";
@@ -205,6 +206,15 @@ const columns: ColumnDef<InterventionAll>[] = [
                 className="w-full flex items-center justify-start gap-x-2"
               >
                 <Folder /> Details
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link
+                href={`/imprime/fiche/item/${intervention.id}`}
+                target="_blank"
+                className="w-full flex items-center justify-start gap-x-2"
+              >
+                <Printer /> Fiche réélle
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
