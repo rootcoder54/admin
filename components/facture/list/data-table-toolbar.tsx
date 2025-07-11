@@ -1,11 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Table } from "@tanstack/react-table";
-import { PlusIcon, X } from "lucide-react";
+import { ChevronDown, PlusIcon, X } from "lucide-react";
 
 import Link from "next/link";
 
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -50,10 +56,9 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
         </div>
       </div>
 
-      {/*
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="ml-auto">
+          <Button variant="secondary" className="ml-auto">
             Colonne <ChevronDown className="ml-2 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -75,7 +80,6 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
             })}
         </DropdownMenuContent>
       </DropdownMenu>
-       */}
     </div>
   );
 }
