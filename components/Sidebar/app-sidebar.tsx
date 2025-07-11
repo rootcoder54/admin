@@ -5,6 +5,8 @@ import {
   AlignLeft,
   Calendar,
   FileArchive,
+  FileChartColumn,
+  FileChartPie,
   HelpCircle,
   Home,
   MessageCircleQuestion,
@@ -52,8 +54,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {
         title: "Intervention",
         url: "/intervention",
-        icon: AlignLeft,
+        icon: FileChartColumn,
         isActive: pathname.startsWith("/intervention")
+      },
+      {
+        title: "Facture",
+        url: "/facture",
+        icon: FileChartPie,
+        isActive: pathname.startsWith("/facture")
       },
       {
         title: "Calendrier",
