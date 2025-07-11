@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/table";
 
 import React from "react";
+import DataToolBar from "./data-table-toolbar";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -65,6 +66,9 @@ function DataTable<TData, TValue>({
 
   return (
     <div className="w-full h-full">
+      <div>
+        <DataToolBar table={table} />
+      </div>
       <Table>
         <TableHeader className="bg-neutral-300 dark:bg-neutral-700">
           {table.getHeaderGroups().map((headerGroup) => (
