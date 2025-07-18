@@ -1,4 +1,5 @@
 "use client";
+import { Spinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -58,19 +59,28 @@ export default function Home() {
         <Input
           type="text"
           placeholder="Nom du client"
+          disabled={uploading}
           value={clientName}
           onChange={(e) => setClientName(e.target.value)}
         />
 
         <Input
           type="file"
+          disabled={uploading}
           onChange={(e) => setFile(e.target.files?.[0] || null)}
         />
         <Button
           onClick={handleUpload}
           disabled={!file || !clientName || uploading}
         >
-          {uploading ? "Envoi en cours..." : "Envoyer"}
+          {uploading ? (
+            <div className="flex items-center space-x-2">
+              <Spinner />
+              <span>Envoie en cours</span>
+            </div>
+          ) : (
+            "Envoyer"
+          )}
         </Button>
 
         {uploading && (

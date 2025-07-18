@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     process.cwd(),
     "database",
     safeClientName,
-    format(date, "yyyy-MM-dd")
+    format(date, "yyyy-MM-dd_HH-mm-ss")
   );
 
   // Crée le dossier si nécessaire
