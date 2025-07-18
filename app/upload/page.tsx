@@ -3,6 +3,7 @@ import { Spinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Home() {
   const [message, setMessage] = useState("");
@@ -43,8 +44,10 @@ export default function Home() {
         try {
           const res = JSON.parse(xhr.responseText);
           setMessage(res.message || "Fichier envoyé");
+          toast.success(res.message || "Fichier envoyé");
         } catch {
           setMessage("Erreur lors de la réponse du serveur");
+          toast.error("Erreur lors de la réponse du serveur");
         }
       }
     };
