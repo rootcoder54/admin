@@ -19,7 +19,7 @@ export default function CRMLayout({ children }: { children: React.ReactNode }) {
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <div className="min-h-screen">
+            <div className="min-h-screen dark:bg-stone-900/10">
                 <NextNProgress color="#ca8a04" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />
                 {children}
             </div>

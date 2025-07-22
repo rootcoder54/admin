@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { format } from "date-fns";
-import { Facture } from "@prisma/client";
+import { FactureAll } from "@/types";
 
 function highlightMatch(text: string, search: string) {
   if (!search) return text;
@@ -48,7 +48,7 @@ function highlightMatch(text: string, search: string) {
   return result;
 }
 
-export const columns: ColumnDef<Facture>[] = [
+export const columns: ColumnDef<FactureAll>[] = [
   {
     id: "select",
     cell: ({ row }) => (
@@ -183,7 +183,7 @@ export const columns: ColumnDef<Facture>[] = [
       );
     },
     cell: ({ row, column }) => {
-      const value = row.original.clientId || "";
+      const value = row.original.client.nomClient || "";
       const filter = column.getFilterValue() as string;
       return (
         <div className="flex items-center">

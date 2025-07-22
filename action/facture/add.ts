@@ -5,16 +5,16 @@ import { db } from "@/lib/db";
 export const addFacture = async (
   numero: string,
   date: Date,
-  type: string,
-  acquittee: boolean,
-  numeroOrdre: number,
-  modeReglement: string,
-  devise: string,
-  observation: string,
-  totalHT: number,
-  remise: number,
-  totalTTC: number,
-  totalTVA: number,
+  type: string | undefined,
+  acquittee: boolean | undefined,
+  numeroOrdre: number | undefined,
+  modeReglement: string | undefined,
+  devise: string | undefined,
+  observation: string | undefined,
+  totalHT: number | undefined,
+  remise: number | undefined,
+  totalTTC: number | undefined,
+  totalTVA: number | undefined,
   clientId: string
 ) => {
   const facture = await db.facture.create({
@@ -34,5 +34,6 @@ export const addFacture = async (
       clientId
     }
   });
+  console.log("Facture created:", facture);
   return facture;
 };

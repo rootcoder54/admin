@@ -47,7 +47,7 @@ function DataToolBar<TData>({ table }: DataTableToolbarProps<TData>) {
               <X />
             </Button>
           )}
-          <Link href={`#`}>
+          <Link href={`/facture/add`}>
             <Button variant="blue" size={"sm"}>
               <PlusIcon />
               Ajouter
