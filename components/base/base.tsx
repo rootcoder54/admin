@@ -73,7 +73,7 @@ export const BaseList = ({ clientId }: { clientId: string }) => {
           ))}
           {data.length === 0 && (
             <TableRow>
-              <TableCell colSpan={6} className="text-center">
+              <TableCell colSpan={6} className="text-center py-8">
                 Pas de Base enregistré
               </TableCell>
             </TableRow>

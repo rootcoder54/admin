@@ -63,7 +63,7 @@ export const ContratList = ({ clientId }: { clientId: string }) => {
           ))}
           {data.length === 0 && (
             <TableRow>
-              <TableCell colSpan={5} className="text-center">
+              <TableCell colSpan={5} className="text-center py-8">
                 Pas de contrat
               </TableCell>
             </TableRow>
