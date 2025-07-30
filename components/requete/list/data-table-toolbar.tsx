@@ -77,7 +77,7 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
               </Button>
             )}
             <Link href={`/requete/add`}>
-              <Button variant="outline" size={"sm"}>
+              <Button variant="blue" size={"sm"}>
                 <PlusIcon />
                 Ajouter
               </Button>
@@ -134,33 +134,6 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
           </div>
         )}
       </div>
-
-      {/*
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="ml-auto">
-            Colonne <ChevronDown className="ml-2 h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          {table
-            .getAllColumns()
-            .filter((column) => column.getCanHide())
-            .map((column) => {
-              return (
-                <DropdownMenuCheckboxItem
-                  key={column.id}
-                  className="capitalize"
-                  checked={column.getIsVisible()}
-                  onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                >
-                  {column.id}
-                </DropdownMenuCheckboxItem>
-              );
-            })}
-        </DropdownMenuContent>
-      </DropdownMenu>
-       */}
     </div>
   );
 }
