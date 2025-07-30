@@ -28,7 +28,7 @@ export function DeleteRequete({
 
   const supprimer = () => {
     startTransition(() => {
-        deleteRequete(id).then((data) => {
+      deleteRequete(id).then((data) => {
         toast.success(`Requête ${data.sujet} supprimé avec succes`);
         reload();
       });

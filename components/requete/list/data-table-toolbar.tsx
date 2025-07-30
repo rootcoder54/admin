@@ -12,6 +12,11 @@ import Link from "next/link";
 import DetailRequet from "../detail_requete";
 import SearchFilter from "./search-filter";
 import { Input } from "@/components/ui/input";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -43,114 +48,82 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
 
   return (
     <div className="flex items-center gap-3 py-4">
-      <div className="flex md:flex-row flex-col gap-3">
-        <div className="flex items-center gap-3">
-          <SearchFilter table={table} />
-
-          <Input
-            placeholder="Filter Sujet..."
-            value={(table.getColumn("sujet")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("sujet")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm"
-          />
-
-          {/* table.getColumn("etat") && (
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="border-dashed border-2">
-                  Etat :
-                  <Badge>
-                    {encour && !fin && "EN COURS"}
-                    {!encour && fin && "TERMINE"}
-                    {!encour && !fin && "TOUS"}
-                  </Badge>
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0" align="start">
-                <div className="flex flex-col space-y-1 p-1">
-                  <Button
-                    className="w-full justify-start h-8"
-                    variant={fin ? "secondary" : "ghost"}
-                    onClick={() => {
-                      setEncour(false);
-                      setFin(true);
-                      table.getColumn("etat")?.setFilterValue(true);
-                    }}
-                  >
-                    <CheckCircle /> TERMINE
-                  </Button>
-                  <Button
-                    className="w-full justify-start h-8"
-                    variant={encour ? "secondary" : "ghost"}
-                    onClick={() => {
-                      setEncour(true);
-                      setFin(false);
-                      table.getColumn("etat")?.setFilterValue(false);
-                    }}
-                  >
-                    <Gamepad /> EN COURS
-                  </Button>
-                  <Button
-                    className="w-full justify-start h-8"
-                    variant={!fin && !encour ? "secondary" : "ghost"}
-                    onClick={() => {
-                      setEncour(false);
-                      setFin(false);
-                      table.resetColumnFilters();
-                    }}
-                  >
-                    <CheckCheckIcon />
-                    TOUS
-                  </Button>
-                </div>
-              </PopoverContent>
-            </Popover>
-          )*/}
-          {isFiltered && (
-            <Button
-              variant="destructive"
-              onClick={() => {
-                table.resetColumnFilters();
-              }}
-              className="h-8 px-2 lg:px-3"
-            >
-              Effacer les filtres
-              <X />
-            </Button>
-          )}
-          <Link href={`/requete/add`}>
-            <Button variant="outline" size={"sm"}>
-              <PlusIcon />
-              Ajouter
-            </Button>
-          </Link>
-        </div>
-        <div className="flex flex-row items-center justify-end gap-3">
-          {table.getFilteredSelectedRowModel().rows.length !== 0 && (
-            <>
-              <DeleteRequete reload={reload} id={id} />
-              {/*<Link href={`/requete/${id}`}>
-                <Button variant="gray" size={"sm"}>
-                  <FileStack />
-                </Button>
-              </Link>
-              */}
-              <DetailRequet id={id} />
-              <Link href={`/requete/intervention/${id}`}>
-                <Button size={"sm"} variant={"blue"}>
-                  <FileArchive />
-                  Intervention
-                </Button>
-              </Link>
-              <Button variant={"gray"} size={"sm"} onClick={deselectRows}>
-                Deselectionné
+      <div className="flex flex-col items-center gap-2">
+        {table.getFilteredSelectedRowModel().rows.length == 0 ? (
+          <div className="flex items-center gap-3 px-4 py-2">
+            <SearchFilter table={table} />
+            <Input
+              placeholder="Filter Sujet..."
+              value={
+                (table.getColumn("sujet")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("sujet")?.setFilterValue(event.target.value)
+              }
+              className="max-w-sm"
+            />
+            {isFiltered && (
+              <Button
+                variant="destructive"
+                onClick={() => {
+                  table.resetColumnFilters();
+                }}
+                className="h-8 px-2 lg:px-3"
+              >
+                Effacer les filtres
+                <X />
               </Button>
-            </>
-          )}
-        </div>
+            )}
+            <Link href={`/requete/add`}>
+              <Button variant="outline" size={"sm"}>
+                <PlusIcon />
+                Ajouter
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="flex flex-row items-center gap-3 rounded-lg bg-zinc-300/20 px-4 py-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant={"gray"} size={"sm"} onClick={deselectRows}>
+                  <X />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Déselectionné</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <DeleteRequete reload={reload} id={id} />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Supprimer</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <DetailRequet id={id} />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Details</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Link href={`/requete/intervention/${id}`}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size={"sm"} variant={"blue"}>
+                    <FileArchive />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Voir les interventions</p>
+                </TooltipContent>
+              </Tooltip>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/*

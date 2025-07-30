@@ -93,7 +93,7 @@ function DataTable<TData, TValue>({
         <DataToolBar table={table} reload={reload} />
       </div>
       <Table>
-        <TableHeader className="bg-neutral-300 dark:bg-neutral-700">
+        <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow className="" key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
