@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Table } from "@tanstack/react-table";
 import { PlusIcon, X } from "lucide-react";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
-import { AiFillFileAdd } from "react-icons/ai";
 
 import { useEffect, useState } from "react";
 
@@ -19,6 +18,7 @@ import {
   TooltipContent,
   TooltipTrigger
 } from "@/components/ui/tooltip";
+import { AddInterventionDialog } from "../add_intervention";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -121,16 +121,7 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
                 </TooltipContent>
               </Tooltip>
             </Link>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button size={"sm"} className="size-8">
-                  <AiFillFileAdd />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Ajouter une intervention</p>
-              </TooltipContent>
-            </Tooltip>
+            <AddInterventionDialog id={id} />
           </div>
         )}
       </div>
