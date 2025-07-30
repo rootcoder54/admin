@@ -33,6 +33,11 @@ import {
 import { format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 const DetailRequet = ({ id }: { id: string }) => {
   const { data: requete } = useQuery<RequeteWithClient>({
@@ -42,11 +47,18 @@ const DetailRequet = ({ id }: { id: string }) => {
 
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Link href={`?id=${id}`}>
-          <FileStack />
-        </Link>
-      </SheetTrigger>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <SheetTrigger asChild>
+            <Button variant={"outline"} className="size-8" size={"icon"}>
+              <FileStack />
+            </Button>
+          </SheetTrigger>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Details</p>
+        </TooltipContent>
+      </Tooltip>
       <SheetContent className="sm:max-w-xl px-14 space-y-4 dark:bg-stone-900">
         <SheetHeader className="space-y-4">
           <StickyNote />

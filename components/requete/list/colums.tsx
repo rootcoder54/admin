@@ -9,7 +9,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { format } from "date-fns";
 import { RequeteWithClient } from "@/types";
-import DetailRequet from "../detail_requete";
 import { dateBetween } from "./date-filter";
 
 function highlightMatch(text: string, search: string) {
@@ -114,9 +113,6 @@ export const columns: ColumnDef<RequeteWithClient>[] = [
       return (
         <div className="group flex items-center">
           {highlightMatch(value, filter || "")}
-          <div className="hidden group-hover:block items-center">
-            <DetailRequet id={row.original.id} />
-          </div>
         </div>
       );
     }

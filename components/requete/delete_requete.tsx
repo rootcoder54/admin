@@ -16,6 +16,11 @@ import { useTransition } from "react";
 import { toast } from "sonner";
 import { Spinner } from "@/components/spinner";
 import { deleteRequete } from "@/action/requete/delete";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 export function DeleteRequete({
   id,
@@ -44,11 +49,18 @@ export function DeleteRequete({
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="destructive" size={"sm"}>
-          <Trash2 />
-        </Button>
-      </AlertDialogTrigger>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" className="size-8" size={"sm"}>
+              <Trash2 />
+            </Button>
+          </AlertDialogTrigger>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Supprimer</p>
+        </TooltipContent>
+      </Tooltip>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Etez vous sûr?</AlertDialogTitle>

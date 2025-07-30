@@ -1,7 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Table } from "@tanstack/react-table";
-import { FileArchive, PlusIcon, X } from "lucide-react";
+import { PlusIcon, X } from "lucide-react";
+import { LiaFileInvoiceSolid } from "react-icons/lia";
+import { AiFillFileAdd } from "react-icons/ai";
 
 import { useEffect, useState } from "react";
 
@@ -47,10 +49,10 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
   }, [selectedRowsData]);
 
   return (
-    <div className="flex items-center gap-3 py-4">
-      <div className="flex flex-col items-center gap-2">
+    <div className="flex items-center py-4">
+      <div className="flex flex-col items-center">
         {table.getFilteredSelectedRowModel().rows.length == 0 ? (
-          <div className="flex items-center gap-3 px-4 py-2">
+          <div className="flex items-center gap-3 py-2">
             <SearchFilter table={table} />
             <Input
               placeholder="Filter Sujet..."
@@ -82,10 +84,15 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
             </Link>
           </div>
         ) : (
-          <div className="flex flex-row items-center gap-3 rounded-lg bg-zinc-300/20 px-4 py-2">
+          <div className="flex flex-row items-center justify-center gap-1 rounded-lg bg-zinc-300/30 px-4 py-2">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant={"gray"} size={"sm"} onClick={deselectRows}>
+                <Button
+                  variant={"outline"}
+                  size={"icon"}
+                  className="size-8"
+                  onClick={deselectRows}
+                >
                   <X />
                 </Button>
               </TooltipTrigger>
@@ -101,20 +108,12 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
                 <p>Supprimer</p>
               </TooltipContent>
             </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <DetailRequet id={id} />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Details</p>
-              </TooltipContent>
-            </Tooltip>
-
+            <DetailRequet id={id} />
             <Link href={`/requete/intervention/${id}`}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button size={"sm"} variant={"blue"}>
-                    <FileArchive />
+                  <Button size={"sm"} className="size-8" variant={"blue"}>
+                    <LiaFileInvoiceSolid />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -122,6 +121,16 @@ function DataToolBar<TData>({ table, reload }: DataTableToolbarProps<TData>) {
                 </TooltipContent>
               </Tooltip>
             </Link>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button size={"sm"} className="size-8">
+                  <AiFillFileAdd />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Ajouter une intervention</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         )}
       </div>

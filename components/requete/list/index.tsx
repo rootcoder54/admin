@@ -89,7 +89,7 @@ function DataTable<TData, TValue>({
 
   return (
     <div className="w-full h-full">
-      <div className="container mx-auto">
+      <div>
         <DataToolBar table={table} reload={reload} />
       </div>
       <Table>
