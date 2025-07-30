@@ -29,7 +29,7 @@ const Page = () => {
         </div>
         <div className="ml-auto px-3"></div>
       </header>
-      <div className="flex flex-1 flex-col gap-4">
+      <div className="flex flex-1 flex-col gap-4 px-4">
         <div>
           <DataTableEmploye columns={columnsEmploye} data={employes} />
         </div>

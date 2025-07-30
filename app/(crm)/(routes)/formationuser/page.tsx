@@ -21,9 +21,7 @@ import { fetcher } from "@/lib/fetcher";
 import { Spinner } from "@/components/spinner";
 
 const PageFormationUser = () => {
-  const {
-    data: formations,
-  } = useQuery<UserFormation[]>({
+  const { data: formations } = useQuery<UserFormation[]>({
     queryKey: ["formationUser"],
     queryFn: () => fetcher(`/api/formationUser`)
   });
@@ -46,34 +44,36 @@ const PageFormationUser = () => {
         <div className="ml-auto px-3"></div>
       </header>
 
-      {formations ? (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Nom</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Date d&apos;inscription</TableHead>
-              <TableHead className="text-right">Profession</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {formations.map((formation) => (
-              <TableRow key={formation.id}>
-                <TableCell className="font-medium">{formation.nom}</TableCell>
-                <TableCell>{formation.email}</TableCell>
-                <TableCell>{`${formation.createdAt}`}</TableCell>
-                <TableCell className="text-right">
-                  {formation.profession}
-                </TableCell>
+      <div className="px-4">
+        {formations ? (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Nom</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Date d&apos;inscription</TableHead>
+                <TableHead className="text-right">Profession</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      ) : (
-        <div className="h-24 flex items-center w-full justify-center text-center">
-          <Spinner size={"lg"} />
-        </div>
-      )}
+            </TableHeader>
+            <TableBody>
+              {formations.map((formation) => (
+                <TableRow key={formation.id}>
+                  <TableCell className="font-medium">{formation.nom}</TableCell>
+                  <TableCell>{formation.email}</TableCell>
+                  <TableCell>{`${formation.createdAt}`}</TableCell>
+                  <TableCell className="text-right">
+                    {formation.profession}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <div className="h-24 flex items-center w-full justify-center text-center">
+            <Spinner size={"lg"} />
+          </div>
+        )}
+      </div>
     </>
   );
 };
