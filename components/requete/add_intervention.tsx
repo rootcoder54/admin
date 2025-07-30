@@ -20,8 +20,16 @@ import {
   TooltipContent,
   TooltipTrigger
 } from "@/components/ui/tooltip";
+import { useQuery } from "@tanstack/react-query";
+import { RequeteWithClient } from "@/types";
+import { fetcher } from "@/lib/fetcher";
 
 export function AddInterventionDialog({ id }: { id: string }) {
+  const { data: requete } = useQuery<RequeteWithClient>({
+    queryKey: ["requeteid", id],
+    queryFn: () => fetcher(`/api/requete/${id}`)
+  });
+  console.log(requete);
   return (
     <Dialog>
       <Tooltip>
