@@ -26,7 +26,7 @@ const Navbar = () => {
             height={45}
             className="dark:invert"
           />
-          <div>
+          <div className="hidden md:flex md:flex-col lg:flex-row lg:items-center">
             <span className="font-bold text-2xl">MALI</span>
             <span className="font-bold text-yellow-500 text-2xl">SYSTEM</span>
           </div>

@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -11,7 +10,6 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 import { AiFillFileAdd } from "react-icons/ai";
 
@@ -23,6 +21,8 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { RequeteWithClient } from "@/types";
 import { fetcher } from "@/lib/fetcher";
+import { format } from "date-fns";
+import { Textarea } from "../ui/textarea";
 
 export function AddInterventionDialog({ id }: { id: string }) {
   const { data: requete } = useQuery<RequeteWithClient>({
@@ -48,28 +48,43 @@ export function AddInterventionDialog({ id }: { id: string }) {
         <DialogHeader>
           <DialogTitle>Ajouter une Intervention</DialogTitle>
           <DialogDescription>
-            Lorem ipsum dolor sit, asperiores porro accusamus voluptas ab odit!
-            Consequatur ab distinctio veritatis repudiandae, necessitatibus cum.
-            {id}
+            Ajouter une intervention pour la requête {""}
+            {format(requete?.dateDebut || new Date(), "yyyyMMdd_HHmm_")}
+            {requete?.logiciel ? requete?.logiciel : "RHPaie"}_#
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4">
-          <div className="grid gap-3">
-            <Label htmlFor="name-1">Name</Label>
-            <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="username-1">Username</Label>
-            <Input id="username-1" name="username" defaultValue="@peduarte" />
-          </div>
+        <div className="grid grid-cols-7 gap-x-2 py-3 border-b">
+          <span className="col-span-2">Date</span>
+          <span>Debut</span>
+          <span>Fin</span>
+          <span className="col-span-3">Description</span>
         </div>
+        <Item />
         <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DialogClose>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit" variant={"blue"}>
+            Enregistrer
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 }
+
+const Item = () => {
+  return (
+    <div className="grid grid-cols-7 gap-x-2 py-3 border-b">
+      <span className="col-span-2">
+        <Input type="date" className="w-full" />
+      </span>
+      <span>
+        <Input type="time" />
+      </span>
+      <span>
+        <Input type="time" />
+      </span>
+      <span className="col-span-3">
+        <Textarea placeholder="Description de l'intervention" />
+      </span>
+    </div>
+  );
+};

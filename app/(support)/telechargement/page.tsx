@@ -7,10 +7,10 @@ const Page = () => {
     <div className="flex-1">
       <div className="flex flex-col items-center justify-center h-full py-8">
         <Image src={"/icon/rhpaie.png"} alt="rhpaie" width={80} height={120} />
-        <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 ">
+        <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 px-5">
           Télècharger et installer Le logiciel RHPaie et ses complements{" "}
         </h1>
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4 text-gray-600 px-5">
           Retrouvez ici les différents logiciels disponibles en téléchargement.
         </p>
         <div className="flex flex-col mt-8 space-y-4">
@@ -19,11 +19,12 @@ const Page = () => {
               key={logiciel.name}
               className="flex items-center justify-between sm:w-full md:w-[700px] lg:w-[950px] xl:w-[1150px]"
             >
-              <div className="flex items-center space-x-7 border-b-2 border-zinc-300 py-4">
+              <div className="flex flex-col md:flex-row items-start md:items-center space-x-7 border-b-2 border-zinc-300 py-4">
                 <Image
                   src={logiciel.image}
                   alt={logiciel.name}
                   width={154}
+                  className="px-5 md:px-0"
                   height={45}
                 />
                 <div className="space-y-2">
