@@ -13,7 +13,7 @@ export const videos = [
                     </tr>
                     </tbody>
                   </table>`,
-    video: "/astuce/Ajouter un employé.mp4",
+    video: "https://www.youtube.com/embed/Unb4N552rSU",
     image: "/astuce/image/bg1.PNG"
   },
   {
@@ -140,7 +140,7 @@ export const videos = [
               </td>
               </tr>
               </tbody></table>`,
-    video: "/astuce/Ajouter un employé.mp4",
+    video: "https://www.youtube.com/embed/Unb4N552rSU",
     image: "/astuce/image/bg7.PNG"
   },
   {
@@ -169,7 +169,7 @@ export const videos = [
               </td>
               </tr>
               </tbody></table>`,
-    video: "/astuce/Ajouter une prime à un employé.mp4",
+    video: "https://www.youtube.com/embed/APO7lQjnTL0",
     image: "/astuce/image/bg2.PNG"
   },
   {
@@ -243,7 +243,7 @@ export const videos = [
                 </tr>
                 </tbody>
               </table>`,
-    video: "/astuce/Ajouter un compte bancaire chez un employé.mp4",
+    video: "https://www.youtube.com/embed/KFyqjj2YRAg",
     image: "/astuce/image/bg3.PNG"
   },
   {

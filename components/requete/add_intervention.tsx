@@ -25,7 +25,6 @@ import { format } from "date-fns";
 import { Textarea } from "../ui/textarea";
 import { useState } from "react";
 import { OctagonX } from "lucide-react";
-
 type Intervention = {
   date: string;
   debut: string;

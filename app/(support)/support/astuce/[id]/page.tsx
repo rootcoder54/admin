@@ -12,10 +12,10 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const video = videos.find((item) => item.id === id);
 
-  if (!video) return <div>Logiciel introuvable</div>;
+  if (!video) return <div>Vidéo introuvable</div>;
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4 px-5">
       <div className="flex items-start w-full">
         <Breadcrumb>
           <BreadcrumbList>
@@ -47,9 +47,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <video controls className="" poster={video.image}>
-        <source src={video.video} type="video/mp4" />
-      </video>
+      <iframe
+        src={video.video}
+        title={video.nom}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        className="w-full sm:w-full md:w-[700px] lg:w-[950px] xl:w-[1150px] aspect-video rounded-md shadow-md"
+      ></iframe>
       <div className="flex flex-col bg-zinc-100 border shadow-md rounded-md p-6 sm:w-full md:w-[700px] lg:w-[950px] xl:w-[1150px]">
         <h2 className="text-2xl font-semibold text-zinc-700">{video.nom}</h2>
         <div dangerouslySetInnerHTML={{ __html: video.detail }} />
