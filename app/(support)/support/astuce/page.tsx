@@ -1,57 +1,62 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { videos } from "@/data/type/videoAstuce";
-import Image from "next/image";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage
-} from "@/components/ui/breadcrumb";
+import { AlignVerticalJustifyEnd } from "lucide-react";
 import Link from "next/link";
-import { ChevronRight, HelpCircle } from "lucide-react";
-
-const rendre = (texte: string) => {
-  return texte.length > 60 ? texte.slice(0, 60) + "..." : texte;
-};
+import { useState } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { IoVideocamOff } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
+import { Button } from "@/components/ui/button";
 
 const AstucePage = () => {
+  const [search, setSearch] = useState("");
+
+  // Filtrage par nom ou description
+  const filteredVideos = videos.filter(
+    (video) =>
+      video.nom.toLowerCase().includes(search.toLowerCase()) ||
+      video.description.toLowerCase().includes(search.toLowerCase()) ||
+      video.detail.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="container px-9">
-      <div className="max-w-screen-xl mx-auto">
-        <div className="flex flex-col items-start gap-y-7">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbPage className="line-clamp-1">
-                <Link
-                  href={"/support"}
-                  className="text-sm text-zinc-700 font-bold flex gap-2 items-end"
-                >
-                  <HelpCircle /> Support
-                </Link>
-              </BreadcrumbPage>
-              <ChevronRight />
-              <BreadcrumbPage className="line-clamp-1">
-                <span className="text-sm text-zinc-400 font-bold">Astuce video</span>
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-8">
-            {videos.map((video, index) => (
-              <CardVideo
-                key={index}
-                nom={video.nom}
-                description={video.description}
-                image={video.image}
-                link={`/support/astuce/${video.id}`}
-              />
-            ))}
-          </div>
-        </div>
+    <div className="w-full flex flex-col gap-6 py-10">
+      <h1 className="text-3xl font-bold text-neutral-600">Vidéos pratiques</h1>
+      <div className="w-full border rounded-md shadow px-3 py-1 flex items-center group">
+        <BiSearchAlt2 className="h-7 w-7 text-blue-700" />
+        <Input
+          placeholder="Recherche..."
+          className="border-0 text-blue-700 placeholder:text-zinc-400"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        {search && (
+          <Button
+            variant="ghost"
+            className="h-8 w-8 p-0 rounded-full hover:bg-zinc-200"
+            onClick={() => setSearch("")}
+          >
+            <IoMdClose className="h-5 w-5 text-zinc-500" />
+          </Button>
+        )}
       </div>
+      {filteredVideos.length > 0 ? (
+        filteredVideos.map((video, index) => (
+          <CardVideo
+            key={index}
+            nom={video.nom}
+            description={video.description}
+            link={`/support/astuce/${video.id}`}
+          />
+        ))
+      ) : (
+        <div className="text-zinc-400 border rounded-md text-center p-5 border-blue-300 bg-blue-400/10 shadow flex flex-col items-center gap-2">
+          <IoVideocamOff className="h-12 w-12 text-blue-500" />
+          <span className="text-blue-500 text-lg">Aucune vidéo trouvée</span>
+        </div>
+      )}
     </div>
   );
 };
@@ -61,37 +66,28 @@ export default AstucePage;
 const CardVideo = ({
   link,
   nom,
-  description,
-  image
+  description
 }: {
   link: string;
   nom: string;
   description: string;
-  image?: string;
 }) => {
   return (
-    <Link href={link}>
-      <Card className="group hover:shadow-sm border transition overflow-hidden rounded-lg h-full flex flex-col bg-white">
-        <div className="flex-1">
-          <div className="relative w-full aspect-video rounded-t-md overflow-hidden border-b">
-            <Image
-              src={image || "/bgTache/bg1.jpg"}
-              alt="bg"
-              width={554}
-              height={554}
-              className="duration-700 ease-in-out blur-0 grayscale-0 object-cover w-full h-full"
-            />
-          </div>
-          <div className="flex flex-col pt-2 px-3">
-            <div className="text-xl font-semibold group-hover:text-sky-700 transition line-clamp-1">
+    <Link
+      href={link}
+      className="rounded-md shadow p-4 flex gap-4 hover:bg-blue-400/10 group hover:border-blue-300 border"
+    >
+      <div className="flex-1">
+        <div className="flex flex-row items-center gap-3">
+          <AlignVerticalJustifyEnd className="w-14 group-hover:text-blue-500 hidden md:block" />
+          <div className="flex flex-col">
+            <h3 className="text-md font-semibold text-zinc-600 group-hover:text-blue-500">
               {nom}
-            </div>
-            <div className="my-3 flex items-center gap-x-2 transition line-clamp-2">
-              {rendre(description)}
-            </div>
+            </h3>
+            <div className="text-neutral-400">{description}</div>
           </div>
         </div>
-      </Card>
+      </div>
     </Link>
   );
 };
