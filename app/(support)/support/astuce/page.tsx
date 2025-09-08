@@ -54,7 +54,9 @@ const AstucePage = () => {
       ) : (
         <div className="text-zinc-400 border rounded-md text-center p-5 border-blue-300 bg-blue-400/10 shadow flex flex-col items-center gap-2">
           <IoVideocamOff className="h-12 w-12 text-blue-500" />
-          <span className="text-blue-500 text-lg">Aucune vidéo trouvée</span>
+          <span className="text-blue-500 text-lg">
+            Aucune vidéo trouvée pour &quot;{search}&quot;
+          </span>
         </div>
       )}
     </div>
@@ -81,7 +83,7 @@ const CardVideo = ({
         <div className="flex flex-row items-center gap-3">
           <AlignVerticalJustifyEnd className="w-14 group-hover:text-blue-500 hidden md:block" />
           <div className="flex flex-col">
-            <h3 className="text-md font-semibold text-zinc-600 group-hover:text-blue-500">
+            <h3 className="font-semibold text-lg text-zinc-600 group-hover:text-blue-500">
               {nom}
             </h3>
             <div className="text-neutral-400">{description}</div>

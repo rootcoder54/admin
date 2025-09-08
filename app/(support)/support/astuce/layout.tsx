@@ -39,7 +39,7 @@ const AstuceLayout = ({ children }: { children: ReactNode }) => {
             <BreadcrumbPage className="line-clamp-1">
               <Link
                 href={"/support"}
-                className="text-zinc-700 font-bold flex gap-x-2 items-center"
+                className="text-zinc-700 font-bold flex gap-x-2 items-center text-base"
               >
                 <TbHelpSquareRoundedFilled className="h-8 w-8 text-blue-500" />{" "}
                 <span>Support</span>
@@ -48,7 +48,7 @@ const AstuceLayout = ({ children }: { children: ReactNode }) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage className="line-clamp-1">
+            <BreadcrumbPage className="line-clamp-1 text-base">
               {pathname === "/support/astuce" ? (
                 <span className="text-zinc-500 font-bold">
                   Videos pratiques
@@ -67,10 +67,8 @@ const AstuceLayout = ({ children }: { children: ReactNode }) => {
             <>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage className="line-clamp-1">
-                  <span className="text-sm text-zinc-500 font-bold">
-                    {video.nom}
-                  </span>
+                <BreadcrumbPage className="line-clamp-1 text-base">
+                  <span className="text-zinc-500 font-bold">{video.nom}</span>
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </>

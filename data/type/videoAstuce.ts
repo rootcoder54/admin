@@ -168,7 +168,6 @@ export const videos = [
               </tr>
               </tbody></table>`,
     video: "https://www.youtube.com/embed/APO7lQjnTL0",
-    image: "/astuce/image/bg2.PNG"
   },
   {
     id: "fhvkfd5dfg4ert456hj479aed45gh69",

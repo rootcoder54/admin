@@ -50,8 +50,8 @@ const CardItem = () => {
           <Card className="flex items-center justify-start gap-x-4 p-6 hover:border-blue-500 cursor-pointer">
             <Image src={item.image} alt="logo" width={30} height={30} />
             <div className="flex flex-col gap-y-3">
-              <CardTitle className="text-zinc-600 text-base">{item.titre}</CardTitle>
-              <CardDescription>{item.description}</CardDescription>
+              <CardTitle className="text-zinc-600 text-lg">{item.titre}</CardTitle>
+              <CardDescription className="text-base">{item.description}</CardDescription>
             </div>
           </Card>
         </Link>
