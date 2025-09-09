@@ -46,8 +46,8 @@ export const logiciels = [
                     petites, moyennes et grandes entreprises, il offre une
                     solution complète et intuitive pour simplifier et
                     automatiser les processus de gestion de paie.`,
-    version: "2414.245.202412.1",
-    date: "23/10/2024",
+    version: "2414.245.202508.4",
+    date: "04/09/2025",
     link: "/rhpai14",
     telecharger: "https://malisystem.com/download/RHPaie_14.exe",
     size: "170 Mo",

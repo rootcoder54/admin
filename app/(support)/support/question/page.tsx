@@ -4,15 +4,16 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage
+  BreadcrumbPage,
+  BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetcher } from "@/lib/fetcher";
 import { Question } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronRight, HelpCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { TbHelpSquareRoundedFilled } from "react-icons/tb";
 
 const PageQuestion = () => {
   const { data: questions } = useQuery<Question[]>({
@@ -28,13 +29,16 @@ const PageQuestion = () => {
             <BreadcrumbPage className="line-clamp-1">
               <Link
                 href={"/support"}
-                className="text-sm text-zinc-700 font-bold flex gap-2 items-end"
+                className="text-zinc-700 font-bold flex gap-x-2 items-center text-base"
               >
-                <HelpCircle /> Support
+                <TbHelpSquareRoundedFilled className="h-8 w-8 text-blue-500" />{" "}
+                <span>Support</span>
               </Link>
             </BreadcrumbPage>
-            <ChevronRight />
-            <BreadcrumbPage className="line-clamp-1">
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage className="line-clamp-1 text-base">
               <span className="text-sm text-zinc-400 font-bold">
                 Vos questions fréquentes
               </span>

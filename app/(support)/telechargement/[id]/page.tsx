@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -15,10 +16,14 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!logiciel) return <div>Logiciel introuvable</div>;
   return (
     <div className="flex-1">
-      <Link href={"/telechargement"} className="flex gap-x-4 text-lg font-bold">
-        <ArrowLeft />
-        Retour
-      </Link>
+      <div>
+        <Link href={"/telechargement"}>
+          <Button variant="blue" className="m-4">
+            <ArrowLeft />
+            Retour
+          </Button>
+        </Link>
+      </div>
       <div className="flex flex-col items-center justify-center h-full py-8 px-4">
         <div className="flex flex-col gap-y-2 sm:w-full md:w-[700px] lg:w-[950px] xl:w-[1150px]">
           <div className="flex flex-col space-y-4">
