@@ -34,7 +34,7 @@ const Navbar = () => {
     }
   ];
   return (
-    <div className="flex justify-between items-center w-full md:w-3/4 lg:w-3/5 px-3 border-b-2 py-1">
+    <div className="flex justify-between items-center w-full md:w-3/4 px-3 border-b-2 py-1">
       <div className="flex items-center gap-x-3">
         <Link
           href="https://malisystem.com/"
