@@ -54,8 +54,8 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex items-center gap-x-4">
-        <div className="hidden md:flex items-center gap-x-4">
+      <div className="flex items-center gap-x-1">
+        <div className="hidden md:flex items-center gap-x-1">
           {menus.map((menu, index) => (
             <Link
               key={index}
@@ -97,8 +97,7 @@ const Navbar = () => {
             </PopoverContent>
           </Popover>
         </div>
-        <div className="border border-zinc-800 h-7" />
-        <Link href="/" className={buttonVariants({ variant: "outline" })}>
+        <Link href="/" className={buttonVariants({ variant: "gray" })}>
           Admin
         </Link>
       </div>
