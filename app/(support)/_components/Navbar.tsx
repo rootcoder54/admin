@@ -47,7 +47,7 @@ const Navbar = () => {
             height={45}
             className="dark:invert"
           />
-          <div className="hidden md:flex md:flex-col lg:flex-row lg:items-center">
+          <div className="hidden lg:flex lg:flex-col xl:flex-row lg:items-center">
             <span className="font-bold text-2xl">MALI</span>
             <span className="font-bold text-yellow-500 text-2xl">SYSTEM</span>
           </div>
@@ -55,7 +55,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-x-1">
-        <div className="hidden md:flex items-center gap-x-1">
+        <div className="hidden lg:flex items-center gap-x-1">
           {menus.map((menu, index) => (
             <Link
               key={index}
@@ -69,7 +69,7 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        <div className="md:hidden flex">
+        <div className="lg:hidden flex">
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline">
