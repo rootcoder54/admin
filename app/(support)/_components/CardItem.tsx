@@ -47,10 +47,10 @@ const CardItem = () => {
     <div className="flex flex-col gap-y-4">
       {listes.map((item, index) => (
         <Link key={index} href={item.lien} target={item.blank ? "_blank" : ""}>
-          <Card className="flex items-center justify-start gap-x-4 p-6 hover:border-blue-500 cursor-pointer">
+          <Card className="flex items-center justify-start gap-x-4 p-6 hover:border-blue-400 hover:bg-blue-400/10 group cursor-pointer">
             <Image src={item.image} alt="logo" width={30} height={30} />
-            <div className="flex flex-col gap-y-3">
-              <CardTitle className="text-zinc-600 text-lg">{item.titre}</CardTitle>
+            <div className="flex flex-col gap-y-2">
+              <CardTitle className="text-zinc-600 group-hover:text-blue-500 text-lg">{item.titre}</CardTitle>
               <CardDescription className="text-base">{item.description}</CardDescription>
             </div>
           </Card>
