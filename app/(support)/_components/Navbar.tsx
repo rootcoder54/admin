@@ -8,10 +8,31 @@ import {
   PopoverContent,
   PopoverTrigger
 } from "@/components/ui/popover";
-import { Menu } from "lucide-react";
+import { BadgeInfo, ClipboardList, Download, Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const menus = [
+    {
+      name: "Formation",
+      href: "/formation",
+      isSelect: pathname.startsWith("/formation"),
+      icon: <ClipboardList />
+    },
+    {
+      name: "Telechargement",
+      href: "/telechargement",
+      isSelect: pathname.startsWith("/telechargement"),
+      icon: <Download />
+    },
+    {
+      name: "Support",
+      href: "/support",
+      isSelect: pathname.startsWith("/support"),
+      icon: <BadgeInfo />
+    }
+  ];
   return (
     <div className="flex justify-between items-center w-full md:w-3/4 lg:w-3/5 px-3 border-b-2 py-1">
       <div className="flex items-center gap-x-3">
@@ -35,30 +56,18 @@ const Navbar = () => {
 
       <div className="flex items-center gap-x-4">
         <div className="hidden md:flex items-center gap-x-4">
-          {!pathname.startsWith("/formation") && (
+          {menus.map((menu, index) => (
             <Link
-              href="/formation"
-              className={buttonVariants({ variant: "ghost" })}
+              key={index}
+              href={menu.href}
+              className={cn(
+                buttonVariants({ variant: menu.isSelect ? "blue" : "ghost" })
+              )}
             >
-              Formation
+              {menu.icon}
+              {menu.name}
             </Link>
-          )}
-          {!pathname.startsWith("/telechargement") && (
-            <Link
-              href="/telechargement"
-              className={buttonVariants({ variant: "ghost" })}
-            >
-              Telechargement
-            </Link>
-          )}
-          {pathname !== "/support" && (
-            <Link
-              href="/support"
-              className={buttonVariants({ variant: "ghost" })}
-            >
-              Support
-            </Link>
-          )}
+          ))}
         </div>
         <div className="md:hidden flex">
           <Popover>
@@ -67,37 +76,28 @@ const Navbar = () => {
                 <Menu />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[150px]">
+            <PopoverContent className="w-[250px]">
               <div className="flex flex-col gap-y-2">
-                {!pathname.startsWith("/formation") && (
+                {menus.map((menu, index) => (
                   <Link
-                    href="/formation"
-                    className={buttonVariants({ variant: "ghost" })}
+                    key={index}
+                    href={menu.href}
+                    className={cn(
+                      buttonVariants({
+                        variant: menu.isSelect ? "blue" : "ghost"
+                      }),
+                      "justify-start"
+                    )}
                   >
-                    Formation
+                    {menu.icon}
+                    {menu.name}
                   </Link>
-                )}
-                {!pathname.startsWith("/telechargement") && (
-                  <Link
-                    href="/telechargement"
-                    className={buttonVariants({ variant: "ghost" })}
-                  >
-                    Telechargement
-                  </Link>
-                )}
-                {pathname !== "/support" && (
-                  <Link
-                    href="/support"
-                    className={buttonVariants({ variant: "ghost" })}
-                  >
-                    Support
-                  </Link>
-                )}
+                ))}
               </div>
             </PopoverContent>
           </Popover>
         </div>
-        <div className="border border-zinc-400 h-7" />
+        <div className="border border-zinc-800 h-7" />
         <Link href="/" className={buttonVariants({ variant: "outline" })}>
           Admin
         </Link>
